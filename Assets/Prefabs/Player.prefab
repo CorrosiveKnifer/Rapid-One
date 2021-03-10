@@ -171,9 +171,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9028527093672943805}
-  - component: {fileID: 1596345330994204616}
-  - component: {fileID: 9082366299445697019}
   - component: {fileID: 6924263132893836718}
+  - component: {fileID: 104047965540645895}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -198,43 +197,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1596345330994204616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100149760158879294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a60eb9c26753d40b8cb28188aa670c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_fMouseSensitivity: 100
-  m_PlayerBody: {fileID: 9028527093672943805}
---- !u!114 &9082366299445697019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100149760158879294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 020df3ab31cd99145bc7387be56f5a5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bIsChild: 0
-  m_CharController: {fileID: 6924263132893836718}
-  m_fSpeed: 5
-  m_fGravity: -19.62
-  m_vVelocity: {x: 0, y: 0, z: 0}
-  m_bGrounded: 0
-  m_GroundCheck: {fileID: 8152262990332718303}
-  m_GroundDistance: 0.4
-  m_GroundMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!143 &6924263132893836718
 CharacterController:
   m_ObjectHideFlags: 0
@@ -253,6 +215,28 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &104047965540645895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100149760158879294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020df3ab31cd99145bc7387be56f5a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bIsChild: 0
+  m_CharController: {fileID: 6924263132893836718}
+  m_fSpeed: 12
+  m_vVelocity: {x: 0, y: 0, z: 0}
+  m_bGrounded: 0
+  m_GroundCheck: {fileID: 8152262990332718303}
+  m_GroundDistance: 0.4
+  m_GroundMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6357798335306373995
 GameObject:
   m_ObjectHideFlags: 0

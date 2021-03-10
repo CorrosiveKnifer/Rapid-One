@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public bool m_bIsChild = false;
+    bool m_bIsEnabled;
 
     public CharacterController m_CharController;
     public float m_fSpeed = 12f; // Move speed
-    public float m_fGravity = -9.81f;
+    float m_fGravity = -19.62f;
 
     public Vector3 m_vVelocity;
     public bool m_bGrounded;
@@ -21,13 +22,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics.IgnoreLayerCollision(9, 9);
+
         if (m_bIsChild) // Child numbers
         {
+            m_bIsEnabled = false;
             m_fSpeed = 3.0f;
             m_fJumpThrust = 5.0f;
         }
         else // Adult numbers
         {
+            m_bIsEnabled = true;
             m_fSpeed = 6.0f;
             m_fJumpThrust = 8.0f;
         }
@@ -40,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
         if ((Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask)))
         {
             m_bGrounded = true;
-            Debug.Log("Grounded");
+            //Debug.Log("Grounded");
         }
         else
         {
             m_bGrounded = false;
-            Debug.Log("Not Grounded");
+           // Debug.Log("Not Grounded");
         }
 
         // Snap to ground
@@ -59,17 +64,39 @@ public class PlayerMovement : MonoBehaviour
             m_vVelocity.y = m_fJumpThrust;
         }
 
-        // Movement inputs
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = 0.0f;
+        float z = 0.0f;
 
+        // Movement inputs
+        if (m_bIsEnabled)
+        {
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
+        }
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
 
-        // Apply gravity to velocity
+        // Apply gravity to velocityS
         m_vVelocity.y += m_fGravity * Time.deltaTime;
 
         // Apply both movement inputs and velocity to the character controller
         m_CharController.Move((move * m_fSpeed + m_vVelocity) * Time.deltaTime);
     }
+
+    public void EnableControl()
+    {
+        m_bIsEnabled = true;
+    }
+
+    public void DisableControl()
+    {
+        m_bIsEnabled = false;
+    }
+
+    public void Teleport(Vector3 _targetPos)
+    {
+        Debug.Log(_targetPos);
+        m_CharController.Move(new Vector3(_targetPos.x, _targetPos.y, _targetPos.z) - transform.position);
+    }
+
 }
