@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float m_fMouseSensitivity = 100f;
+    public float m_fMouseSensitivity = 300f;
     public Transform m_AdultBody;
     public Transform m_ChildBody;
 
