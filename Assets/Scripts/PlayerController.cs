@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public Transform m_AdultBody;
     public Transform m_ChildBody;
 
+    public Camera m_AdultCamera;
+    public Camera m_ChildCamera;
+
     public Player Adult;
     public Player Child;
 
@@ -19,7 +22,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+
+
+        m_AdultCamera.enabled = true;
+        m_ChildCamera.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,19 +37,22 @@ public class PlayerController : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * m_fMouseSensitivity * Time.deltaTime;
 
 
+        if (m_bChildForm)
+        {
+            m_ChildBody.Rotate(Vector3.up * mouseX);
+        }
+        else
+        {
+            m_AdultBody.Rotate(Vector3.up * mouseX);
+        }
+
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             ToggleControlChild();
         }
 
-
-
-            //m_RotationX -= mouseY;
-            //m_RotationX = Mathf.Clamp(m_RotationX, -90f, 90f);
-
-            //transform.localRotation = Quaternion.Euler(m_RotationX, 0f, 0f);
-            //m_PlayerBody.Rotate(Vector3.up * mouseX);
-
+        //m_PlayerBody.Rotate(Vector3.up * mouseX);
     }
 
 
@@ -61,6 +71,9 @@ public class PlayerController : MonoBehaviour
             Child.Teleport(m_AdultBody.position);
             // Enable child control
             Child.EnableControl();
+
+            m_AdultCamera.enabled = false;
+            m_ChildCamera.enabled = true;
         }
         else
         {
@@ -69,6 +82,9 @@ public class PlayerController : MonoBehaviour
 
             // Enable adult control
             Adult.EnableControl();
+
+            m_AdultCamera.enabled = true;
+            m_ChildCamera.enabled = false;
         }
     }
 }
