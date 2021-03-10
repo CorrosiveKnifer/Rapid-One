@@ -43,11 +43,18 @@ public class CameraController : MonoBehaviour
         //If the left shift key is pressed start transitioning between using an agent.
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            parentCamera.enabled = false;
-            ghostCamera.enabled = true;
-            childCamera.enabled = false;
+            if(agent.state == 1)
+            {
+                agent.state = -1;
+            }
+            else
+            {
+                parentCamera.enabled = false;
+                ghostCamera.enabled = true;
+                childCamera.enabled = false;
 
-            agent.Shift();
+                agent.Shift();
+            }
         }
 
         //If the agent has stopped shifting and the ghost camera is enabled.
