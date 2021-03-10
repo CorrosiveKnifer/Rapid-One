@@ -47,12 +47,13 @@ public class CameraAgent : MonoBehaviour
         else
         {
             //Force the agent to the current location
-            transform.position = targetLocation.position;
+            transform.position = (state == 1) ? parentLocation.position: childLocation.position;
             agent.height = (state == -1) ? 0.05f : 1.0f;
         }
 
         //While shifting and the position is at the target position
-        if(isShifting && IsPositionEquals(transform.position, targetLocation.position))
+        float distance = Vector3.Distance(transform.position, targetLocation.position);
+        if(isShifting && distance < 1.1f)
         {
             //Disable shifting
             isShifting = false;
