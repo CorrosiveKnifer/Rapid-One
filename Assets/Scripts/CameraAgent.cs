@@ -48,6 +48,7 @@ public class CameraAgent : MonoBehaviour
         {
             //Force the agent to the current location
             transform.position = targetLocation.position;
+            agent.height = (state == -1) ? 0.05f : 1.0f;
         }
 
         //While shifting and the position is at the target position
