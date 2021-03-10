@@ -7,6 +7,7 @@ public class ChildView : MonoBehaviour
    
     public GameObject[] childs; //the list of objects relating for the child to see
     public GameObject[] adults; //the list of objects relating for the adult to see
+    private bool isAdult = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +33,13 @@ public class ChildView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //adult view
-        if (Input.GetKeyDown("up"))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isAdult = !(isAdult);
+        }
+            //adult view
+        //if (Input.GetKeyDown(KeyCode.Y))
+        if (isAdult == true)
         {
             
             //checking through child object and makes them dissapear
@@ -51,7 +57,8 @@ public class ChildView : MonoBehaviour
             }
         }
         //child view
-        if (Input.GetKeyDown("down"))
+        //if (Input.GetKeyDown(KeyCode.T))
+        else
         {
             //checking through child object and makes them appear
             foreach (GameObject child in childs)
