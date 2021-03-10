@@ -72,11 +72,11 @@ public class CameraAgent : MonoBehaviour
         shiftingTransform = transform;
         if (IsPositionEquals(transform.position, childLocation.position))
         {
-            targetLocation = parentLocation;
+            targetLocation = childLocation;
         }
         else
         {
-            targetLocation = childLocation;
+            targetLocation = parentLocation;
         }
     }
     
