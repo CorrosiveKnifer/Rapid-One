@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 247530074}
   - component: {fileID: 247530076}
-  - component: {fileID: 247530075}
+  - component: {fileID: 1477773108}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -75,14 +75,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &247530075
-AudioListener:
+--- !u!114 &1477773108
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247530073}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8a4ff7e2ea9c942a099b32aa50e717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fMouseSensitivity: 100
 --- !u!1 &2244346844404666800
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +99,7 @@ GameObject:
   - component: {fileID: 5003365212469123846}
   - component: {fileID: 7637767193114840981}
   - component: {fileID: 2295133570055346116}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +127,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2244346844404666800}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2295133570055346116
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -141,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c3d7819c45ce4aa42a6ab95e89faea36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,7 +178,8 @@ GameObject:
   - component: {fileID: 9028527093672943805}
   - component: {fileID: 6924263132893836718}
   - component: {fileID: 104047965540645895}
-  m_Layer: 0
+  - component: {fileID: 549370923}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,6 +243,25 @@ MonoBehaviour:
   m_GroundMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &549370923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100149760158879294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a60eb9c26753d40b8cb28188aa670c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fMouseSensitivity: 100
+  m_AdultBody: {fileID: 9028527093672943805}
+  m_ChildBody: {fileID: 0}
+  m_AdultCamera: {fileID: 247530076}
+  m_ChildCamera: {fileID: 0}
+  Adult: {fileID: 104047965540645895}
+  Child: {fileID: 0}
 --- !u!1 &6357798335306373995
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8152262990332718303}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
