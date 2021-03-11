@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     float m_RotationX = 0f;
-    public float m_fMouseSensitivity = 100f;
+    public float m_fMouseSensitivity = 300f;
 
     // Start is called before the first frame update
     void Start()
