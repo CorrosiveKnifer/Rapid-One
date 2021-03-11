@@ -52,6 +52,13 @@ public class PlayerController : MonoBehaviour
             ToggleControlChild();
         }
 
+        if (!m_bChildForm)
+        {
+            Child.Teleport(m_AdultBody.position);
+            //m_AdultCamera.enabled = true;
+            //m_ChildCamera.enabled = false;
+        }
+
         //m_PlayerBody.Rotate(Vector3.up * mouseX);
     }
 
@@ -68,7 +75,7 @@ public class PlayerController : MonoBehaviour
             // Teleport child to adult position
             //m_ChildBody.position.Set(m_AdultBody.position.x, m_AdultBody.position.y, m_AdultBody.position.z);
             //m_ChildTransform.position = m_AdultBody.position;
-            Child.Teleport(m_AdultBody.position);
+            //Child.Teleport(m_AdultBody.position);
             // Enable child control
             Child.EnableControl();
 

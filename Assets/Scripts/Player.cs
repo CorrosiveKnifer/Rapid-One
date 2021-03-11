@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     public float m_GroundDistance = 0.4f;
     public LayerMask m_GroundMask;
 
+    bool m_bTeleportQueued = false;
+    Vector3 m_TargetPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,10 +62,6 @@ public class Player : MonoBehaviour
             m_vVelocity.y = -2f;
         }
         // Jump
-        if (m_bGrounded && Input.GetButtonDown("Jump"))
-        {
-            m_vVelocity.y = m_fJumpThrust;
-        }
 
         float x = 0.0f;
         float z = 0.0f;
@@ -72,6 +71,11 @@ public class Player : MonoBehaviour
         {
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
+
+            if (m_bGrounded && Input.GetButtonDown("Jump"))
+            {
+                m_vVelocity.y = m_fJumpThrust;
+            }
         }
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
@@ -83,6 +87,14 @@ public class Player : MonoBehaviour
         m_CharController.Move((move * m_fSpeed + m_vVelocity) * Time.deltaTime);
     }
 
+    private void LateUpdate()
+    {
+        //if (m_bTeleportQueued)
+        //{
+        //    transform.position = m_TargetPos;
+        //    m_bTeleportQueued = false;
+        //}
+    }
     public void EnableControl()
     {
         m_bIsEnabled = true;
@@ -96,7 +108,12 @@ public class Player : MonoBehaviour
     public void Teleport(Vector3 _targetPos)
     {
         Debug.Log(_targetPos);
-        m_CharController.Move(new Vector3(_targetPos.x, _targetPos.y, _targetPos.z) - transform.position);
+        m_TargetPos = _targetPos;
+        //m_bTeleportQueued = true;
+        m_CharController.enabled = false;
+        transform.position = new Vector3(_targetPos.x, _targetPos.y, _targetPos.z);
+        m_CharController.enabled = true;
+        //m_CharController.Move(new Vector3(_targetPos.x, _targetPos.y, _targetPos.z) - transform.position);
     }
 
 }
