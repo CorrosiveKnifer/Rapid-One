@@ -36,15 +36,8 @@ public class PlayerController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * m_fMouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_fMouseSensitivity * Time.deltaTime;
 
-
-        if (m_bChildForm)
-        {
-            m_ChildBody.Rotate(Vector3.up * mouseX);
-        }
-        else
-        {
-            m_AdultBody.Rotate(Vector3.up * mouseX);
-        }
+        m_ChildBody.Rotate(Vector3.up * mouseX);
+        m_AdultBody.Rotate(Vector3.up * mouseX);
 
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
