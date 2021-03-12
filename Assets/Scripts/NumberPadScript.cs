@@ -45,6 +45,10 @@ public class NumberPadScript : MonoBehaviour
         {
             Enter();
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Hide();
+        }
     }
 
     public void Show()

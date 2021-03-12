@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractingItems : MonoBehaviour
 {
     public Transform cam;
+    public Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,24 +22,20 @@ public class InteractingItems : MonoBehaviour
             RaycastHit[] hits;
 
             //to see the line of the raycast
-            Debug.DrawRay(transform.position, cam.forward * 5.0f, Color.blue, 2);
-            hits = Physics.RaycastAll(transform.position, cam.forward, 5.0f);
+            //Debug.DrawRay(transform.position, cam.forward * 5.0f, Color.blue, 2);
+            
+            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0.0f));
+            Debug.DrawRay(ray.origin, ray.direction*5.0f, Color.blue, 0.5f);
+            hits = Physics.RaycastAll(ray.origin, ray.direction, 5.0f);
 
             //checking each item
             foreach (var hit in hits)
             {
-               
-
-                //chekcing and calling the functions to interact with that certain item
-                ///NOTE: do change the script of animals into items.
-                /*
-                Animal other = hit.collider.gameObject.GetComponentInChildren<Animal>();
-                if (other != null)
+                if(hit.collider.tag == "Wall")
                 {
-                    other.MakeSound();
-                    break;
+                    return;
                 }
-                */
+
                 Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
                 if (other != null)
                 {
@@ -46,8 +43,6 @@ public class InteractingItems : MonoBehaviour
                     break;
                 }
             }
-
-
         }
     }
 }

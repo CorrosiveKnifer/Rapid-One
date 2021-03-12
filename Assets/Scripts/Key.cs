@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Key : Interactable
 {
+    public NumberPadScript numberPad;
+
     public override void Activate()
     {
-        Debug.Log("Key acquired");
+        numberPad.Show();
     }
 }
