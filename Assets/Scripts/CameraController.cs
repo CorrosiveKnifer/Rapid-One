@@ -24,13 +24,23 @@ public class CameraController : MonoBehaviour
     #endregion
 
     //Cameras to transition between
-    public Camera parentCamera;
-    public Camera childCamera;
-    public Camera ghostCamera;
+
+    public GameObject parent;
+    public GameObject child;
+    public GameObject ghost;
+
+    private Camera parentCamera;
+    private Camera childCamera;
+    private Camera ghostCamera;
+
     public CameraAgent agent;
 
     void Start()
     {
+        parentCamera = parent.GetComponentInChildren<Camera>();
+        childCamera = child.GetComponentInChildren<Camera>();
+        ghostCamera = ghost.GetComponentInChildren<Camera>();
+
         //Start initially at the parent camera.
         ghostCamera.enabled = false;
         childCamera.enabled = false;
@@ -49,8 +59,10 @@ public class CameraController : MonoBehaviour
             }
             else
             {
+                //Transition state: Child to Ghost
                 parentCamera.enabled = false;
                 ghostCamera.enabled = true;
+                CopyRotationToGhost(child, childCamera);
                 childCamera.enabled = false;
 
                 agent.Shift();
@@ -67,13 +79,33 @@ public class CameraController : MonoBehaviour
                 case -1: //Child Transform
                     parentCamera.enabled = false;
                     childCamera.enabled = true;
+                    CopyRotationToChild(parent, parentCamera);
                     break;
                 case 1: //Parent Transform
                     parentCamera.enabled = true;
                     childCamera.enabled = false;
+                    CopyRotationToParent(ghost, ghostCamera);
                     break;
             }
             ghostCamera.enabled = false;
         }
+    }
+
+    void CopyRotationToParent(GameObject other, Camera otherCam)
+    {
+        parent.transform.rotation = other.transform.rotation;
+        parentCamera.transform.rotation = otherCam.transform.rotation;
+    }
+
+    void CopyRotationToChild(GameObject other, Camera otherCam)
+    {
+        child.transform.rotation = other.transform.rotation;
+        childCamera.transform.rotation = otherCam.transform.rotation;
+    }
+
+    void CopyRotationToGhost(GameObject other, Camera otherCam)
+    {
+        ghost.transform.rotation = other.transform.rotation;
+        ghostCamera.transform.rotation = otherCam.transform.rotation;
     }
 }

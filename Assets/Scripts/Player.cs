@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public bool m_bIsChild = false;
     bool m_bIsEnabled;
 
+    public NumberPadScript test;
+
     public CharacterController m_CharController;
     public float m_fSpeed = 12f; // Move speed
     float m_fGravity = -19.62f;
@@ -41,6 +43,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            test?.Show();
+        }
+
         // Ground check
         if ((Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask)))
         {

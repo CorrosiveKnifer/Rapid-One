@@ -11,6 +11,7 @@ public class CameraAgent : MonoBehaviour
     //Target Transforms
     public Transform childLocation;
     public Transform parentLocation;
+    public MeshRenderer parentMesh;
 
     //Navigation
     private NavMeshAgent agent;
@@ -22,6 +23,8 @@ public class CameraAgent : MonoBehaviour
     private Transform targetLocation;
     //Save of the transform before shifting
     private Transform shiftingTransform;
+
+    private MeshRenderer parentRenderer;
 
     void Start()
     {
@@ -43,6 +46,11 @@ public class CameraAgent : MonoBehaviour
 
             //Calculate current scale
             transform.localScale =  LerpToTarget(targetLocation.localScale, shiftingTransform.localScale, dist, 2.5f);
+
+            if(dist < 2.5f)
+            {
+                parentMesh.enabled = false;
+            }
         }
         else
         {
@@ -57,7 +65,7 @@ public class CameraAgent : MonoBehaviour
         {
             //Disable shifting
             isShifting = false;
-
+            parentMesh.enabled = true;
             //Set state
             state = (targetLocation.position.Equals(childLocation.position)) ? -1 : 1;
         }
