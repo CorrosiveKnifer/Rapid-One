@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Crawling : MonoBehaviour
 {
-    public GameObject adult;
-    Vector3 objectPos;
-    Vector3 movepos;
+
     bool IsCrawling = false;
     // Start is called before the first frame update
     void Start()
     {
-        objectPos = adult.transform.position;
-        movepos = new Vector3(0.0f, 10.0f, 0.0f);
+        //objectPos = adult.transform.localScale;
+        //movepos = new Vector3(0.0f, 10.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -25,7 +23,7 @@ public class Crawling : MonoBehaviour
         if (IsCrawling == true)
         {
             Debug.Log("crawl!");
-            transform.position = objectPos + movepos;
+            transform.localScale = new Vector3(1,  0.5f, 1);
 
         }
         //child view
@@ -33,7 +31,7 @@ public class Crawling : MonoBehaviour
         else
         {
             Debug.Log("stand!");
-            adult.transform.position = objectPos;
+            transform.localScale = new Vector3(1, 1.0f, 1);
 
         }
     }
