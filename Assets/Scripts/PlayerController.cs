@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float m_fMouseSensitivity = 300f;
     public Transform m_AdultBody;
     public Transform m_ChildBody;
@@ -23,7 +22,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
 
         m_AdultCamera.enabled = true;
         m_ChildCamera.enabled = false;
@@ -47,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
         //m_PlayerBody.Rotate(Vector3.up * mouseX);
     }
-
 
     void ToggleControlChild()
     {
