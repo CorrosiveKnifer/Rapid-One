@@ -13,11 +13,6 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) // Bug test
-        {
-            LoadNextLevel();
-        }
-
         if (SceneManager.GetActiveScene().name != "MenuScreen")
         {
             if (Input.GetKeyDown(KeyCode.M))
@@ -35,7 +30,15 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        if (SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex + 1)
+        {
+            StartCoroutine(LoadLevel(0));
+        }
+        else
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+
     }
 
     IEnumerator LoadLevel(int levelIndex)

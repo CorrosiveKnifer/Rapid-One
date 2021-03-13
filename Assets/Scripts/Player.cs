@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
 
     public void Teleport(Vector3 _targetPos)
     {
-        Debug.Log(_targetPos);
+        //Debug.Log(_targetPos);
         m_TargetPos = _targetPos;
         //m_bTeleportQueued = true;
         m_CharController.enabled = false;
