@@ -16,4 +16,16 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name != "MenuScreen")
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(0);
+            }
+        }
+    }
+
 }
