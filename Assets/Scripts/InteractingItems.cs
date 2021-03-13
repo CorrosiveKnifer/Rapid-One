@@ -16,7 +16,7 @@ public class InteractingItems : MonoBehaviour
     void Update()
     {
         //i used F for now
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             //list of object that get hit by the raycast
             RaycastHit[] hits;

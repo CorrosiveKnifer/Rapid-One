@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
 
     public void Teleport(Vector3 _targetPos)
     {
+        Debug.Log(_targetPos);
         m_CharController.Move(new Vector3(_targetPos.x, _targetPos.y, _targetPos.z) - transform.position);
     }
 
