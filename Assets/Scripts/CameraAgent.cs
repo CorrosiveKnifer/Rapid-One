@@ -60,7 +60,7 @@ public class CameraAgent : MonoBehaviour
 
                     float dist = Vector3.Distance(transform.position, targetLocation.position);
                     transform.localScale = LerpToTarget(targetLocation.localScale, shiftingTransform.localScale, dist, 2.5f);
-                    parentMesh.enabled = (dist < 2.5f);
+                    parentMesh.enabled = (dist > 1.5f);
 
                     //Check if movement is done.
                     if(Vector3.Distance(transform.position, targetLocation.position) < 1.1f)
