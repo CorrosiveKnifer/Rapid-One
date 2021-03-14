@@ -83,7 +83,13 @@ public class Liftable : MonoBehaviour
         
     }
 
-    
+    public void Detect()
+    {
+        Debug.Log("Lifting");
+    }
+
+
+
 }
 
 
