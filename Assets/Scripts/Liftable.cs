@@ -21,23 +21,25 @@ public class Liftable : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-           
             //list of object that get hit by the raycast
             RaycastHit[] hits;
 
-            //to see the line of the raycast
-            Debug.DrawRay(transform.position, cam.forward * 5.0f, Color.green, 2);
-            hits = Physics.RaycastAll(transform.position, cam.forward, 5.0f);
-
-            //checking each item
-            foreach (var hit in hits)
+            if(item == null)
             {
-                //if the object tag is key to detroy and admit to key
-                if (hit.collider.tag == "Liftable")
+                //to see the line of the raycast
+                Debug.DrawRay(transform.position, cam.forward * 5.0f, Color.green, 2);
+                hits = Physics.RaycastAll(transform.position, cam.forward, 5.0f);
+
+                //checking each item
+                foreach (var hit in hits)
                 {
-                    item = hit.collider.gameObject;
-                    Grabbing();
-                    break;
+                    //if the object tag is key to detroy and admit to key
+                    if (hit.collider.tag == "Liftable")
+                    {
+                        item = hit.collider.gameObject;
+                        Grabbing();
+                        break;
+                    }
                 }
             }
         }
@@ -52,19 +54,16 @@ public class Liftable : MonoBehaviour
             item.GetComponent<Rigidbody>().velocity = Vector3.zero;
             item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             item.transform.SetParent(tempParent.transform);
-
-
-            
         }
         //if the item isnt null for it (is the isholding is false it gets a error stating the item isnt there for transforming.
-        else if(item !=null)
+        else if(item != null)
         {
             
             objectPos = item.transform.position;
             item.transform.SetParent(null);
             item.GetComponent<Rigidbody>().useGravity = true;
             item.transform.position = objectPos;
-            
+            item = null;
         }
     }
 

@@ -8,6 +8,9 @@ using UnityEngine.AI;
 /// </summary>
 public class CameraAgent : MonoBehaviour
 {
+    public enum AgentState { FOLLOW_ADULT, FOLLOW_CHILD, SHIFTTING};
+    public AgentState currentState;
+
     //Target Transforms
     public Transform childLocation;
     public Transform parentLocation;
@@ -15,9 +18,6 @@ public class CameraAgent : MonoBehaviour
 
     //Navigation
     private NavMeshAgent agent;
-
-    public int state = 0; //+1 = adult -1 = child
-    public bool isShifting = false;
 
     //Current shifting target transform
     private Transform targetLocation;
@@ -28,46 +28,48 @@ public class CameraAgent : MonoBehaviour
 
     void Start()
     {
+        currentState = AgentState.FOLLOW_ADULT;
         agent = GetComponent<NavMeshAgent>();
         targetLocation = parentLocation;
-        state = 1;
         shiftingTransform = transform;
     }
 
     void Update()
     {
-        if(isShifting)
+        switch (currentState)
         {
-            //Transition to target location using the NavMesh
-            agent.destination = targetLocation.position;
+            default:
+            case AgentState.FOLLOW_ADULT:
+                {
+                    //Teleport the agent to parent's position.
+                    transform.position = parentLocation.position;
+                    agent.height = 2.0f;
+                    break;
+                }
+            case AgentState.FOLLOW_CHILD:
+                {
+                    //Teleport the agent to child's position.
+                    transform.position = childLocation.position;
+                    agent.height = 1.0f;
+                    break;
+                }
+            case AgentState.SHIFTTING:
+                {
+                    //Activate the navigation
+                    agent.destination = targetLocation.position;
 
-            //Current Distance to target location
-            float dist = Vector3.Distance(transform.position, targetLocation.position);
+                    float dist = Vector3.Distance(transform.position, targetLocation.position);
+                    transform.localScale = LerpToTarget(targetLocation.localScale, shiftingTransform.localScale, dist, 2.5f);
+                    parentMesh.enabled = (dist < 2.5f);
 
-            //Calculate current scale
-            transform.localScale =  LerpToTarget(targetLocation.localScale, shiftingTransform.localScale, dist, 2.5f);
-
-            if(dist < 2.5f)
-            {
-                parentMesh.enabled = false;
-            }
-        }
-        else
-        {
-            //Force the agent to the current location
-            transform.position = (state == 1) ? parentLocation.position: childLocation.position;
-            agent.height = (state == -1) ? 0.05f : 1.0f;
-        }
-
-        //While shifting and the position is at the target position
-        float distance = Vector3.Distance(transform.position, targetLocation.position);
-        if(isShifting && distance < 1.1f)
-        {
-            //Disable shifting
-            isShifting = false;
-            parentMesh.enabled = true;
-            //Set state
-            state = (targetLocation.position.Equals(childLocation.position)) ? -1 : 1;
+                    //Check if movement is done.
+                    if(Vector3.Distance(transform.position, targetLocation.position) < 1.1f)
+                    {
+                        currentState = (targetLocation == parentLocation) ? AgentState.FOLLOW_ADULT : AgentState.FOLLOW_CHILD;
+                        parentMesh.enabled = true;
+                    }
+                    break;
+                }
         }
     }
 
@@ -76,16 +78,27 @@ public class CameraAgent : MonoBehaviour
     /// </summary>
     public void Shift()
     {
-        isShifting = true;
+        //isShifting = true;
         shiftingTransform = transform;
-        if (IsPositionEquals(transform.position, childLocation.position))
+
+        switch (currentState)
         {
-            targetLocation = childLocation;
+            case AgentState.FOLLOW_ADULT:
+                {
+                    targetLocation = childLocation;
+                    break;
+                }
+            case AgentState.FOLLOW_CHILD:
+                {
+                    targetLocation = parentLocation;
+                    break;
+                }
+            default:
+            case AgentState.SHIFTTING:
+                break;
         }
-        else
-        {
-            targetLocation = parentLocation;
-        }
+
+        currentState = AgentState.SHIFTTING;
     }
     
     /// <summary>
