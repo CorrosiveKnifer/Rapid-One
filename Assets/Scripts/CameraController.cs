@@ -53,9 +53,9 @@ public class CameraController : MonoBehaviour
         //If the left shift key is pressed start transitioning between using an agent.
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if(agent.state == 1)
+            if(agent.currentState == CameraAgent.AgentState.FOLLOW_ADULT)
             {
-                agent.state = -1;
+                agent.currentState = CameraAgent.AgentState.FOLLOW_CHILD;
             }
             else
             {
@@ -70,21 +70,25 @@ public class CameraController : MonoBehaviour
         }
 
         //If the agent has stopped shifting and the ghost camera is enabled.
-        if(!agent.isShifting && ghostCamera.enabled)
+        if(agent.currentState != CameraAgent.AgentState.SHIFTTING && ghostCamera.enabled)
         {
             //Ask the agent which transform it is at
-            switch (agent.state)
+            switch (agent.currentState)
             {
-                default:
-                case -1: //Child Transform
+                case CameraAgent.AgentState.FOLLOW_ADULT:
+                    parentCamera.enabled = true;
+                    childCamera.enabled = false;
+                    CopyRotationToParent(ghost, ghostCamera);
+                    break;
+                case CameraAgent.AgentState.FOLLOW_CHILD:
                     parentCamera.enabled = false;
                     childCamera.enabled = true;
                     CopyRotationToChild(parent, parentCamera);
                     break;
-                case 1: //Parent Transform
-                    parentCamera.enabled = true;
-                    childCamera.enabled = false;
-                    CopyRotationToParent(ghost, ghostCamera);
+
+                default:
+                case CameraAgent.AgentState.SHIFTTING:
+                    Debug.LogError("Impossible case reached(Agent shifting and not shifting at the same time)?");
                     break;
             }
             ghostCamera.enabled = false;
