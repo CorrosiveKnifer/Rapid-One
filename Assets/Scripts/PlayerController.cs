@@ -110,14 +110,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void EnableCameraMovement()
+    public void EnableCameraMovement()
     {
         m_AdultCamera.GetComponent<MouseLook>().m_bMovementEnabled = true;
         m_ChildCamera.GetComponent<MouseLook>().m_bMovementEnabled = true;
         m_bCamMovement = true;
     }
 
-    void DisableCameraMovement()
+    public void DisableCameraMovement()
     {
         m_AdultCamera.GetComponent<MouseLook>().m_bMovementEnabled = false;
         m_ChildCamera.GetComponent<MouseLook>().m_bMovementEnabled = false;
