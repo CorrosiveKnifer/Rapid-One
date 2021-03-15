@@ -30,7 +30,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex + 1)
+        if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
         {
             StartCoroutine(LoadLevel(0));
         }
@@ -38,7 +38,6 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
-
     }
 
     IEnumerator LoadLevel(int levelIndex)
@@ -49,7 +48,7 @@ public class LevelLoader : MonoBehaviour
         // Wait to let animation finish playing
         yield return new WaitForSeconds(transitionTime);
 
-        if (levelIndex == 0)
+        if (levelIndex == 0 || levelIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             Cursor.lockState = CursorLockMode.None;
         }
