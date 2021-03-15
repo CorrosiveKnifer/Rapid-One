@@ -102,7 +102,9 @@ public class Player : MonoBehaviour
 
     public void Teleport(Vector3 _targetPos)
     {
-        m_CharController.Move(new Vector3(_targetPos.x, _targetPos.y, _targetPos.z) - transform.position);
+        m_CharController.enabled = false;
+        transform.position = _targetPos;
+        m_CharController.enabled = true;
     }
 
 }
