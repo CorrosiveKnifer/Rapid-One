@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour
     private Camera ghostCamera;
 
     public CameraAgent agent;
-    public float transitionDelay = 1.5f;
+    public float transitionDelay = 0.3f;
     private float delay = 0.0f;
 
     void Start()
@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
         }
 
         //If the left shift key is pressed start transitioning between using an agent.
-        if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0 && !IsCameraShifting())
         {
             delay = transitionDelay;
 
@@ -79,7 +79,7 @@ public class CameraController : MonoBehaviour
         }
 
         //If the agent has stopped shifting and the ghost camera is enabled.
-        if(agent.currentState != CameraAgent.AgentState.SHIFTTING && ghostCamera.enabled)
+        if(!IsCameraShifting() && ghostCamera.enabled)
         {
             //Ask the agent which transform it is at
             switch (agent.currentState)
@@ -102,6 +102,11 @@ public class CameraController : MonoBehaviour
             }
             ghostCamera.enabled = false;
         }
+    }
+
+    public bool IsCameraShifting()
+    {
+        return agent.currentState == CameraAgent.AgentState.SHIFTTING;
     }
 
     void CopyRotationToParent(GameObject other, Camera otherCam)
