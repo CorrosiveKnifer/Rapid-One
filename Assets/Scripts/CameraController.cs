@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
     public GameObject parent;
     public GameObject child;
     public GameObject ghost;
+    public GameObject ghostPostProcessing;
 
     private Camera parentCamera;
     private Camera childCamera;
@@ -77,9 +78,10 @@ public class CameraController : MonoBehaviour
                 agent.Shift();
             }
         }
+        ghostPostProcessing.SetActive(IsCameraShifting());
 
         //If the agent has stopped shifting and the ghost camera is enabled.
-        if(!IsCameraShifting() && ghostCamera.enabled)
+        if (!IsCameraShifting() && ghostCamera.enabled)
         {
             //Ask the agent which transform it is at
             switch (agent.currentState)
