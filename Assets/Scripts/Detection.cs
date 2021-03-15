@@ -43,14 +43,12 @@ public class Detection : MonoBehaviour
                 gameObject.GetComponent<Liftable>().Detect();
             }
             ///may need to fix this on different tags
-            else
+            Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
+            if (other != null)
             {
-
                 Debug.Log("interact");
-                
+                break;
             }
-            
-            break;
         }
     }
     
