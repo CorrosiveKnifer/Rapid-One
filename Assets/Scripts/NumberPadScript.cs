@@ -79,8 +79,11 @@ public class NumberPadScript : MonoBehaviour
         if(TargetText == number)
         {
             //Got Correct code
-            Hide();
+            if (interactable is DoorScript)
+                (interactable as DoorScript).isLocked = !(interactable as DoorScript).isLocked;
+
             interactable.Activate();
+            Hide();
         }
     }
 
