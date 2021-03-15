@@ -36,12 +36,15 @@ public class InteractingItems : MonoBehaviour
                     return;
                 }
 
-                Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-                if (other != null)
-                {
-                    other.Activate();
-                    break;
-                }
+                //Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
+                //if (other != null)
+                //{
+                //    other.Activate();
+                //    break;
+                //}
+
+                hit.collider.gameObject.GetComponentInChildren<Interactable>()?.Activate();
+                break;
             }
         }
     }
