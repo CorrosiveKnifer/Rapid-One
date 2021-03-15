@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     bool m_bChildForm = false;
 
     float m_RotationX = 0f;
+    bool m_bCamMovement = true;
 
     public float transitionDelay = 1.5f;
     private float delay = 0.0f;
@@ -34,16 +35,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Don't use please, it's trash
         float mouseX = Input.GetAxis("Mouse X") * m_fMouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_fMouseSensitivity * Time.deltaTime;
 
-        m_ChildBody.Rotate(Vector3.up * mouseX);
-        if (!m_bChildForm)
+        if (m_bCamMovement)
         {
-            m_AdultBody.Rotate(Vector3.up * mouseX);
+            m_ChildBody.Rotate(Vector3.up * mouseX);
+            if (!m_bChildForm)
+            {
+                m_AdultBody.Rotate(Vector3.up * mouseX);
+            }
         }
 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (m_bCamMovement)
+            {
+                DisableCameraMovement();
+            }
+            else
+            {
+                EnableCameraMovement();
+            }
+        }
 
         if (delay > 0)
         {
@@ -94,5 +108,19 @@ public class PlayerController : MonoBehaviour
             m_AdultCamera.enabled = true;
             m_ChildCamera.enabled = false;
         }
+    }
+
+    void EnableCameraMovement()
+    {
+        m_AdultCamera.GetComponent<MouseLook>().m_bMovementEnabled = true;
+        m_ChildCamera.GetComponent<MouseLook>().m_bMovementEnabled = true;
+        m_bCamMovement = true;
+    }
+
+    void DisableCameraMovement()
+    {
+        m_AdultCamera.GetComponent<MouseLook>().m_bMovementEnabled = false;
+        m_ChildCamera.GetComponent<MouseLook>().m_bMovementEnabled = false;
+        m_bCamMovement = false;
     }
 }
