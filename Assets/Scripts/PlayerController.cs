@@ -59,6 +59,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (!CameraController.instance.IsCameraShifting())
+        {
+            if (m_bChildForm)
+            {
+                m_AdultCamera.enabled = false;
+                m_ChildCamera.enabled = true;
+            }
+            else
+            {
+                m_AdultCamera.enabled = true;
+                m_ChildCamera.enabled = false;
+            }
+        }
+
         if (delay > 0)
         {
             delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay);
@@ -85,10 +99,6 @@ public class PlayerController : MonoBehaviour
             // Disable adult control
             Adult.DisableControl();
 
-            // Teleport child to adult position
-            //m_ChildBody.position.Set(m_AdultBody.position.x, m_AdultBody.position.y, m_AdultBody.position.z);
-            //m_ChildTransform.position = m_AdultBody.position;
-            //Child.Teleport(m_AdultBody.position);
             // Enable child control
             Child.EnableControl();
 
