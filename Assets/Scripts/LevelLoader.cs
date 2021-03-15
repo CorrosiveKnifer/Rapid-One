@@ -20,6 +20,11 @@ public class LevelLoader : MonoBehaviour
                 StartCoroutine(LoadLevel(0));
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        }
     }
 
     public void QuitGame()
