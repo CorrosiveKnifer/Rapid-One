@@ -13,12 +13,13 @@ public class DoorScript : Interactable
     void Start()
     {
         anim = GetComponent<Animator>();
+        anim.SetBool("IsLocked", isClosed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("IsLocked", isClosed);
+        
     }
 
     public override void Activate()
@@ -26,6 +27,7 @@ public class DoorScript : Interactable
         if(!isLocked)
         {
             isClosed = !isClosed;
+            anim.SetBool("IsLocked", isClosed);
         }
     }
 }
