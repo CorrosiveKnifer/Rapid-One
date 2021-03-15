@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     {
         if(instance == null)
         {
-            instance = new CameraController();
+            instance = this;
         }
         else
         {
@@ -34,6 +34,8 @@ public class CameraController : MonoBehaviour
     private Camera ghostCamera;
 
     public CameraAgent agent;
+    public float transitionDelay = 0.3f;
+    private float delay = 0.0f;
 
     void Start()
     {
@@ -50,10 +52,17 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If the left shift key is pressed start transitioning between using an agent.
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if(delay > 0)
         {
-            if(agent.currentState == CameraAgent.AgentState.FOLLOW_ADULT)
+            delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay); 
+        }
+
+        //If the left shift key is pressed start transitioning between using an agent.
+        if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0 && !IsCameraShifting())
+        {
+            delay = transitionDelay;
+
+            if (agent.currentState == CameraAgent.AgentState.FOLLOW_ADULT)
             {
                 agent.currentState = CameraAgent.AgentState.FOLLOW_CHILD;
             }
@@ -70,7 +79,7 @@ public class CameraController : MonoBehaviour
         }
 
         //If the agent has stopped shifting and the ghost camera is enabled.
-        if(agent.currentState != CameraAgent.AgentState.SHIFTTING && ghostCamera.enabled)
+        if(!IsCameraShifting() && ghostCamera.enabled)
         {
             //Ask the agent which transform it is at
             switch (agent.currentState)
@@ -93,6 +102,11 @@ public class CameraController : MonoBehaviour
             }
             ghostCamera.enabled = false;
         }
+    }
+
+    public bool IsCameraShifting()
+    {
+        return agent.currentState == CameraAgent.AgentState.SHIFTTING;
     }
 
     void CopyRotationToParent(GameObject other, Camera otherCam)
