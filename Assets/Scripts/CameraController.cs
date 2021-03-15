@@ -34,6 +34,8 @@ public class CameraController : MonoBehaviour
     private Camera ghostCamera;
 
     public CameraAgent agent;
+    public float transitionDelay = 1.5f;
+    private float delay = 0.0f;
 
     void Start()
     {
@@ -50,10 +52,17 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If the left shift key is pressed start transitioning between using an agent.
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if(delay > 0)
         {
-            if(agent.currentState == CameraAgent.AgentState.FOLLOW_ADULT)
+            delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay); 
+        }
+
+        //If the left shift key is pressed start transitioning between using an agent.
+        if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0)
+        {
+            delay = transitionDelay;
+
+            if (agent.currentState == CameraAgent.AgentState.FOLLOW_ADULT)
             {
                 agent.currentState = CameraAgent.AgentState.FOLLOW_CHILD;
             }
