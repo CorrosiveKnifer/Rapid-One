@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     public float m_fMouseSensitivity = 300f;
     public Transform m_AdultBody;
     public Transform m_ChildBody;
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour
     bool m_bChildForm = false;
 
     float m_RotationX = 0f;
+
+    public float transitionDelay = 1.5f;
+    private float delay = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,22 +39,27 @@ public class PlayerController : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * m_fMouseSensitivity * Time.deltaTime;
 
         m_ChildBody.Rotate(Vector3.up * mouseX);
-        m_AdultBody.Rotate(Vector3.up * mouseX);
-
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (!m_bChildForm)
         {
+            m_AdultBody.Rotate(Vector3.up * mouseX);
+        }
+
+
+        if (delay > 0)
+        {
+            delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0 && !CameraController.instance.IsCameraShifting())
+        {
+            delay = transitionDelay;
             ToggleControlChild();
         }
 
         if (!m_bChildForm)
         {
             Child.Teleport(m_AdultBody.position);
-            //m_AdultCamera.enabled = true;
-            //m_ChildCamera.enabled = false;
         }
-
-        //m_PlayerBody.Rotate(Vector3.up * mouseX);
     }
 
     void ToggleControlChild()
@@ -76,6 +85,8 @@ public class PlayerController : MonoBehaviour
         {
             // Disable child control
             Child.DisableControl();
+
+            m_AdultBody.rotation = m_ChildBody.rotation;
 
             // Enable adult control
             Adult.EnableControl();

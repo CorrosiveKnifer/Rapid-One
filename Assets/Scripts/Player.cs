@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
+
     public bool m_bIsChild = false;
     bool m_bIsEnabled;
-
-    public NumberPadScript test;
 
     public CharacterController m_CharController;
     public float m_fSpeed = 12f; // Move speed
@@ -29,8 +29,8 @@ public class Player : MonoBehaviour
         if (m_bIsChild) // Child numbers
         {
             m_bIsEnabled = false;
-            m_fSpeed = 3.0f;
-            m_fJumpThrust = 5.0f;
+            m_fSpeed = 4.5f;
+            m_fJumpThrust = 6.0f;
         }
         else // Adult numbers
         {
@@ -43,21 +43,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            test?.Show();
-        }
-
         // Ground check
         if ((Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask)))
         {
             m_bGrounded = true;
-            //Debug.Log("Grounded");
         }
         else
         {
             m_bGrounded = false;
-           // Debug.Log("Not Grounded");
         }
 
         // Snap to ground
@@ -66,19 +59,20 @@ public class Player : MonoBehaviour
             m_vVelocity.y = -2f;
         }
         // Jump
-        if (m_bGrounded && Input.GetButtonDown("Jump"))
-        {
-            m_vVelocity.y = m_fJumpThrust;
-        }
 
         float x = 0.0f;
         float z = 0.0f;
 
         // Movement inputs
-        if (m_bIsEnabled)
+        if (m_bIsEnabled && !CameraController.instance.IsCameraShifting())
         {
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
+
+            if (m_bGrounded && Input.GetButtonDown("Jump"))
+            {
+                m_vVelocity.y = m_fJumpThrust;
+            }
         }
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
