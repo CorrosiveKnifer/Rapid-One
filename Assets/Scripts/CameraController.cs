@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     {
         if(instance == null)
         {
-            instance = new CameraController();
+            instance = this;
         }
         else
         {
