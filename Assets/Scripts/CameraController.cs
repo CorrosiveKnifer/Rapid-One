@@ -89,12 +89,10 @@ public class CameraController : MonoBehaviour
                 case CameraAgent.AgentState.FOLLOW_ADULT:
                     parentCamera.enabled = true;
                     childCamera.enabled = false;
-                    CopyRotationToParent(ghost, ghostCamera);
                     break;
                 case CameraAgent.AgentState.FOLLOW_CHILD:
                     parentCamera.enabled = false;
                     childCamera.enabled = true;
-                    CopyRotationToChild(parent, parentCamera);
                     break;
 
                 default:
@@ -109,18 +107,6 @@ public class CameraController : MonoBehaviour
     public bool IsCameraShifting()
     {
         return agent.currentState == CameraAgent.AgentState.SHIFTTING;
-    }
-
-    void CopyRotationToParent(GameObject other, Camera otherCam)
-    {
-        parent.transform.rotation = other.transform.rotation;
-        parentCamera.transform.rotation = otherCam.transform.rotation;
-    }
-
-    void CopyRotationToChild(GameObject other, Camera otherCam)
-    {
-        child.transform.rotation = other.transform.rotation;
-        childCamera.transform.rotation = otherCam.transform.rotation;
     }
 
     void CopyRotationToGhost(GameObject other, Camera otherCam)

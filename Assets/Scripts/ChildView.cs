@@ -8,6 +8,9 @@ public class ChildView : MonoBehaviour
     public GameObject[] childs; //the list of objects relating for the child to see
     public GameObject[] adults; //the list of objects relating for the adult to see
     private bool isAdult = true;
+
+    public float transitionDelay = 0.3f;
+    private float delay = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +36,19 @@ public class ChildView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (delay > 0)
         {
-            isAdult = !(isAdult);
+            delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay);
         }
+
+        //if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0)
+        //{
+        //    delay = transitionDelay;
+        //    isAdult = !(isAdult);
+        //}
             //adult view
         //if (Input.GetKeyDown(KeyCode.Y))
-        if (isAdult == true)
+        if (CameraController.instance.agent.currentState == CameraAgent.AgentState.FOLLOW_ADULT)
         {
             
             //checking through child object and makes them dissapear

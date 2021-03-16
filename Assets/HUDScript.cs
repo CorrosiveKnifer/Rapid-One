@@ -8,6 +8,7 @@ public class HUDScript : MonoBehaviour
     public GameObject Cursor;
     public GameObject Shift;
     public GameObject Hand;
+    public GameObject Interact;
 
     public Sprite AdultShift;
     public Sprite ChildShift;
@@ -22,6 +23,7 @@ public class HUDScript : MonoBehaviour
     {
         agent = CameraController.instance.agent;
         Hand.SetActive(false);
+        Interact.SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,11 +53,20 @@ public class HUDScript : MonoBehaviour
         if(!Hand.activeSelf)
             StartCoroutine(FadeIn(Hand));
         Cursor.SetActive(false);
+        Interact.SetActive(false);
     }
     public void ShowCursor()
     {
         Hand.SetActive(false);
+        Interact.SetActive(false);
         Cursor.SetActive(true);
+    }
+    public void ShowInteract()
+    {
+        if (!Interact.activeSelf)
+            StartCoroutine(FadeIn(Interact));
+        Hand.SetActive(false);
+        Cursor.SetActive(false);
     }
 
     IEnumerator FadeIn(GameObject toFadeIn)
