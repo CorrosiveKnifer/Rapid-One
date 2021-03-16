@@ -8,12 +8,16 @@ public class Liftable : MonoBehaviour
     public bool isHolding = false;
     private GameObject item;
     public GameObject tempParent;
+
+    public GameObject HUDObject;
+
     Vector3 objectPos;
 
+    private HUDScript HUD;
     // Start is called before the first frame update
     void Start()
     {
-        
+        HUD = HUDObject.GetComponent<HUDScript>();
     }
 
     // Update is called once per frame
@@ -48,6 +52,9 @@ public class Liftable : MonoBehaviour
         {
             Dropping();
         }
+
+        if(HUD != null)
+            HUD.isHandOpen = !isHolding;
 
         ///checking if it can be held
         if (isHolding == true)

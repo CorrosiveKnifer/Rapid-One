@@ -59,12 +59,14 @@ public class NumberPadScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         display.enabled = true;
         player.GetComponent<Player>().DisableControl();
+        player.GetComponent<PlayerController>()?.DisableCameraMovement();
     }
 
     public void Hide()
     {
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<Player>().EnableControl();
+        player.GetComponent<PlayerController>()?.EnableCameraMovement();
         display.enabled = false;
         number = "";
     }
