@@ -45,7 +45,6 @@ public class LevelLoader : MonoBehaviour
     }
     public void ResetScene()
     {
-        transition.speed = 4f;
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 

@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float m_fSpeed = 12f; // Move speed
     float m_fGravity = -19.62f;
 
+    public bool m_bInVents = false;
+
     public Vector3 m_vVelocity;
     public bool m_bGrounded;
     float m_fJumpThrust = 5.0f;
@@ -69,11 +71,43 @@ public class Player : MonoBehaviour
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
 
+
             if (m_bGrounded && Input.GetButtonDown("Jump"))
             {
                 m_vVelocity.y = m_fJumpThrust;
             }
         }
+
+        if ((x != 0 || z != 0) && m_bGrounded)
+        {
+            if (!m_bInVents)
+            {
+                if (GetComponent<AudioAgent>().IsAudioStopped("WoodFootsteps"))
+                {
+                    GetComponent<AudioAgent>().PlaySoundEffect("WoodFootsteps");
+                }
+            }
+            else
+            {
+                if (GetComponent<AudioAgent>().IsAudioStopped("MetalFootsteps"))
+                {
+                    GetComponent<AudioAgent>().PlaySoundEffect("MetalFootsteps");
+                }
+                Debug.Log("Player In Vents");
+            }
+        }
+        else
+        {
+            if (!GetComponent<AudioAgent>().IsAudioStopped("WoodFootsteps"))
+            {
+                GetComponent<AudioAgent>().StopAudio("WoodFootsteps");
+            }
+            if (!GetComponent<AudioAgent>().IsAudioStopped("MetalFootsteps"))
+            {
+                GetComponent<AudioAgent>().StopAudio("MetalFootsteps");
+            }
+        }
+
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
 

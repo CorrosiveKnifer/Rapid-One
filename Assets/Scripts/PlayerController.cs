@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour
     public Player Adult;
     public Player Child;
 
-    bool m_bChildForm = false;
+    public bool m_bChildForm = false;
 
     float m_RotationX = 0f;
     bool m_bCamMovement = true;
 
-    public float transitionDelay = 1.5f;
+    public float transitionDelay = 0.3f;
     private float delay = 0.0f;
 
     // Start is called before the first frame update
@@ -59,6 +59,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (!CameraController.instance.IsCameraShifting())
+        {
+            if (m_bChildForm)
+            {
+                m_AdultCamera.enabled = false;
+                m_ChildCamera.enabled = true;
+            }
+            else
+            {
+                m_AdultCamera.enabled = true;
+                m_ChildCamera.enabled = false;
+            }
+        }
+
         if (delay > 0)
         {
             delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay);
@@ -85,10 +99,6 @@ public class PlayerController : MonoBehaviour
             // Disable adult control
             Adult.DisableControl();
 
-            // Teleport child to adult position
-            //m_ChildBody.position.Set(m_AdultBody.position.x, m_AdultBody.position.y, m_AdultBody.position.z);
-            //m_ChildTransform.position = m_AdultBody.position;
-            //Child.Teleport(m_AdultBody.position);
             // Enable child control
             Child.EnableControl();
 
