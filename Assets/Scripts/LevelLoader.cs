@@ -32,11 +32,6 @@ public class LevelLoader : MonoBehaviour
         Application.Quit();
     }
 
-    public void ResetScene()
-    {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
-    }
-
     public void LoadNextLevel()
     {
         if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
@@ -50,6 +45,7 @@ public class LevelLoader : MonoBehaviour
     }
     public void ResetScene()
     {
+        GetComponent<AudioAgent>().PlaySoundEffect("Electric_Zap");
         transition.speed = 4f;
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }

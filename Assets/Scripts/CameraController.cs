@@ -89,12 +89,12 @@ public class CameraController : MonoBehaviour
                 case CameraAgent.AgentState.FOLLOW_ADULT:
                     parentCamera.enabled = true;
                     childCamera.enabled = false;
-                    CopyRotationToParent(ghost, ghostCamera);
+                    //CopyRotationToParent(ghost, ghostCamera);
                     break;
                 case CameraAgent.AgentState.FOLLOW_CHILD:
                     parentCamera.enabled = false;
                     childCamera.enabled = true;
-                    CopyRotationToChild(parent, parentCamera);
+                    //CopyRotationToChild(parent, parentCamera);
                     break;
 
                 default:

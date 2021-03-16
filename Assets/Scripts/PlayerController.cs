@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour
     public Player Adult;
     public Player Child;
 
-    bool m_bChildForm = false;
+    public bool m_bChildForm = false;
 
     float m_RotationX = 0f;
     bool m_bCamMovement = true;
 
-    public float transitionDelay = 1.5f;
+    public float transitionDelay = 0.3f;
     private float delay = 0.0f;
 
     // Start is called before the first frame update
