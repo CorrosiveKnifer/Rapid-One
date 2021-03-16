@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Liftable : MonoBehaviour
 {
-    public Transform cam;
+    public Camera cam;
     public bool isHolding = false;
     private GameObject item;
     public GameObject tempParent;
+
+    public GameObject HUDObject;
+
     Vector3 objectPos;
 
+    private HUDScript HUD;
     // Start is called before the first frame update
     void Start()
     {
-        
+        HUD = HUDObject.GetComponent<HUDScript>();
     }
 
     // Update is called once per frame
@@ -27,8 +31,9 @@ public class Liftable : MonoBehaviour
             if(item == null)
             {
                 //to see the line of the raycast
-                Debug.DrawRay(transform.position, cam.forward * 5.0f, Color.green, 2);
-                hits = Physics.RaycastAll(transform.position, cam.forward, 5.0f);
+                Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0.0f));
+                Debug.DrawRay(ray.origin, ray.direction * 5.0f, Color.green, 0.5f);
+                hits = Physics.RaycastAll(ray.origin, ray.direction, 5.0f);
 
                 //checking each item
                 foreach (var hit in hits)
@@ -47,6 +52,9 @@ public class Liftable : MonoBehaviour
         {
             Dropping();
         }
+
+        if(HUD != null)
+            HUD.isHandOpen = !isHolding;
 
         ///checking if it can be held
         if (isHolding == true)

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-
     public Animator transition;
 
     public float transitionTime = 1.0f;
@@ -20,6 +19,11 @@ public class LevelLoader : MonoBehaviour
                 StartCoroutine(LoadLevel(0));
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetScene();
+        }
     }
 
     public void QuitGame()
@@ -30,7 +34,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex + 1)
+        if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
         {
             StartCoroutine(LoadLevel(0));
         }
@@ -38,7 +42,11 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
-
+    }
+    public void ResetScene()
+    {
+        transition.speed = 4f;
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
     IEnumerator LoadLevel(int levelIndex)
@@ -49,7 +57,7 @@ public class LevelLoader : MonoBehaviour
         // Wait to let animation finish playing
         yield return new WaitForSeconds(transitionTime);
 
-        if (levelIndex == 0)
+        if (levelIndex == 0 || levelIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             Cursor.lockState = CursorLockMode.None;
         }
