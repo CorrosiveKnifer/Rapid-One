@@ -8,13 +8,16 @@ public class NumberPadScript : MonoBehaviour
     public bool isShowing;
     public Text displayText;
     public string TargetText;
+    public GameObject player;
+    public GameObject otherObject;
 
     private string number;
     private Canvas display;
-    
+    private Interactable interactable;
     // Start is called before the first frame update
     void Start()
     {
+        interactable = otherObject.GetComponent<Interactable>();
         number = "";
         display = GetComponent<Canvas>();
         int temp;
@@ -55,12 +58,15 @@ public class NumberPadScript : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         display.enabled = true;
+        player.GetComponent<Player>().DisableControl();
     }
 
     public void Hide()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        player.GetComponent<Player>().EnableControl();
         display.enabled = false;
+        number = "";
     }
 
     public void AddDigit(int digit)
@@ -73,6 +79,10 @@ public class NumberPadScript : MonoBehaviour
         if(TargetText == number)
         {
             //Got Correct code
+            if (interactable is DoorScript)
+                (interactable as DoorScript).isLocked = !(interactable as DoorScript).isLocked;
+
+            interactable.Activate();
             Hide();
         }
     }

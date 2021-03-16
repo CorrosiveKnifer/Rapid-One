@@ -31,17 +31,20 @@ public class InteractingItems : MonoBehaviour
             //checking each item
             foreach (var hit in hits)
             {
-                if(hit.collider.tag == "Wall")
-                {
-                    return;
-                }
+                //Michael: "Doesn't work this way annoyingly
+                //if(hit.collider.tag == "Wall")
+                //{
+                //    return;
+                //}
 
-                Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-                if (other != null)
-                {
-                    other.Activate();
-                    break;
-                }
+                //Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
+                //if (other != null)
+                //{
+                //    other.Activate();
+                //    break;
+                //}
+
+                hit.collider.gameObject.GetComponentInChildren<Interactable>()?.Activate();
             }
         }
     }
