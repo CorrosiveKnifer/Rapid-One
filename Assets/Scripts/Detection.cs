@@ -53,7 +53,7 @@ public class Detection : MonoBehaviour
             Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
             if (other != null)
             {
-                Debug.Log("interact");
+                HUD.ShowInteract();
                 hasHit = true;
                 break;
             }
