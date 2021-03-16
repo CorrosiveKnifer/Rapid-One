@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 1205134190}
   - component: {fileID: 3687036158339277432}
   - component: {fileID: 3127646325616088123}
+  - component: {fileID: 6817189598207535883}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -228,6 +229,7 @@ MonoBehaviour:
   m_bIsChild: 0
   m_CharController: {fileID: 6924263132893836718}
   m_fSpeed: 12
+  m_bInVents: 0
   m_vVelocity: {x: 0, y: 0, z: 0}
   m_bGrounded: 0
   m_GroundCheck: {fileID: 8152262990332718303}
@@ -254,6 +256,7 @@ MonoBehaviour:
   m_ChildCamera: {fileID: 0}
   Adult: {fileID: 104047965540645895}
   Child: {fileID: 0}
+  m_bChildForm: 0
   transitionDelay: 1.5
 --- !u!114 &1632330703
 MonoBehaviour:
@@ -269,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childs: []
   adults: []
+  transitionDelay: 0.3
 --- !u!114 &1205134189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +302,7 @@ MonoBehaviour:
   cam: {fileID: 247530074}
   isHolding: 0
   tempParent: {fileID: 247530073}
+  HUDObject: {fileID: 0}
 --- !u!114 &3687036158339277432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +332,24 @@ MonoBehaviour:
   cam: {fileID: 247530074}
   isHolding: 0
   tempParent: {fileID: 247530073}
+  HUDObject: {fileID: 0}
+--- !u!114 &6817189598207535883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100149760158879294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aec595e772df014cbfacda9a04c74ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 7b343ebb08a3af14c8af3214b089807f, type: 3}
+  - {fileID: 8300000, guid: 2e97d9f5fa9a18c4d8780f2eaadbc394, type: 3}
+  SoundEffectVolume: 1
+  MusicVolume: 1
 --- !u!1 &6357798335306373995
 GameObject:
   m_ObjectHideFlags: 0

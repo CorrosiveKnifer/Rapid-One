@@ -26,9 +26,14 @@ public class VentEventSystem : MonoBehaviour
                 foreach (var other in others)
                 {
                     isDependableIntersecting = colliders[i].bounds.Intersects(other.bounds);
-                    return;
+                    if (isDependableIntersecting)
+                    {
+                        detectables[j].GetComponent<Player>().m_bInVents = true;
+                        return;
+                    }
                 }
             }
         }
+        detectables[0].GetComponent<Player>().m_bInVents = false;
     }
 }

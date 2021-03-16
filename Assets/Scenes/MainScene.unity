@@ -3165,7 +3165,7 @@ PrefabInstance:
     - target: {fileID: 8528807908873624213, guid: 512114626c471ab4faadd743ee403864,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8528807908873624213, guid: 512114626c471ab4faadd743ee403864,
         type: 3}
@@ -3182,7 +3182,8 @@ PrefabInstance:
       propertyPath: TIME_CONSTANT
       value: 1.585
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8528807908873624213, guid: 512114626c471ab4faadd743ee403864, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 512114626c471ab4faadd743ee403864, type: 3}
 --- !u!1 &367682539
 GameObject:
@@ -6170,7 +6171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh144048
+  m_Name: pb_Mesh335352
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15410,7 +15411,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh143716
+  m_Name: pb_Mesh335022
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20898,9 +20899,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4388564255951875955, guid: 035e8fbb89993a742a862683a51b8ac6,
         type: 3}
+      propertyPath: detectables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388564255951875955, guid: 035e8fbb89993a742a862683a51b8ac6,
+        type: 3}
       propertyPath: detectables.Array.data[0]
       value: 
-      objectReference: {fileID: 1205134188}
+      objectReference: {fileID: 15066456}
     - target: {fileID: 4388564255951875955, guid: 035e8fbb89993a742a862683a51b8ac6,
         type: 3}
       propertyPath: detectables.Array.data[1]
@@ -20910,6 +20916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VentEventBoxes
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388564255951875956, guid: 035e8fbb89993a742a862683a51b8ac6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4388564255951875967, guid: 035e8fbb89993a742a862683a51b8ac6,
         type: 3}
