@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+            ResetScene();
         }
     }
 
@@ -31,6 +31,11 @@ public class LevelLoader : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void ResetScene()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadNextLevel()
