@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1624217258}
   - component: {fileID: 1624217259}
   - component: {fileID: 1624217260}
+  - component: {fileID: 2795256896994217166}
   m_Layer: 8
-  m_Name: Chair 1
+  m_Name: Liftable_Chair
   m_TagString: Liftable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482317912836608447}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.632, y: 0.7766513, z: 9.951}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -82,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d75dc18e46e6a64e9c86fed9d653d55, type: 2}
+  - {fileID: 2100000, guid: 40fabf6bcb9d4454299695cb02050f74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,3 +112,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482317912836608447}
   m_Mesh: {fileID: -5840284170326959453, guid: 473bad063dc860d45a230435bc7231a4, type: 3}
+--- !u!208 &2795256896994217166
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482317912836608447}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.66, y: 0.545, z: 0.56}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.545, z: 0}
+  m_TimeToStationary: 0.5

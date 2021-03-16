@@ -60,10 +60,13 @@ public class CameraAgent : MonoBehaviour
 
                     float dist = Vector3.Distance(transform.position, targetLocation.position);
                     transform.localScale = LerpToTarget(targetLocation.localScale, shiftingTransform.localScale, dist, 2.5f);
-                    parentMesh.enabled = (dist < 2.5f);
+                    parentMesh.enabled = (dist > 1.5f);
 
                     //Check if movement is done.
-                    if(Vector3.Distance(transform.position, targetLocation.position) < 1.1f)
+                    Vector2 loc = new Vector2(transform.position.x, transform.position.z);
+                    Vector2 target = new Vector2(targetLocation.position.x, targetLocation.position.z);
+
+                    if(Vector2.Distance(loc, target) < 0.5f)
                     {
                         currentState = (targetLocation == parentLocation) ? AgentState.FOLLOW_ADULT : AgentState.FOLLOW_CHILD;
                         parentMesh.enabled = true;
