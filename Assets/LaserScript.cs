@@ -38,6 +38,7 @@ public class LaserScript : MonoBehaviour
         if (closestHit.collider.tag == "Player")
         {
             Debug.Log("Hit the player!");
+            loader.ResetScene();
         }
     }
 }
