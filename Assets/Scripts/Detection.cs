@@ -35,34 +35,46 @@ public class Detection : MonoBehaviour
         
         bool hasHit = false;
         //checking each item
-        foreach (var hit in hits)
+        //foreach (var hit in hits)
+        //{
+        if (hits.Length == 0)
         {
-            if (hit.collider.tag == "wall")
-            {
-                return;
-            }
-
-            if (hit.collider.tag == "Liftable")
-            {
-                //Debug.Log("Lifting");
-                //gameObject.GetComponent<Liftable>().Detect();
-                HUD.ShowHand();
-                hasHit = true;
-            }
-            ///may need to fix this on different tags
-            Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-            if (other != null)
-            {
-                HUD.ShowInteract();
-                hasHit = true;
-                break;
-            }
+            HUD.ShowCursor();
+            return;
         }
+        RaycastHit closestHit = hits[0];
 
-        if(!hasHit)
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (closestHit.distance > hits[i].distance)
+                closestHit = hits[i];
+        }
+        
+
+        if (closestHit.collider.tag == "Liftable")
+        {
+            //Debug.Log("Lifting");
+            //gameObject.GetComponent<Liftable>().Detect();
+            HUD.ShowHand();
+            hasHit = true;
+        }
+        ///may need to fix this on different tags
+        Interactable other = closestHit.collider.gameObject.GetComponentInChildren<Interactable>();
+        if (other != null)
+        {
+            HUD.ShowInteract();
+            hasHit = true;
+
+            //break;
+        }
+        //}
+
+        if (!hasHit)
         {
             HUD.ShowCursor();
         }
+
+        
     }
     
 }
