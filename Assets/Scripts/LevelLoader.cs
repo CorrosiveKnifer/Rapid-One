@@ -45,8 +45,6 @@ public class LevelLoader : MonoBehaviour
     }
     public void ResetScene()
     {
-        GetComponent<AudioAgent>().PlaySoundEffect("Electric_Zap");
-        transition.speed = 4f;
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
