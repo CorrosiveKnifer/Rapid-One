@@ -16,7 +16,17 @@ public class ObjectSync : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChildObject.transform.position = AdultObject.transform.position;
-        ChildObject.transform.rotation = AdultObject.transform.rotation;
+
+        if (AdultObject.activeSelf)
+        {
+            ChildObject.transform.position = AdultObject.transform.position;
+            ChildObject.transform.rotation = AdultObject.transform.rotation;
+        }
+        else if (ChildObject.activeSelf)
+        {
+
+            AdultObject.transform.position = ChildObject.transform.position;
+            AdultObject.transform.rotation = ChildObject.transform.rotation;
+        }
     }
 }
