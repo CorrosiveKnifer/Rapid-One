@@ -22,7 +22,7 @@ public class Crawling : MonoBehaviour
         }
         if (IsCrawling == true)
         {
-            Debug.Log("crawl!");
+            //Debug.Log("crawl!");
             transform.localScale = new Vector3(1,  0.5f, 1);
 
         }
@@ -30,7 +30,7 @@ public class Crawling : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.T))
         else
         {
-            Debug.Log("stand!");
+            //Debug.Log("stand!");
             transform.localScale = new Vector3(1, 1.0f, 1);
 
         }
