@@ -35,7 +35,28 @@ public class Liftable : MonoBehaviour
                 Debug.DrawRay(ray.origin, ray.direction * 5.0f, Color.green, 0.5f);
                 hits = Physics.RaycastAll(ray.origin, ray.direction, 5.0f);
 
+                if (hits.Length == 0)
+                {
+                    return;
+                }
+
+                RaycastHit closestHit = hits[0];
+
+                for (int i = 0; i < hits.Length; i++)
+                {
+                    if (closestHit.distance > hits[i].distance)
+                        closestHit = hits[i];
+                }
+
+                //if the object tag is key to detroy and admit to key
+                if (closestHit.collider.tag == "Liftable")
+                {
+                    item = closestHit.collider.gameObject;
+                    Grabbing();
+                    //break;
+                }
                 //checking each item
+                /*
                 foreach (var hit in hits)
                 {
                     //if the object tag is key to detroy and admit to key
@@ -46,6 +67,8 @@ public class Liftable : MonoBehaviour
                         break;
                     }
                 }
+                */
+
             }
         }
         else
