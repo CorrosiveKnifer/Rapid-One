@@ -10,14 +10,16 @@ public class NumberPadScript : MonoBehaviour
     public string TargetText;
     public GameObject player;
     public GameObject otherObject;
-
+    
     private string number;
     private Canvas display;
     private Interactable interactable;
+    private AudioAgent audio;
     // Start is called before the first frame update
     void Start()
     {
         interactable = otherObject.GetComponent<Interactable>();
+        audio = GetComponent<AudioAgent>();
         number = "";
         display = GetComponent<Canvas>();
         int temp;
@@ -85,7 +87,13 @@ public class NumberPadScript : MonoBehaviour
                 (interactable as DoorScript).isLocked = !(interactable as DoorScript).isLocked;
 
             interactable.Activate();
+            audio.PlaySoundEffect("KeypadSuccess");
             Hide();
+        }
+        else
+        {
+            StartCoroutine(ErrorFlash());
+            audio.PlaySoundEffect("KeypadError");
         }
     }
 
@@ -93,5 +101,63 @@ public class NumberPadScript : MonoBehaviour
     {
         if(number.Length > 0)
             number = number.Substring(0, number.Length - 1);
+    }
+
+    IEnumerator ErrorFlash()
+    {
+        Color errorColor = Color.red;
+        Color baseColor = displayText.color;
+        number = "ERROR";
+        float t = 0;
+        float dt = 0.05f;
+        float dt2 = 0.01f;
+        while (displayText.color != errorColor)
+        {
+            displayText.color = Color.Lerp(baseColor, errorColor, t);
+            t += dt;
+            dt += dt2;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        t = 0;
+        dt = 0.05f;
+        dt2 = 0.01f;
+        while (displayText.color != baseColor)
+        {
+            displayText.color = Color.Lerp(errorColor, baseColor, t);
+            t += dt;
+            dt += dt2;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        t = 0;
+        dt = 0.05f;
+        dt2 = 0.01f;
+        while (displayText.color != errorColor)
+        {
+            displayText.color = Color.Lerp(baseColor, errorColor, t);
+            t += dt;
+            dt += dt2;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        t = 0;
+        dt = 0.05f;
+        dt2 = 0.01f;
+        while (displayText.color != baseColor)
+        {
+            displayText.color = Color.Lerp(errorColor, baseColor, t);
+            t += dt;
+            dt += dt2;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        displayText.color = baseColor;
+        number = "";
+        yield return null;
     }
 }
