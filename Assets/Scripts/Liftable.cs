@@ -32,7 +32,7 @@ public class Liftable : MonoBehaviour
             {
                 Dropping();
                 objectPos = item.transform.position;
-                item.transform.SetParent(itemParent);
+                item.transform.parent = itemParent;
                 item.GetComponent<Rigidbody>().useGravity = true;
                 item.transform.position = objectPos;
                 itemParent = null;
@@ -116,7 +116,7 @@ public class Liftable : MonoBehaviour
         else if(item != null)
         {
             objectPos = item.transform.position;
-            item.transform.SetParent(itemParent);
+            item.transform.parent = itemParent;
             item.GetComponent<Rigidbody>().useGravity = true;
             item.transform.position = objectPos;
             itemParent = null;
