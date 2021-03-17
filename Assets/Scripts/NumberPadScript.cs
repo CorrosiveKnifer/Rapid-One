@@ -66,11 +66,14 @@ public class NumberPadScript : MonoBehaviour
 
     public void Hide()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        player.GetComponent<Player>().EnableControl();
-        player.GetComponent<PlayerController>()?.EnableCameraMovement();
-        display.enabled = false;
-        number = "";
+        if(display.enabled)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            player.GetComponent<Player>().EnableControl();
+            player.GetComponent<PlayerController>()?.EnableCameraMovement();
+            display.enabled = false;
+            number = "";
+        }
     }
 
     public void AddDigit(int digit)

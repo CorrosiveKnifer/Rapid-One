@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.M))
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = false;
                 SceneManager.LoadScene(0);
             }
         }

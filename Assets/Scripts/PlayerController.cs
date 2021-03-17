@@ -78,10 +78,19 @@ public class PlayerController : MonoBehaviour
             delay = Mathf.Clamp(delay - Time.deltaTime, 0, transitionDelay);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && delay == 0 && !CameraController.instance.IsCameraShifting())
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && delay <= 0 && !CameraController.instance.IsCameraShifting())
         {
             delay = transitionDelay;
             ToggleControlChild();
+        }
+        }
+
+        if (CameraController.instance.IsCameraShifting())
+        {
+            Debug.Log("Howdy Gamer");
         }
 
         if (!m_bChildForm)

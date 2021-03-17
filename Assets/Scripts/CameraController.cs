@@ -44,12 +44,21 @@ public class CameraController : MonoBehaviour
         childCamera = child.GetComponentInChildren<Camera>();
         ghostCamera = ghost.GetComponentInChildren<Camera>();
 
+        ghost.transform.position = parent.transform.position;
+
         //Start initially at the parent camera.
         ghostCamera.enabled = false;
         childCamera.enabled = false;
         parentCamera.enabled = true;
     }
 
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

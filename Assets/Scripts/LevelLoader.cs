@@ -59,6 +59,7 @@ public class LevelLoader : MonoBehaviour
         if (levelIndex == 0 || levelIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         // Load Scene
