@@ -80,21 +80,31 @@ public class Player : MonoBehaviour
 
         if ((x != 0 || z != 0) && m_bGrounded)
         {
-            if (!m_bInVents)
+            if (!m_bInVents) // Is not in vents
             {
                 if (GetComponent<AudioAgent>().IsAudioStopped("WoodFootsteps"))
-                {
+                { // Play footsteps
                     GetComponent<AudioAgent>().PlaySoundEffect("WoodFootsteps");
+                }
+                if (!GetComponent<AudioAgent>().IsAudioStopped("MetalFootsteps"))
+                { // Stop metal foot steps if still playing
+                    GetComponent<AudioAgent>().StopAudio("MetalFootsteps");
                 }
             }
             else
             {
                 if (GetComponent<AudioAgent>().IsAudioStopped("MetalFootsteps"))
-                {
+                { // Play metal footsteps
                     GetComponent<AudioAgent>().PlaySoundEffect("MetalFootsteps");
+                }
+                if (!GetComponent<AudioAgent>().IsAudioStopped("WoodFootsteps"))
+                { // Stop normal footsteps if still playing
+                    GetComponent<AudioAgent>().StopAudio("WoodFootsteps");
                 }
                 Debug.Log("Player In Vents");
             }
+
+
         }
         else
         {
@@ -106,6 +116,7 @@ public class Player : MonoBehaviour
             {
                 GetComponent<AudioAgent>().StopAudio("MetalFootsteps");
             }
+
         }
 
         // Create vector from player's current orientation (meaning it will work with rotating camera)
