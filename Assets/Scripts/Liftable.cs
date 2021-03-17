@@ -7,6 +7,7 @@ public class Liftable : MonoBehaviour
     public Camera cam;
     public bool isHolding = false;
     private GameObject item;
+    private Transform itemParent;
     public GameObject tempParent;
 
     private PlayerController playcontr;
@@ -31,9 +32,10 @@ public class Liftable : MonoBehaviour
             {
                 Dropping();
                 objectPos = item.transform.position;
-                item.transform.SetParent(null);
+                item.transform.SetParent(itemParent);
                 item.GetComponent<Rigidbody>().useGravity = true;
                 item.transform.position = objectPos;
+                itemParent = null;
                 item = null;
             }
             return;
@@ -75,6 +77,7 @@ public class Liftable : MonoBehaviour
                 if (lift != null)
                 {
                     item = closestHit.collider.gameObject;
+                    itemParent = item.transform.parent;
                     Grabbing();
                 }
                
@@ -113,9 +116,10 @@ public class Liftable : MonoBehaviour
         else if(item != null)
         {
             objectPos = item.transform.position;
-            item.transform.SetParent(null);
+            item.transform.SetParent(itemParent);
             item.GetComponent<Rigidbody>().useGravity = true;
             item.transform.position = objectPos;
+            itemParent = null;
             item = null;
         }
     }
