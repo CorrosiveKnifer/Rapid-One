@@ -27,6 +27,15 @@ public class Liftable : MonoBehaviour
     {
         if (playcontr.m_bChildForm)
         {
+            if(item != null)
+            {
+                Dropping();
+                objectPos = item.transform.position;
+                item.transform.SetParent(null);
+                item.GetComponent<Rigidbody>().useGravity = true;
+                item.transform.position = objectPos;
+                item = null;
+            }
             return;
         }
 
@@ -103,7 +112,6 @@ public class Liftable : MonoBehaviour
         //if the item isnt null for it (is the isholding is false it gets a error stating the item isnt there for transforming.
         else if(item != null)
         {
-            
             objectPos = item.transform.position;
             item.transform.SetParent(null);
             item.GetComponent<Rigidbody>().useGravity = true;
