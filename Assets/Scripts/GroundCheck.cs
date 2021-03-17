@@ -18,7 +18,7 @@ public class GroundCheck : MonoBehaviour
     void Update()
     {
         
-
+        
         Debug.DrawRay(transform.position, -Vector3.up* raydist, Color.green, 0.1f);
         RaycastHit[] hits = Physics.RaycastAll(transform.position, -Vector3.up, raydist);
 
@@ -27,11 +27,18 @@ public class GroundCheck : MonoBehaviour
         {
             return;
         }
+
         RaycastHit closestHit = hits[0];
 
         //get the closet one
         for (int i = 0; i < hits.Length; i++)
         {
+            //hit object doesnt detect itself
+            if(hits[i].collider.gameObject == gameObject)
+            {
+                continue;
+            }
+
             if (closestHit.distance > hits[i].distance)
                 closestHit = hits[i];
         }
@@ -44,6 +51,7 @@ public class GroundCheck : MonoBehaviour
                 shadow = Instantiate(shadowPrefab);
             }
             shadow.SetActive(true);
+
             Debug.Log("in air");
             Debug.Log(closestHit.point);
             shadow.transform.position = new Vector3(transform.position.x, closestHit.point.y, transform.position.z);
