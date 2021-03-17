@@ -9,6 +9,7 @@ public class Liftable : MonoBehaviour
     private GameObject item;
     public GameObject tempParent;
 
+    private PlayerController playcontr;
     public GameObject HUDObject;
 
     Vector3 objectPos;
@@ -18,11 +19,17 @@ public class Liftable : MonoBehaviour
     void Start()
     {
         HUD = HUDObject.GetComponent<HUDScript>();
+        playcontr = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playcontr.m_bChildForm)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0))
         {
             //list of object that get hit by the raycast
@@ -49,12 +56,19 @@ public class Liftable : MonoBehaviour
                 }
 
                 //if the object tag is key to detroy and admit to key
-                if (closestHit.collider.tag == "Liftable")
+                //if (closestHit.collider.tag == "Liftable")
+                //{
+                //    item = closestHit.collider.gameObject;
+                //    Grabbing();
+                //    //break;
+                //}
+                GroundCheck lift = closestHit.collider.gameObject.GetComponentInChildren<GroundCheck>();
+                if (lift != null)
                 {
                     item = closestHit.collider.gameObject;
                     Grabbing();
-                    //break;
                 }
+               
                 //checking each item
                 /*
                 foreach (var hit in hits)
@@ -101,7 +115,7 @@ public class Liftable : MonoBehaviour
  //getting the grabing function
     void Grabbing()
     {
-        Debug.Log("it is grabbed");
+        //Debug.Log("it is grabbed");
         isHolding = true;
         item.GetComponent<Rigidbody>().useGravity = false;
         item.GetComponent<Rigidbody>().detectCollisions = true;
@@ -109,14 +123,14 @@ public class Liftable : MonoBehaviour
     }
     void Dropping()
     {
-        Debug.Log("it is dropped");
+        //Debug.Log("it is dropped");
         isHolding = false;
         
     }
 
     public void Detect()
     {
-        Debug.Log("Lifting");
+        //Debug.Log("Lifting");
     }
 
 
