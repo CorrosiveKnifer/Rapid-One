@@ -6,15 +6,20 @@ public class InteractingItems : MonoBehaviour
 {
     public Transform cam;
     public Camera camera;
+    private PlayerController playcontr;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playcontr = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(playcontr.m_bChildForm)
+        {
+            return;
+        }
         //i used F for now
         if (Input.GetKeyDown(KeyCode.E))
         {
