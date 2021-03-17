@@ -59,6 +59,7 @@ public class NumberPadScript : MonoBehaviour
     public void Show()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         display.enabled = true;
         player.GetComponent<Player>().DisableControl();
         player.GetComponent<PlayerController>()?.DisableCameraMovement();
@@ -69,6 +70,7 @@ public class NumberPadScript : MonoBehaviour
         if(display.enabled)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             player.GetComponent<Player>().EnableControl();
             player.GetComponent<PlayerController>()?.EnableCameraMovement();
             display.enabled = false;
