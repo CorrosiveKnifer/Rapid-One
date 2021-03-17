@@ -6,16 +6,19 @@ public class Detection : MonoBehaviour
 {
     public Camera camera;
     public GameObject HUDObject;
+    private PlayerController playcontr;
 
     private HUDScript HUD;
     public virtual void Detect()
     {
         Debug.Log("No sound Detected");
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        playcontr = GetComponent<PlayerController>();
         //Detect();
         HUD = HUDObject.GetComponent<HUDScript>();
     }
@@ -23,6 +26,12 @@ public class Detection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playcontr.m_bChildForm)
+        {
+            HUD.ShowCursor();
+            return;
+        }
+
         //list of object that get hit by the raycast
         RaycastHit[] hits;
 
@@ -49,9 +58,9 @@ public class Detection : MonoBehaviour
             if (closestHit.distance > hits[i].distance)
                 closestHit = hits[i];
         }
-        
 
-        if (closestHit.collider.tag == "Liftable")
+        GroundCheck lift = closestHit.collider.gameObject.GetComponentInChildren<GroundCheck>();
+        if (lift != null)
         {
             //Debug.Log("Lifting");
             //gameObject.GetComponent<Liftable>().Detect();

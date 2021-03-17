@@ -54,7 +54,7 @@ public class ChildView : MonoBehaviour
             //checking through child object and makes them dissapear
             foreach (GameObject child in childs)
             {
-                Debug.Log("Dissapear!");
+                //Debug.Log("Dissapear!");
                 child.SetActive(false);
 
             }
@@ -72,7 +72,7 @@ public class ChildView : MonoBehaviour
             //checking through child object and makes them appear
             foreach (GameObject child in childs)
             {
-                Debug.Log("Appear!");
+                //Debug.Log("Appear!");
                 child.SetActive(true);
             }
 
