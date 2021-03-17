@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8527166137568700932}
   - component: {fileID: 3416787991063904177}
   - component: {fileID: 8257411678501235185}
+  - component: {fileID: 7308563312978813870}
   m_Layer: 8
   m_Name: CardBox
   m_TagString: AdultObjects
@@ -107,7 +108,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.523, y: 0.384, z: 0.523}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.384, z: 0}
   m_TimeToStationary: 0.5
@@ -127,6 +128,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7308563312978813870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734098615688248739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07520f5d5089aa64eacad7a14dab6d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowPrefab: {fileID: 1814418866104195601, guid: 5c1694e35ff16a345a5cae41dd3bb6ed,
+    type: 3}
 --- !u!1 &4930888854567276071
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +250,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a097a70462217b046a92bf96e97f27c8, type: 2}
+  - {fileID: 2100000, guid: 270adc1cb0806614ba8816640f4253ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

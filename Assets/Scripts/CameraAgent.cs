@@ -15,6 +15,7 @@ public class CameraAgent : MonoBehaviour
     public Transform childLocation;
     public Transform parentLocation;
     public MeshRenderer parentMesh;
+    public LevelLoader loader;
 
     //Navigation
     private NavMeshAgent agent;
@@ -27,7 +28,7 @@ public class CameraAgent : MonoBehaviour
     private MeshRenderer parentRenderer;
 
     private bool enumeratorflag = false;
-
+    private float remainingDist = -1f;
     void Start()
     {
         currentState = AgentState.FOLLOW_ADULT;
@@ -59,7 +60,7 @@ public class CameraAgent : MonoBehaviour
                 {
                     //Activate the navigation
                     agent.destination = targetLocation.position;
-
+                    
                     float dist = Vector3.Distance(transform.position, targetLocation.position);
                     parentMesh.enabled = (dist > 1.5f);
 
@@ -67,7 +68,19 @@ public class CameraAgent : MonoBehaviour
                     Vector2 loc = new Vector2(transform.position.x, transform.position.z);
                     Vector2 target = new Vector2(targetLocation.position.x, targetLocation.position.z);
 
-                    if(Vector2.Distance(loc, target) < 0.5f)
+                    if(hasNavMeshGlitched())
+                    {
+                        if(!enumeratorflag)
+                        {
+                            enumeratorflag = true;
+                            StartCoroutine(Blink());
+                        }
+                        
+                    }
+
+                    remainingDist = agent.remainingDistance;
+
+                    if (Vector2.Distance(loc, target) < 1.5f)
                     {
                         if(!enumeratorflag)
                         {
@@ -78,6 +91,32 @@ public class CameraAgent : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    private bool hasNavMeshGlitched()
+    {
+        return remainingDist == agent.remainingDistance && remainingDist != -1f && !enumeratorflag;
+    }
+
+    IEnumerator Blink()
+    {
+        loader.GetComponentInChildren<Animator>().SetTrigger("Start");
+        loader.transitionTime = 0.25f;
+        loader.GetComponentInChildren<Animator>().speed = 4;
+
+        yield return new WaitForSeconds(0.25f);
+
+        currentState = AgentState.FOLLOW_ADULT;
+        parentMesh.enabled = true;
+
+        loader.GetComponentInChildren<Animator>().SetTrigger("Blink");
+        yield return new WaitForSeconds(0.25f);
+
+        loader.transitionTime = 1.0f;
+        loader.GetComponentInChildren<Animator>().speed = 1;
+
+        enumeratorflag = false;
+        yield return null;
     }
 
     IEnumerator SizeUp(float target)
@@ -97,7 +136,7 @@ public class CameraAgent : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-        currentState = (targetLocation == parentLocation) ? AgentState.FOLLOW_ADULT : AgentState.FOLLOW_CHILD;
+        currentState = AgentState.FOLLOW_ADULT;
         parentMesh.enabled = true;
 
         transform.localScale = startScale;
@@ -131,6 +170,7 @@ public class CameraAgent : MonoBehaviour
         }
 
         currentState = AgentState.SHIFTTING;
+        remainingDist = -1f;
     }
     
     /// <summary>
