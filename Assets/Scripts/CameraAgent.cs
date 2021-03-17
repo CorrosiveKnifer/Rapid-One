@@ -26,6 +26,8 @@ public class CameraAgent : MonoBehaviour
 
     private MeshRenderer parentRenderer;
 
+    private bool enumeratorflag = false;
+
     void Start()
     {
         currentState = AgentState.FOLLOW_ADULT;
@@ -59,7 +61,6 @@ public class CameraAgent : MonoBehaviour
                     agent.destination = targetLocation.position;
 
                     float dist = Vector3.Distance(transform.position, targetLocation.position);
-                    transform.localScale = LerpToTarget(targetLocation.localScale, shiftingTransform.localScale, dist, 2.5f);
                     parentMesh.enabled = (dist > 1.5f);
 
                     //Check if movement is done.
@@ -68,12 +69,40 @@ public class CameraAgent : MonoBehaviour
 
                     if(Vector2.Distance(loc, target) < 0.5f)
                     {
-                        currentState = (targetLocation == parentLocation) ? AgentState.FOLLOW_ADULT : AgentState.FOLLOW_CHILD;
-                        parentMesh.enabled = true;
+                        if(!enumeratorflag)
+                        {
+                            enumeratorflag = true;
+                            StartCoroutine(SizeUp(2.6f));
+                        }
                     }
                     break;
                 }
         }
+    }
+
+    IEnumerator SizeUp(float target)
+    {
+        Vector3 startScale = transform.localScale;
+
+        float t = 0.0f;
+        float dt = 0.05f;
+        float dt2 = 0.01f;
+
+        while(transform.localScale.y < target - 0.05f)
+        {
+            transform.localScale = new Vector3(startScale.x, Mathf.Lerp(transform.localScale.y, target, t), startScale.z);
+
+            t += Time.deltaTime * dt;
+            dt += Time.deltaTime * dt2;
+
+            yield return new WaitForEndOfFrame();
+        }
+        currentState = (targetLocation == parentLocation) ? AgentState.FOLLOW_ADULT : AgentState.FOLLOW_CHILD;
+        parentMesh.enabled = true;
+
+        transform.localScale = startScale;
+        enumeratorflag = false;
+        yield return null;
     }
 
     /// <summary>
@@ -114,22 +143,5 @@ public class CameraAgent : MonoBehaviour
     private bool IsPositionEquals(Vector3 pos1, Vector3 pos2, float threshold = 0.05f)
     {
         return (Vector3.SqrMagnitude(pos1 - pos2) < threshold);
-    }
-
-    /// <summary>
-    /// Return a lerp value based on the distance away from the target.
-    /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <param name="distance"></param>
-    /// <param name="threshold"></param>
-    /// <returns></returns>
-    private Vector3 LerpToTarget(Vector3 current, Vector3 target, float distance, float threshold = 1.5f)
-    {
-        float distRatio = Mathf.Clamp(distance / threshold, 0.0f, 1.0f);
-
-        Vector3 retValue = Vector3.Lerp(current, target, distRatio);
-
-        return retValue;
     }
 }
