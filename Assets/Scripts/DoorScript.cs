@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Michael Jordan
+/// </summary>
 public class DoorScript : Interactable
 {
     public bool isLocked;

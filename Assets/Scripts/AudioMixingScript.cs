@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Michael Jordan
+/// </summary>
 public class AudioMixingScript : MonoBehaviour
 {
     public AudioClip slowClip;
@@ -34,14 +37,12 @@ public class AudioMixingScript : MonoBehaviour
             {
                 //Convert larger time based on a smaller time.
                 slowSource.time = fastSource.time * TIME_CONSTANT + (fastSource.time / 60.0f)*1.0f;
-                //Debug.Log($"slow = {slowSource.time} fast = {fastSource.time}");
                 StartCoroutine(Fade());
             }
             else
             {
                 //Convert smaller time based on a larger time.
                 fastSource.time = slowSource.time / TIME_CONSTANT - (slowSource.time/60.0f)*1.0f;
-                //Debug.Log($"slow = {slowSource.time} fast = {fastSource.time}");
                 StartCoroutine(Fade());
             }
         }

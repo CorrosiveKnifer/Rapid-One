@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// William de Beer
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
-
     public float m_fMouseSensitivity = 300f;
     public Transform m_AdultBody;
     public Transform m_ChildBody;

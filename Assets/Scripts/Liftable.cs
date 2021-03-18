@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rachael Calaco
+/// </summary>
 public class Liftable : MonoBehaviour
 {
     public Camera cam;
@@ -67,12 +70,6 @@ public class Liftable : MonoBehaviour
                 }
 
                 //if the object tag is key to detroy and admit to key
-                //if (closestHit.collider.tag == "Liftable")
-                //{
-                //    item = closestHit.collider.gameObject;
-                //    Grabbing();
-                //    //break;
-                //}
                 GroundCheck lift = closestHit.collider.gameObject.GetComponentInChildren<GroundCheck>();
                 if (lift != null)
                 {
@@ -80,21 +77,6 @@ public class Liftable : MonoBehaviour
                     itemParent = item.transform.parent;
                     Grabbing();
                 }
-               
-                //checking each item
-                /*
-                foreach (var hit in hits)
-                {
-                    //if the object tag is key to detroy and admit to key
-                    if (hit.collider.tag == "Liftable")
-                    {
-                        item = hit.collider.gameObject;
-                        Grabbing();
-                        break;
-                    }
-                }
-                */
-
             }
         }
         else
@@ -127,7 +109,6 @@ public class Liftable : MonoBehaviour
  //getting the grabing function
     void Grabbing()
     {
-        //Debug.Log("it is grabbed");
         isHolding = true;
         item.GetComponent<Rigidbody>().useGravity = false;
         item.GetComponent<Rigidbody>().detectCollisions = true;
@@ -135,7 +116,6 @@ public class Liftable : MonoBehaviour
     }
     void Dropping()
     {
-        //Debug.Log("it is dropped");
         isHolding = false;
         
     }

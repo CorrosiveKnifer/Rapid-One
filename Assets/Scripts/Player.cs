@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// William de Beer
+/// </summary>
 public class Player : MonoBehaviour
 {
-    
-
     public bool m_bIsChild = false;
     bool m_bIsEnabled;
 

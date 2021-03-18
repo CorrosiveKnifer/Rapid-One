@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rachael Calaco, Michael Jordan
+/// </summary>
 public class Detection : MonoBehaviour
 {
     public Camera camera;

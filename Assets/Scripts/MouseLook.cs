@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// William de Beer
+/// </summary>
 public class MouseLook : MonoBehaviour
 {
     float m_RotationX = 0f;
@@ -19,8 +22,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (m_bMovementEnabled)
+        if (m_bMovementEnabled) // Check if movement is allowed
         {
             float mouseY = Input.GetAxis("Mouse Y") * m_fMouseSensitivity * Time.deltaTime;
 

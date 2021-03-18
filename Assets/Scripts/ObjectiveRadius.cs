@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// William de Beer
+/// </summary>
 public class ObjectiveRadius : MonoBehaviour
 {
     float m_DetectionRadius = 0.0f;

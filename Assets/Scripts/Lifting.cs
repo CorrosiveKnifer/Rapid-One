@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rachael Calaco
+/// </summary>
 public class Lifting : MonoBehaviour
 {
     float throwForce = 600;

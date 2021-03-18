@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rachael Calaco
+/// </summary>
 public class Interactable : MonoBehaviour
 {
     // Start is called before the first frame update

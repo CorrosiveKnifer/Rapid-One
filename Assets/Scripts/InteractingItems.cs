@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rachael Calaco, Michael Jordan
+/// </summary>
 public class InteractingItems : MonoBehaviour
 {
     public Transform cam;
@@ -27,8 +30,6 @@ public class InteractingItems : MonoBehaviour
             RaycastHit[] hits;
 
             //to see the line of the raycast
-            //Debug.DrawRay(transform.position, cam.forward * 5.0f, Color.blue, 2);
-            
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0.0f));
             Debug.DrawRay(ray.origin, ray.direction*5.0f, Color.blue, 0.5f);
             hits = Physics.RaycastAll(ray.origin, ray.direction, 5.0f);
@@ -36,19 +37,6 @@ public class InteractingItems : MonoBehaviour
             //checking each item
             foreach (var hit in hits)
             {
-                //Michael: "Doesn't work this way annoyingly
-                //if(hit.collider.tag == "Wall")
-                //{
-                //    return;
-                //}
-
-                //Interactable other = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-                //if (other != null)
-                //{
-                //    other.Activate();
-                //    break;
-                //}
-
                 hit.collider.gameObject.GetComponentInChildren<Interactable>()?.Activate();
             }
         }

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rachael Calaco
+/// </summary>
 public class GroundCheck : MonoBehaviour
 {
     private static float raydist = 5.0f;
@@ -17,8 +20,6 @@ public class GroundCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
         Debug.DrawRay(transform.position, -Vector3.up* raydist, Color.green, 0.1f);
         RaycastHit[] hits = Physics.RaycastAll(transform.position, -Vector3.up, raydist);
 

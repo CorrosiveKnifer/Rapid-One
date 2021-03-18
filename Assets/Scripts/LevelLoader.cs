@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// William de Beer
+/// </summary>
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
@@ -34,13 +37,13 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+        if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1) // Check if index exceeds scene count
         {
-            StartCoroutine(LoadLevel(0));
+            StartCoroutine(LoadLevel(0)); // Load menu
         }
         else
         {
-            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // Loade next scene
         }
     }
     public void ResetScene()
@@ -56,14 +59,14 @@ public class LevelLoader : MonoBehaviour
         // Wait to let animation finish playing
         yield return new WaitForSeconds(transitionTime);
 
-        if (levelIndex == 0 || levelIndex == SceneManager.sceneCountInBuildSettings - 1)
+        if (levelIndex == 0 || levelIndex == SceneManager.sceneCountInBuildSettings - 1) // Check if either in menu or end screen
         {
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.None; // Make cursor usable.
             Cursor.visible = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked; // Make cursor unusable.
             Cursor.visible = false;
         }
 

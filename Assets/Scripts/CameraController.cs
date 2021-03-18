@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// <Author> Michael Jordan </Author>
+/// Michael Jordan 
 /// </summary>
 public class CameraController : MonoBehaviour
 {

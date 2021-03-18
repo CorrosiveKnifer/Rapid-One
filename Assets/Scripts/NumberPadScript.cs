@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Michael Jordan
+/// </summary>
 public class NumberPadScript : MonoBehaviour
 {
     public bool isShowing;

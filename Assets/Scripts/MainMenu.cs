@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// William de Beer
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     // Useless now, use LevelLoader.cs instead

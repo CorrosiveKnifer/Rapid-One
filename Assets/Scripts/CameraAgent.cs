@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// <Author> Michael Jordan </Author>
+/// Michael Jordan
 /// </summary>
 public class CameraAgent : MonoBehaviour
 {

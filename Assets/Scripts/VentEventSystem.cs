@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Michael Jordan, William de Beer
+/// </summary>
 public class VentEventSystem : MonoBehaviour
 {
     // Start is called before the first frame update
