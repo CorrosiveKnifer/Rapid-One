@@ -28,12 +28,6 @@ public class Lifting : MonoBehaviour
             item.GetComponent<Rigidbody>().velocity = Vector3.zero;
             item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             item.transform.SetParent(tempParent.transform);
-
-
-            if(Input.GetMouseButtonDown(1))
-            {
-
-            }
         }
         else
         {
