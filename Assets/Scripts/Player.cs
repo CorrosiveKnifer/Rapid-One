@@ -84,7 +84,14 @@ public class Player : MonoBehaviour
             {
                 if (GetComponent<AudioAgent>().IsAudioStopped("WoodFootsteps"))
                 { // Play footsteps
-                    GetComponent<AudioAgent>().PlaySoundEffect("WoodFootsteps");
+                    if(m_bIsChild)
+                    {
+                        GetComponent<AudioAgent>().PlaySoundEffect("WoodFootsteps", false, 255, 1.5f);
+                    }
+                    else
+                    {
+                        GetComponent<AudioAgent>().PlaySoundEffect("WoodFootsteps");
+                    }
                 }
                 if (!GetComponent<AudioAgent>().IsAudioStopped("MetalFootsteps"))
                 { // Stop metal foot steps if still playing
@@ -103,8 +110,6 @@ public class Player : MonoBehaviour
                 }
                 Debug.Log("Player In Vents");
             }
-
-
         }
         else
         {

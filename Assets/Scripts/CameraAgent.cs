@@ -75,7 +75,6 @@ public class CameraAgent : MonoBehaviour
                             enumeratorflag = true;
                             StartCoroutine(Blink());
                         }
-                        
                     }
 
                     remainingDist = agent.remainingDistance;
@@ -95,7 +94,8 @@ public class CameraAgent : MonoBehaviour
 
     private bool hasNavMeshGlitched()
     {
-        return remainingDist == agent.remainingDistance && remainingDist != -1f && !enumeratorflag;
+        bool agentBool = agent.velocity.x == 0 && agent.velocity.z == 0 && remainingDist == agent.remainingDistance;
+        return agentBool && remainingDist != -1f && !enumeratorflag;
     }
 
     IEnumerator Blink()

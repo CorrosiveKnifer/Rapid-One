@@ -46,13 +46,14 @@ public class AudioAgent : MonoBehaviour
         source.priority = 255;
         AudioLibrary.Add(title, new AudioPlayer(source));
     }
-    public bool PlaySoundEffect(string title, bool isLooping = false, int priority = 255)
+    public bool PlaySoundEffect(string title, bool isLooping = false, int priority = 255, float pitch = 1.0f)
     {
         AudioPlayer player;
         if (AudioLibrary.TryGetValue(title, out player))
         {
             AudioLibrary[title].source.loop = isLooping;
             AudioLibrary[title].source.priority = priority;
+            AudioLibrary[title].source.pitch = pitch;
             AudioLibrary[title].source.volume = SoundEffectVolume;
             AudioLibrary[title].isSoundEffect = true;
             AudioLibrary[title].source.Play();
