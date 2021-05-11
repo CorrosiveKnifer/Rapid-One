@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 885396738}
   - component: {fileID: 885396740}
   - component: {fileID: 885396739}
-  - component: {fileID: 885396741}
   - component: {fileID: 1590336526}
   - component: {fileID: 2952679364797632868}
   m_Layer: 0
@@ -87,20 +86,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885396737}
   m_Enabled: 1
---- !u!114 &885396741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885396737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8a4ff7e2ea9c942a099b32aa50e717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_fMouseSensitivity: 300
-  m_bMovementEnabled: 1
 --- !u!114 &1590336526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +159,6 @@ GameObject:
   - component: {fileID: 7738673314137842475}
   - component: {fileID: 5946791649441785190}
   - component: {fileID: 2688399721871639859}
-  - component: {fileID: 187527439}
   - component: {fileID: 3190942489018754341}
   m_Layer: 9
   m_Name: PlayerChild
@@ -212,9 +196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020df3ab31cd99145bc7387be56f5a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_mouseSensitivity: 300
+  m_fSpeed: 12
   m_bIsChild: 1
   m_CharController: {fileID: 2688399721871639859}
-  m_fSpeed: 12
   m_bInVents: 0
   m_vVelocity: {x: 0, y: 0, z: 0}
   m_bGrounded: 0
@@ -241,19 +226,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &187527439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813769046376791867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9588af0bef113c143a8b80e917ed3140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 885396738}
 --- !u!114 &3190942489018754341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +366,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -409,6 +386,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -420,16 +402,6 @@ PrefabInstance:
     - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7589947429252886259, guid: 3008ee65b366a0642b9cd708edb5bda6,

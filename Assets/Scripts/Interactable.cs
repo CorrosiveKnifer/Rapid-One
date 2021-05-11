@@ -1,26 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Rachael Calaco
 /// </summary>
 public class Interactable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public UnityEvent m_OnActivate;
+    public float m_brainRequirement = 5.0f;
 
     public virtual void Activate()
     {
-        Debug.Log("No  Detected");
+        m_OnActivate.Invoke();
     }
 }

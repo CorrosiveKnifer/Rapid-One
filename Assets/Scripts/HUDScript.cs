@@ -18,9 +18,12 @@ public class HUDScript : MonoBehaviour
     public Sprite HandOpen;
     public Sprite HandClose;
 
+    public Text m_TextDisplay;
+
     public bool isHandOpen { get; set; }
 
     private CameraAgent agent;
+    private float m_displayTimer = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,5 +97,29 @@ public class HUDScript : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    public void DisplayText(string text)
+    {
+        m_TextDisplay.text = text;
+        m_TextDisplay.enabled = true;
+        StartCoroutine(StartDisplayingText(2.0f));
+    }
+
+    private IEnumerator StartDisplayingText(float time)
+    {
+        if(m_displayTimer != 0.0)
+        {
+            m_displayTimer = time;
+            yield return null;
+        }
+
+        while (m_displayTimer >= 0.0)
+        {
+            yield return new WaitForEndOfFrame();
+            m_displayTimer -= Time.deltaTime;
+        }
+
+        m_TextDisplay.enabled = false;
     }
 }

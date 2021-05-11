@@ -7,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public class VentOpen : Interactable
 {
+    private void Start()
+    {
+        m_brainRequirement = 5.0f;
+    }
     public override void Activate()
     {
         GetComponent<Animator>().SetTrigger("open");

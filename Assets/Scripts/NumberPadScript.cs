@@ -45,6 +45,12 @@ public class NumberPadScript : MonoBehaviour
                 AddDigit(i);
             }
         }
+
+        if(Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f)
+        {
+            Hide();
+        }
+
         if (Input.GetKeyDown(KeyCode.KeypadPeriod))
         {
             Delete();
@@ -64,18 +70,17 @@ public class NumberPadScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         display.enabled = true;
-        player.GetComponent<Player>().DisableControl();
-        player.GetComponent<PlayerController>()?.DisableCameraMovement();
+        PlayerController.instance.SetCameraFreeze(true);
     }
 
     public void Hide()
     {
         if(display.enabled)
         {
+            PlayerController.instance.SetCameraFreeze(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            player.GetComponent<Player>().EnableControl();
-            player.GetComponent<PlayerController>()?.EnableCameraMovement();
+            //player.GetComponent<PlayerController>()?.EnableCameraMovement();
             display.enabled = false;
             number = "";
         }
