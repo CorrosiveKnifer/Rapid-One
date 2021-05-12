@@ -35,8 +35,8 @@ public class Interactor : MonoBehaviour
     void Start()
     {
         camera = GetComponentInChildren<Camera>();
-        strength = GetComponentInChildren<Player>().m_strength;
-        intellegence = GetComponentInChildren<Player>().m_intellegence;
+        strength = GetComponentInChildren<PlayerRB>().m_strength;
+        intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
 
         if (HUD != null)
             HUD.isHandOpen = true;

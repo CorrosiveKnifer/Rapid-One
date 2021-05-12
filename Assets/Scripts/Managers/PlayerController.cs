@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("Player references")]
-    public Player m_adultForm;
-    public Player m_childForm;
+    public PlayerRB m_adultForm;
+    public PlayerRB m_childForm;
 
     [Header("Player state")]
     public bool m_isAdultForm = true;
