@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class DoorScript : Interactable
 {
+    public uint KeyID = 0;
     public bool isLocked;
     private bool isClosed = true;
 
@@ -31,6 +32,19 @@ public class DoorScript : Interactable
         {
             isClosed = !isClosed;
             anim.SetBool("IsLocked", isClosed);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<KeyScript>() != null)
+        {
+            if(other.gameObject.GetComponent<KeyScript>().keyID == KeyID)
+            {
+                Destroy(other.gameObject);
+                isLocked = false;
+                Activate();
+            }
         }
     }
 }

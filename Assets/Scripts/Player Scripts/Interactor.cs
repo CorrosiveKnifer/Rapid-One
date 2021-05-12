@@ -69,6 +69,7 @@ public class Interactor : MonoBehaviour
             DropObject();
         }
     }
+
     private void UpdateHUD(ushort itemType)
     {
         if (ResolveBitwise(itemType, (ushort)ItemType.ACTION))
