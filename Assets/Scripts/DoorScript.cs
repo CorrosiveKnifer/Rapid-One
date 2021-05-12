@@ -17,6 +17,7 @@ public class DoorScript : Interactable
     void Start()
     {
         anim = GetComponent<Animator>();
+        isClosed = isLocked;
         anim.SetBool("IsLocked", isClosed);
     }
 
@@ -32,6 +33,10 @@ public class DoorScript : Interactable
         {
             isClosed = !isClosed;
             anim.SetBool("IsLocked", isClosed);
+        }
+        else
+        {
+            base.Activate();
         }
     }
 
