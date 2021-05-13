@@ -35,8 +35,8 @@ public class Interactor : MonoBehaviour
     void Start()
     {
         camera = GetComponentInChildren<Camera>();
-        strength = GetComponentInChildren<Player>().m_strength;
-        intellegence = GetComponentInChildren<Player>().m_intellegence;
+        strength = GetComponentInChildren<PlayerRB>().m_strength;
+        intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
 
         if (HUD != null)
             HUD.isHandOpen = true;
@@ -52,7 +52,7 @@ public class Interactor : MonoBehaviour
         ushort itemType = RaycastToObjectInfront(ray, out item);
 
         UpdateHUD(itemType);
-        MoveHeldItem();
+        MoveHeldItem(ray);
 
         if (Input.GetKeyDown(KeyCode.E) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
         {
@@ -105,14 +105,16 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    private void MoveHeldItem()
+    private void MoveHeldItem(Ray ray)
     {
         if (myHeldObject.item != null)
         {
             if (HUD != null)
                 HUD.isHandOpen = false;
 
-            myHeldObject.item.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //myHeldObject.item.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            Vector3 forceDirection = (heldLocation.transform.position + ray.direction * 2.0f) - myHeldObject.item.transform.position;
+            myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 10.0f;
             myHeldObject.item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
     }
@@ -127,7 +129,7 @@ public class Interactor : MonoBehaviour
                 myHeldObject.itemParent = item.transform.parent;
                 myHeldObject.item.GetComponent<Rigidbody>().useGravity = false;
                 myHeldObject.item.GetComponent<Rigidbody>().detectCollisions = true;
-                myHeldObject.item.transform.parent = heldLocation.transform;
+                //myHeldObject.item.transform.parent = heldLocation.transform;
             }
             else
             {
@@ -145,8 +147,8 @@ public class Interactor : MonoBehaviour
 
             Vector3 itemPos = myHeldObject.item.transform.position;
             myHeldObject.item.GetComponent<Rigidbody>().useGravity = true;
-            myHeldObject.item.transform.parent = myHeldObject.itemParent;
-            myHeldObject.item.transform.position = itemPos;
+            //myHeldObject.item.transform.parent = myHeldObject.itemParent;
+            //myHeldObject.item.transform.position = itemPos;
             myHeldObject.itemParent = null;
             myHeldObject.item = null;
         }

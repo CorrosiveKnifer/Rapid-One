@@ -5,11 +5,11 @@ using UnityEngine;
 /// <summary>
 /// William de Beer
 /// </summary>
-public class Player : MonoBehaviour
+public class PlayerRB : MonoBehaviour
 {
     [Header("Player Settings")]
     public float m_mouseSensitivity = 300f; //Mouse Speed
-    public float m_movementSpeed = 6.0f; // Move speed
+    public float m_movementSpeed; // Move speed
     public float m_gravity = -19.62f;
     public float m_jumpForce = 5.0f;
     public bool m_isChild = false;
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     public Camera m_myCamera;
 
-    private CharacterController m_charController;
+    private Rigidbody m_rigidBody;
     
     public bool m_bInVents = false;
 
@@ -32,23 +32,17 @@ public class Player : MonoBehaviour
     public bool m_cameraFreeze { get; set; } = false;
     public float m_currentYRotation;
 
+    private void Awake()
+    {
+        m_rigidBody = GetComponent<Rigidbody>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        m_charController = GetComponent<CharacterController>();
 
         m_currentYRotation = 0;
         Physics.IgnoreLayerCollision(9, 9);
-        if (m_isChild) // Child numbers
-        {
-            m_movementSpeed = 4.5f;
-            m_jumpForce = 6.0f;
-        }
-        else // Adult numbers
-        {
-            m_movementSpeed = 6.0f;
-            m_jumpForce = 8.0f;
-        }
     }
 
     // Update is called once per frame
@@ -76,11 +70,11 @@ public class Player : MonoBehaviour
             m_grounded = false;
         }
 
-        // Snap to ground
-        if (m_grounded && m_velocity.y < 0)
-        {
-            m_velocity.y = -2f;
-        }
+        //// Snap to ground
+        //if (m_grounded && m_velocity.y < 0)
+        //{
+        //    m_velocity.y = -2f;
+        //}
         // Jump
 
         float x = 0.0f;
@@ -142,27 +136,37 @@ public class Player : MonoBehaviour
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
 
-        // Apply gravity to velocityS
-        m_velocity.y += y * m_jumpForce;
-        m_velocity.y += m_gravity * Time.deltaTime;
+        Debug.Log(z);
 
-        // Apply both movement inputs and velocity to the character controller
-        m_charController.Move((move * m_movementSpeed + m_velocity) * Time.deltaTime);
+        //m_velocity.y += y * m_jumpForce;
+
+        //if (m_grounded && m_velocity.y < 0)
+        //{
+        //    m_velocity.y = -0.5f;
+        //}
+        //else
+        //{
+        //    m_velocity.y += m_gravity * Time.fixedDeltaTime;
+        //}
+
+        // Apply to velocity rigidbody
+        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, m_rigidBody.velocity.y + (y * m_jumpForce), move.normalized.z * m_movementSpeed);
     }
     private void OnEnable()
     {
         m_myCamera.enabled = true;
         GetComponent<Interactor>().enabled = true;
+        m_rigidBody.velocity = Vector3.zero;
     }
     private void OnDisable()
     {
         m_myCamera.enabled = false;
         GetComponent<Interactor>().enabled = false;
+        m_rigidBody.velocity = Vector3.zero;
     }
     public void Teleport(Vector3 _targetPos)
     {
-        m_charController.enabled = false;
         transform.position = _targetPos;
-        m_charController.enabled = true;
+        m_rigidBody.velocity = Vector3.zero;
     }
 }
