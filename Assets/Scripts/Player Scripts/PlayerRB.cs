@@ -138,6 +138,17 @@ public class PlayerRB : MonoBehaviour
 
         Debug.Log(z);
 
+        //m_velocity.y += y * m_jumpForce;
+
+        //if (m_grounded && m_velocity.y < 0)
+        //{
+        //    m_velocity.y = -0.5f;
+        //}
+        //else
+        //{
+        //    m_velocity.y += m_gravity * Time.fixedDeltaTime;
+        //}
+
         // Apply to velocity rigidbody
         m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, m_rigidBody.velocity.y + (y * m_jumpForce), move.normalized.z * m_movementSpeed);
     }
