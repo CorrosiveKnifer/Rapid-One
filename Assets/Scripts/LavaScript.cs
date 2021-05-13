@@ -6,7 +6,7 @@ public class LavaScript : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponentInChildren<Player>() != null)
+        if(other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
         {
             PlayerController.instance.Switch();
         }
