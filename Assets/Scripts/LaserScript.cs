@@ -10,6 +10,7 @@ public class LaserScript : MonoBehaviour
     public LineRenderer ray;
     public float distance = 1.0f;
     public LevelLoader loader;
+
     // Start is called before the first frame update
     void Start()
     {
