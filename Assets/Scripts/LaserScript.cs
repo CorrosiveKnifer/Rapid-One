@@ -42,8 +42,9 @@ public class LaserScript : MonoBehaviour
         {
             Debug.Log("Hit the player!");
             GetComponent<AudioAgent>().PlaySoundEffect("Electric_Zap");
-            loader.transition.speed = 4f;
-            loader.ResetScene();
+            PlayerController.instance.Switch();
+            //loader.transition.speed = 4f;
+            //loader.ResetScene();
         }
     }
 }
