@@ -10,7 +10,7 @@ public class ObjectiveRadius : MonoBehaviour
     float m_DetectionRadius = 0.0f;
     public LevelLoader m_LevelLoader;
     public Transform m_PlayerTransform;
-    public Player m_Player;
+    public PlayerRB m_Player;
     // Start is called before the first frame update
     void Start()
     {
