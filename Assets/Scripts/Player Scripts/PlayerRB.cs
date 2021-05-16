@@ -136,7 +136,7 @@ public class PlayerRB : MonoBehaviour
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
 
-        Debug.Log(z);
+        //Debug.Log(z);
 
         //m_velocity.y += y * m_jumpForce;
 

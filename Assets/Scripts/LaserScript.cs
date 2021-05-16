@@ -84,9 +84,9 @@ public class LaserScript : MonoBehaviour
                 remainingLength = Vector3.Distance(ray.origin, hit.point);
                 ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
                 //for laser reactants---------------
-                if (hit.collider.tag == "Reactor" && !hit.collider.GetComponent<LaserReactant>().IsActivated)
+                if (hit.collider.gameObject.GetComponent<LaserReactant>() != null)
                 {
-                    Debug.Log("Door is Open");
+                    //Debug.Log("Door is Open");
                     hit.collider.GetComponent<LaserReactant>().IsActivated = true;
                     break;
                 }

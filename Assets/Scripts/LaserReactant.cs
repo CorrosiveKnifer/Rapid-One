@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LaserReactant : MonoBehaviour
 {
+    public UnityEvent m_OnPower;
+    public UnityEvent m_OffPower;
+
     public bool IsActivated = false;
+    public bool IsPowered = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +19,29 @@ public class LaserReactant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        bool currentpower = IsPowered;
+        IsPowered = IsActivated;
+        if (currentpower != IsPowered)
+        {
+            if (IsPowered)
+            {
+                m_OnPower.Invoke();
+                Debug.Log("puzzle Open");
+            }
+            else
+            {
+                m_OffPower.Invoke();
+            }
+        }
+        if (IsActivated)
+        {
+            IsActivated = false;
+        }
+
     }
-    private void OnTriggerEnter(Collider other)
+    public void Activated()
     {
-        Debug.Log("puzzle Open");
-        
+        IsActivated = true;
     }
+ 
 }
