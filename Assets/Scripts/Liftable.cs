@@ -55,8 +55,8 @@ public class Liftable : MonoBehaviour
             }
             shadow.SetActive(true);
 
-            Debug.Log("in air");
-            Debug.Log(closestHit.point);
+           //Debug.Log("in air");
+           //Debug.Log(closestHit.point);
             shadow.transform.position = new Vector3(transform.position.x, closestHit.point.y, transform.position.z);
         }
         else

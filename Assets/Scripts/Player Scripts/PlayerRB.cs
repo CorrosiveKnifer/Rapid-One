@@ -10,8 +10,8 @@ public class PlayerRB : MonoBehaviour
     [Header("Player Settings")]
     public float m_mouseSensitivity = 300f; //Mouse Speed
     public float m_movementSpeed; // Move speed
-    public float m_gravity = -19.62f;
-    public float m_jumpForce = 5.0f;
+    public float m_gravity = -1.0f;
+    public float m_jumpForce = 500.0f;
     public bool m_isChild = false;
     public float m_strength = 10.0f;
     public float m_intellegence = 10.0f;
@@ -52,7 +52,9 @@ public class PlayerRB : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * m_mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_mouseSensitivity * Time.deltaTime;
 
-        if(!m_cameraFreeze)
+        m_cameraFreeze = Input.GetMouseButton(0) && Input.GetMouseButton(1);
+
+        if (!m_cameraFreeze)
         {
             transform.Rotate(Vector3.up * mouseX);
 
@@ -84,8 +86,12 @@ public class PlayerRB : MonoBehaviour
         // Movement inputs
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
+        //y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
 
+        if (Input.GetButtonDown("Jump") && m_grounded)
+        {
+            m_velocity.y = m_jumpForce;
+        }
 
         if ((x != 0 || z != 0) && m_grounded)
         {
@@ -136,7 +142,6 @@ public class PlayerRB : MonoBehaviour
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
 
-        Debug.Log(z);
 
         //m_velocity.y += y * m_jumpForce;
 
@@ -150,7 +155,20 @@ public class PlayerRB : MonoBehaviour
         //}
 
         // Apply to velocity rigidbody
-        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, m_rigidBody.velocity.y + (y * m_jumpForce), move.normalized.z * m_movementSpeed);
+        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, 0, move.normalized.z * m_movementSpeed);
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_grounded && m_velocity.y < 0)
+        {
+            m_velocity.y = -0.05f;
+        }
+        else
+        {
+            m_velocity.y += m_gravity * Time.fixedDeltaTime;
+        }
+        transform.position += new Vector3(0, m_velocity.y, 0);
     }
     private void OnEnable()
     {
