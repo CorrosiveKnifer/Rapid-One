@@ -65,9 +65,4 @@ public class Liftable : MonoBehaviour
             shadow = null;
         }
     }
-    private void OnDestroy()
-    {
-        if(shadow != null)
-            Destroy(shadow);
-    }
 }
