@@ -10,6 +10,7 @@ public class LaserScript : MonoBehaviour
     public LineRenderer ray;
     public float distance = 1.0f;
     public LevelLoader loader;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +43,9 @@ public class LaserScript : MonoBehaviour
         {
             Debug.Log("Hit the player!");
             GetComponent<AudioAgent>().PlaySoundEffect("Electric_Zap");
-            loader.transition.speed = 4f;
-            loader.ResetScene();
+            PlayerController.instance.Switch();
+            //loader.transition.speed = 4f;
+            //loader.ResetScene();
         }
     }
 }
