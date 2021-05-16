@@ -54,7 +54,7 @@ public class Interactor : MonoBehaviour
         UpdateHUD(itemType);
         MoveHeldItem();
 
-        if (Input.GetKeyDown(KeyCode.E) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
+        if (Input.GetMouseButton(0) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
         {
             Activate(item);
             return;
