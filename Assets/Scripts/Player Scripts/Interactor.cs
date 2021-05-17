@@ -17,6 +17,9 @@ public class Interactor : MonoBehaviour
     private float strength;
     private float intellegence;
 
+    private float savedDistance = 0f;
+    private LayerMask savedLayer;
+
     protected struct HeldObject
     {
         public GameObject item;
@@ -113,9 +116,28 @@ public class Interactor : MonoBehaviour
                 HUD.isHandOpen = false;
 
             //myHeldObject.item.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Vector3 forceDirection = (heldLocation.transform.position + ray.direction * 2.0f) - myHeldObject.item.transform.position;
+            Vector3 forceDirection = (heldLocation.transform.position + ray.direction * savedDistance) - myHeldObject.item.transform.position;
             myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 10.0f;
-            myHeldObject.item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+            if (Input.GetMouseButton(1))
+            {
+                float mouseX = Input.GetAxis("Mouse X") * 60.0f;
+                float mouseY = Input.GetAxis("Mouse Y") * 60.0f;
+                Vector3 rotation = myHeldObject.item.gameObject.transform.localRotation.eulerAngles;
+                Debug.Log(rotation);
+                //myHeldObject.item.gameObject.transform.localRotation = Quaternion.Euler(rotation.x,
+                //    rotation.y + mouseX * Time.deltaTime,
+                //    rotation.z + mouseY * Time.deltaTime);
+
+
+                myHeldObject.item.gameObject.transform.Rotate(new Vector3(0, mouseX * Time.deltaTime, 0), Space.World); // Y axis rotation
+                myHeldObject.item.gameObject.transform.RotateAround(myHeldObject.item.transform.position, transform.right, mouseY * Time.deltaTime); // Z Axis rotation
+               // myHeldObject.item.transform.rotation = 
+            }
+            else
+            {
+                myHeldObject.item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            }
         }
     }
 
@@ -130,6 +152,11 @@ public class Interactor : MonoBehaviour
                 myHeldObject.item.GetComponent<Rigidbody>().useGravity = false;
                 myHeldObject.item.GetComponent<Rigidbody>().detectCollisions = true;
                 //myHeldObject.item.transform.parent = heldLocation.transform;
+
+                savedDistance = Vector3.Distance(heldLocation.transform.position, myHeldObject.item.transform.position);
+                savedLayer = myHeldObject.item.gameObject.layer;
+                myHeldObject.item.gameObject.layer = 9;
+
             }
             else
             {
@@ -149,6 +176,7 @@ public class Interactor : MonoBehaviour
             myHeldObject.item.GetComponent<Rigidbody>().useGravity = true;
             //myHeldObject.item.transform.parent = myHeldObject.itemParent;
             //myHeldObject.item.transform.position = itemPos;
+            myHeldObject.item.gameObject.layer = savedLayer;
             myHeldObject.itemParent = null;
             myHeldObject.item = null;
         }
