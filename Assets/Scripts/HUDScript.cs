@@ -27,9 +27,9 @@ public class HUDScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agent = CameraController.instance.agent;
         Hand.SetActive(false);
         Interact.SetActive(false);
-        Shift.SetActive(true);
     }
 
     // Update is called once per frame
@@ -37,15 +37,20 @@ public class HUDScript : MonoBehaviour
     {
         Hand.GetComponent<Image>().sprite = (isHandOpen) ? HandOpen : HandClose;
 
-        if(PlayerController.instance.m_isAdultForm)
+        switch (agent.currentState)
         {
-            Shift.SetActive(false);
-            Shift.GetComponent<Image>().sprite = AdultShift;
-        }
-        else
-        {
-            Shift.SetActive(true);
-            Shift.GetComponent<Image>().sprite = ChildShift;
+            case CameraAgent.AgentState.FOLLOW_ADULT:
+                Shift.SetActive(true);
+                Shift.GetComponent<Image>().sprite = AdultShift;
+                break;
+            case CameraAgent.AgentState.FOLLOW_CHILD:
+                Shift.SetActive(true);
+                Shift.GetComponent<Image>().sprite = ChildShift;
+                break;
+            default:
+            case CameraAgent.AgentState.SHIFTTING:
+                Shift.SetActive(false);
+                break;
         }
     }
 

@@ -12,18 +12,18 @@ public class Player : MonoBehaviour
     public float m_movementSpeed = 6.0f; // Move speed
     public float m_gravity = -19.62f;
     public float m_jumpForce = 5.0f;
-    public bool m_isChild = false;
+    public bool m_bIsChild = false;
     public float m_strength = 10.0f;
     public float m_intellegence = 10.0f;
 
     public Camera m_myCamera;
 
-    private CharacterController m_charController;
+    public CharacterController m_CharController;
     
     public bool m_bInVents = false;
 
-    private Vector3 m_velocity;
-    public bool m_grounded;
+    private Vector3 m_vVelocity;
+    public bool m_bGrounded;
     
     public Transform m_GroundCheck;
     public float m_GroundDistance = 0.4f;
@@ -35,11 +35,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_charController = GetComponent<CharacterController>();
-
         m_currentYRotation = 0;
         Physics.IgnoreLayerCollision(9, 9);
-        if (m_isChild) // Child numbers
+        if (m_bIsChild) // Child numbers
         {
             m_movementSpeed = 4.5f;
             m_jumpForce = 6.0f;
@@ -65,21 +63,22 @@ public class Player : MonoBehaviour
             m_currentYRotation = Mathf.Clamp(m_currentYRotation - mouseY, -90f, 90f);
             m_myCamera.transform.localRotation = Quaternion.Euler(m_currentYRotation, 0f, 0f);
         }
+        //Mouse Rotation
 
         // Ground check
         if ((Physics.CheckSphere(m_GroundCheck.position, m_GroundDistance, m_GroundMask)))
         {
-            m_grounded = true;
+            m_bGrounded = true;
         }
         else
         {
-            m_grounded = false;
+            m_bGrounded = false;
         }
 
         // Snap to ground
-        if (m_grounded && m_velocity.y < 0)
+        if (m_bGrounded && m_vVelocity.y < 0)
         {
-            m_velocity.y = -2f;
+            m_vVelocity.y = -2f;
         }
         // Jump
 
@@ -88,18 +87,20 @@ public class Player : MonoBehaviour
         float z = 0.0f;
 
         // Movement inputs
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
-        y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
+        //if (!CameraController.instance.IsCameraShifting())
+        //{
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
+            y = (m_bGrounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
+        //}
 
-
-        if ((x != 0 || z != 0) && m_grounded)
+        if ((x != 0 || z != 0) && m_bGrounded)
         {
             if (!m_bInVents) // Is not in vents
             {
                 if (GetComponent<AudioAgent>().IsAudioStopped("WoodFootsteps"))
                 { // Play footsteps
-                    if(m_isChild)
+                    if(m_bIsChild)
                     {
                         GetComponent<AudioAgent>().PlaySoundEffect("WoodFootsteps", false, 255, 1.5f);
                     }
@@ -143,11 +144,11 @@ public class Player : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         // Apply gravity to velocityS
-        m_velocity.y += y * m_jumpForce;
-        m_velocity.y += m_gravity * Time.deltaTime;
+        m_vVelocity.y += y * m_jumpForce;
+        m_vVelocity.y += m_gravity * Time.deltaTime;
 
         // Apply both movement inputs and velocity to the character controller
-        m_charController.Move((move * m_movementSpeed + m_velocity) * Time.deltaTime);
+        m_CharController.Move((move * m_movementSpeed + m_vVelocity) * Time.deltaTime);
     }
     private void OnEnable()
     {
@@ -161,8 +162,8 @@ public class Player : MonoBehaviour
     }
     public void Teleport(Vector3 _targetPos)
     {
-        m_charController.enabled = false;
+        m_CharController.enabled = false;
         transform.position = _targetPos;
-        m_charController.enabled = true;
+        m_CharController.enabled = true;
     }
 }
