@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class LavaScript : MonoBehaviour
 {
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
+        {
+            PlayerController.instance.Switch();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
