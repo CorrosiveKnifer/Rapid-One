@@ -38,8 +38,8 @@ public class Interactor : MonoBehaviour
     void Start()
     {
         camera = GetComponentInChildren<Camera>();
-        strength = GetComponentInChildren<Player>().m_strength;
-        intellegence = GetComponentInChildren<Player>().m_intellegence;
+        strength = GetComponentInChildren<PlayerRB>().m_strength;
+        intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
 
         if (HUD != null)
             HUD.isHandOpen = true;
@@ -55,9 +55,9 @@ public class Interactor : MonoBehaviour
         ushort itemType = RaycastToObjectInfront(ray, out item);
 
         UpdateHUD(itemType);
-        MoveHeldItem();
+        MoveHeldItem(ray);
 
-        if (Input.GetMouseButton(0) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
+        if (Input.GetKeyDown(KeyCode.E) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
         {
             Activate(item);
             return;
@@ -72,6 +72,7 @@ public class Interactor : MonoBehaviour
             DropObject();
         }
     }
+
     private void UpdateHUD(ushort itemType)
     {
         if (ResolveBitwise(itemType, (ushort)ItemType.ACTION))
@@ -107,7 +108,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    private void MoveHeldItem()
+    private void MoveHeldItem(Ray ray)
     {
         if (myHeldObject.item != null)
         {
@@ -155,6 +156,7 @@ public class Interactor : MonoBehaviour
                 savedDistance = Vector3.Distance(heldLocation.transform.position, myHeldObject.item.transform.position);
                 savedLayer = myHeldObject.item.gameObject.layer;
                 myHeldObject.item.gameObject.layer = 9;
+
             }
             else
             {
@@ -175,7 +177,6 @@ public class Interactor : MonoBehaviour
             //myHeldObject.item.transform.parent = myHeldObject.itemParent;
             //myHeldObject.item.transform.position = itemPos;
             myHeldObject.item.gameObject.layer = savedLayer;
-
             myHeldObject.itemParent = null;
             myHeldObject.item = null;
         }
