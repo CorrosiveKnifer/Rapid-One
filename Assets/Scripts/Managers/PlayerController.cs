@@ -31,9 +31,16 @@ public class PlayerController : MonoBehaviour
     public bool m_isAdultForm = true;
 
     [Header("Player settings")]
-    public float m_shiftMaximumDelay = 0.3f;
+    public float m_shiftMaximumDelay = 0.5f;
 
     private float m_shiftTimeDelay = 0.0f;
+
+    [Header("Transition")]
+    public Animator transition;
+
+    public float transitionTime = 0.5f;
+
+
 
     // Start is called before the first frame update
     private void Start()
@@ -64,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if(m_shiftTimeDelay <= 0)
         {
             m_shiftTimeDelay = m_shiftMaximumDelay;
-            m_isAdultForm = !m_isAdultForm;
+            StartCoroutine(StartSwitch());
         }
     }
 
@@ -80,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if(state) //While the in adult form...
         {
             //Teleport and rotate the child object for when the player shifts.
-            m_childForm.Teleport(m_adultForm.transform.position);
+            m_childForm.Teleport(m_adultForm.transform.position + Vector3.down * 1.0f);
             m_childForm.gameObject.transform.localRotation = m_adultForm.gameObject.transform.localRotation;
             m_childForm.m_currentYRotation = m_adultForm.m_currentYRotation;
         }
@@ -100,5 +107,17 @@ public class PlayerController : MonoBehaviour
     {
         m_adultForm.m_cameraFreeze = isCameraFrozen;
         m_childForm.m_cameraFreeze = isCameraFrozen;
+    }
+
+    IEnumerator StartSwitch()
+    {
+        if (transition != null)
+        {
+            // Play Animation
+            transition.SetTrigger("Start");
+            // Wait to let animation finish playing
+            yield return new WaitForSeconds(transitionTime);
+        }
+        m_isAdultForm = !m_isAdultForm;
     }
 }

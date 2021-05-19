@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerRB : MonoBehaviour
 {
     [Header("Player Settings")]
-    public float m_mouseSensitivity = 300f; //Mouse Speed
+    float m_mouseSensitivity; //Mouse Speed changed in game manager
     public float m_movementSpeed; // Move speed
     public float m_gravity = -1.0f;
     public float m_jumpForce = 500.0f;
@@ -39,6 +39,7 @@ public class PlayerRB : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_meshRenderer = GetComponentInChildren<MeshRenderer>();
+        m_mouseSensitivity = GameManager.instance.m_playerSensitivity;
     }
 
     // Start is called before the first frame update
