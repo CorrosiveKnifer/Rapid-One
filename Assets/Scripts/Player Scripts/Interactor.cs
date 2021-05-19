@@ -117,7 +117,7 @@ public class Interactor : MonoBehaviour
 
             //myHeldObject.item.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Vector3 forceDirection = (heldLocation.transform.position + ray.direction * savedDistance) - myHeldObject.item.transform.position;
-            myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 10.0f;
+            myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 3.0f;
 
             if (Input.GetMouseButton(1))
             {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -955,6 +955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226886383}
   - component: {fileID: 226886382}
+  - component: {fileID: 226886384}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1037,6 +1038,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!81 &226886384
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226886381}
+  m_Enabled: 1
 --- !u!1001 &233163741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2802,18 +2811,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545479950}
   m_Mesh: {fileID: 4721446600292629808, guid: 44206f2e7122c41478a37c25143813d6, type: 3}
---- !u!114 &555500800 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 140592670, guid: 73f76718183f4324b843a25573c1feff,
-    type: 3}
-  m_PrefabInstance: {fileID: 708160922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a003f1bc0a8e04285d9602e8eaa967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &566531923
 GameObject:
   m_ObjectHideFlags: 0
@@ -4302,11 +4299,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2188699516841157255, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_Mass
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3893632800886071154, guid: 73f76718183f4324b843a25573c1feff,
         type: 3}
       propertyPath: m_Name
@@ -4367,52 +4359,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5423235453990993288, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.311
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423235453990993288, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.17199993
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423235453990993288, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7221123
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423235453990993288, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423235453990993288, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.691776
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423235453990993288, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 87.54201
-      objectReference: {fileID: 0}
-    - target: {fileID: 6198703821042465530, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_strength
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6198703821042465530, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_intellegence
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6460127025576038575, guid: 73f76718183f4324b843a25573c1feff,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8988178449268520645, guid: 73f76718183f4324b843a25573c1feff,
+    - target: {fileID: 5411854334503283201, guid: 73f76718183f4324b843a25573c1feff,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -15014,7 +14961,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 555500800}
+      objectReference: {fileID: 0}
     - target: {fileID: 841454543273311813, guid: 00996777bbdf2ed4da677a2e253b4ce2,
         type: 3}
       propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
