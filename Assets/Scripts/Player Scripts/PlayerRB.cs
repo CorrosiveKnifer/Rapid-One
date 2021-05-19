@@ -15,6 +15,7 @@ public class PlayerRB : MonoBehaviour
     public bool m_isChild = false;
     public float m_strength = 10.0f;
     public float m_intellegence = 10.0f;
+    private float m_movementSmooth = 0.1f;
 
     public Camera m_myCamera;
 
@@ -152,7 +153,7 @@ public class PlayerRB : MonoBehaviour
 
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
-
+        move = move.normalized * m_movementSpeed + new Vector3(0, m_rigidBody.velocity.y, 0);
 
         //m_velocity.y += y * m_jumpForce;
 
@@ -166,7 +167,7 @@ public class PlayerRB : MonoBehaviour
         //}
 
         // Apply to velocity rigidbody
-        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, m_rigidBody.velocity.y + y * m_jumpForce, move.normalized.z * m_movementSpeed);
+        m_rigidBody.velocity = Vector3.SmoothDamp(m_rigidBody.velocity, move, ref m_velocity, m_movementSmooth);
     }
 
     private void FixedUpdate()
