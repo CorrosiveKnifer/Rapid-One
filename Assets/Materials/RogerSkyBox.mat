@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RogerSkyBox
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -60,6 +60,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 8900000, guid: c3db9557395d4b44a930e0a7081e2171, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
     - _AtmosphereThickness: 3.97
@@ -77,6 +81,7 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Rotation: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -94,3 +99,4 @@ Material:
     - _GroundColor: {r: 0, g: 0, b: 0, a: 1}
     - _SkyTint: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
