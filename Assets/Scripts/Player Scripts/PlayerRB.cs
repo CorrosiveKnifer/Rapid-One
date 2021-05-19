@@ -39,7 +39,6 @@ public class PlayerRB : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_meshRenderer = GetComponentInChildren<MeshRenderer>();
-        m_mouseSensitivity = GameManager.instance.m_playerSensitivity;
     }
 
     // Start is called before the first frame update
@@ -48,6 +47,7 @@ public class PlayerRB : MonoBehaviour
 
         m_currentYRotation = 0;
         Physics.IgnoreLayerCollision(9, 9);
+        m_mouseSensitivity = GameManager.instance.m_playerSensitivity;
     }
 
     // Update is called once per frame
@@ -101,10 +101,15 @@ public class PlayerRB : MonoBehaviour
         z = Input.GetAxis("Vertical");
         y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
 
-        if (Input.GetButtonDown("Jump") && m_grounded)
+        if (Input.GetButtonDown("Jump") && m_grounded )
         {
             m_rigidBody.velocity = new Vector3(m_rigidBody.velocity.x, m_jumpForce, m_rigidBody.velocity.z);
+            if (!m_isChild)
+            {
+                m_rigidBody.freezeRotation = false;
+            }
         }
+
 
         if ((x != 0 || z != 0) && m_grounded)
         {
