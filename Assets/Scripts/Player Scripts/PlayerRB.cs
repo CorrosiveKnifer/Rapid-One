@@ -19,14 +19,12 @@ public class PlayerRB : MonoBehaviour
     public Camera m_myCamera;
 
     private Rigidbody m_rigidBody;
-    public MeshRenderer m_meshRenderer;
-
+    
     public bool m_bInVents = false;
 
     private Vector3 m_velocity;
     public bool m_grounded;
-
-    public Transform m_HeadCheck;
+    
     public Transform m_GroundCheck;
     public float m_GroundDistance = 0.4f;
     public LayerMask m_GroundMask;
@@ -37,7 +35,6 @@ public class PlayerRB : MonoBehaviour
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
-        m_meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     // Start is called before the first frame update
@@ -75,14 +72,6 @@ public class PlayerRB : MonoBehaviour
             m_grounded = false;
         }
 
-
-        // Head check
-        //if ((Physics.CheckSphere(m_HeadCheck.position, m_GroundDistance, m_GroundMask)) && m_velocity.y > 0)
-        //{
-        //    m_velocity.y = -0.1f;
-        //    Debug.Log("Bonk!");
-        //}
-
         //// Snap to ground
         //if (m_grounded && m_velocity.y < 0)
         //{
@@ -97,11 +86,11 @@ public class PlayerRB : MonoBehaviour
         // Movement inputs
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
+        //y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
 
         if (Input.GetButtonDown("Jump") && m_grounded)
         {
-            m_rigidBody.velocity = new Vector3(m_rigidBody.velocity.x, m_jumpForce, m_rigidBody.velocity.z);
+            m_velocity.y = m_jumpForce;
         }
 
         if ((x != 0 || z != 0) && m_grounded)
@@ -165,39 +154,32 @@ public class PlayerRB : MonoBehaviour
         //}
 
         // Apply to velocity rigidbody
-        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, m_rigidBody.velocity.y + y * m_jumpForce, move.normalized.z * m_movementSpeed);
+        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, 0, move.normalized.z * m_movementSpeed);
     }
 
     private void FixedUpdate()
     {
-        //if (m_grounded && m_velocity.y < 0)
-        //{
-        //    m_velocity.y = -0.005f * m_rigidBody.mass;
-        //}
-        //else
-        //{
-        //    m_velocity.y += m_gravity * Time.fixedDeltaTime;
-        //}
-        //transform.position += new Vector3(0, m_velocity.y, 0);
+        if (m_grounded && m_velocity.y < 0)
+        {
+            m_velocity.y = -0.05f;
+        }
+        else
+        {
+            m_velocity.y += m_gravity * Time.fixedDeltaTime;
+        }
+        transform.position += new Vector3(0, m_velocity.y, 0);
     }
     private void OnEnable()
     {
         m_myCamera.enabled = true;
         GetComponent<Interactor>().enabled = true;
         m_rigidBody.velocity = Vector3.zero;
-        m_rigidBody.isKinematic = false;
-        if (m_meshRenderer != null)
-            m_meshRenderer.enabled = false;
-
     }
     private void OnDisable()
     {
         m_myCamera.enabled = false;
         GetComponent<Interactor>().enabled = false;
         m_rigidBody.velocity = Vector3.zero;
-        m_rigidBody.isKinematic = true;
-        if (m_meshRenderer != null)
-            m_meshRenderer.enabled = true;
     }
     public void Teleport(Vector3 _targetPos)
     {

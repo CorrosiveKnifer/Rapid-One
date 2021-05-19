@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Michael Jordan
-/// </summary>
 public class HandleScript : Interactable
 {
     public override void Activate()
