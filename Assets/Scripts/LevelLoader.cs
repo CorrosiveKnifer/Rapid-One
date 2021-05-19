@@ -17,7 +17,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "MenuScreen")
         {
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 StartCoroutine(LoadLevel(0));
             }

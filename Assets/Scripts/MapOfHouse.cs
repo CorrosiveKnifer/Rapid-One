@@ -17,7 +17,7 @@ public class MapOfHouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("i"))
+        if (Input.GetKeyDown("m"))
         {
             map.SetActive(!map.activeSelf);
 
