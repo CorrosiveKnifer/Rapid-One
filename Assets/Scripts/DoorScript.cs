@@ -26,7 +26,18 @@ public class DoorScript : Interactable
     {
         
     }
+    public void OpenDoor()
+    {
+        isClosed = false;
+        anim.SetBool("IsLocked", isClosed);
 
+    }
+    public void CloseDoor()
+    {
+        isClosed = true;
+        anim.SetBool("IsLocked", isClosed);
+
+    }
     public override void Activate()
     {
         if(!isLocked)
