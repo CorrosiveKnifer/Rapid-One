@@ -104,10 +104,10 @@ public class PlayerRB : MonoBehaviour
         if (Input.GetButtonDown("Jump") && m_grounded )
         {
             m_rigidBody.velocity = new Vector3(m_rigidBody.velocity.x, m_jumpForce, m_rigidBody.velocity.z);
-            if (!m_isChild)
-            {
-                m_rigidBody.freezeRotation = false;
-            }
+            //if (!m_isChild) // DO NOT DELTE. IS REALLY FUNNY.
+            //{
+            //    m_rigidBody.freezeRotation = false;
+            //}
         }
 
 

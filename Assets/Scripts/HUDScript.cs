@@ -76,7 +76,8 @@ public class HUDScript : MonoBehaviour
             Shift.GetComponent<Image>().sprite = ChildShift;
         }
 
-        LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
+        if (LightDisplay != null)
+            LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
 
         m_lightVal = 0.0f;
     }
