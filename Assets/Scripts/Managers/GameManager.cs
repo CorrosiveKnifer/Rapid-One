@@ -40,20 +40,9 @@ public class GameManager : MonoBehaviour
     public static float BackGroundVolume { get; set; } = 1.0f;
     public static float HighScore { get; set; } = 0.0f;
 
-    public static int player1Controls = 0;
-    public static int player2Controls = 1;
-
-    public int[] Score; // Not used anyore
-    public int TotalScore;
-
-    public int AsteroidDestroyScore = 10;
-
     public double GameTime = 0.0;
 
-    [Header("UI Objects")]
-    public GameObject WarningText;
-    public GameObject ObjectiveText;
-    float ObjectiveTextDecayTime = 10.0f;
+    public float m_playerSensitivity = 300f;
 
     private void Start()
     {
@@ -64,7 +53,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GameTime += Time.deltaTime;
-
     }
 }
 

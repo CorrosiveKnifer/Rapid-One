@@ -10,6 +10,8 @@ public class LaserReactant : MonoBehaviour
 
     public bool IsActivated = false;
     public bool IsPowered = false;
+
+    public GameObject door;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,16 @@ public class LaserReactant : MonoBehaviour
             IsActivated = false;
         }
 
+    }
+    public void OpenDoor()
+    {
+        Debug.Log("door open");
+        door.GetComponentInChildren<DoorScript>().OpenDoor();
+    }
+    public void CloseDoor()
+    {
+        Debug.Log("door close");
+        door.GetComponentInChildren<DoorScript>().CloseDoor();
     }
     public void Activated()
     {
