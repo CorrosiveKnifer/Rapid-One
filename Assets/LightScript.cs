@@ -19,6 +19,7 @@ public class LightScript : MonoBehaviour
         Ray[] innerRays = CalculateRays(light.innerSpotAngle);
         Ray[] outerRays = CalculateRays(light.innerSpotAngle + (light.spotAngle - light.innerSpotAngle) / 2);
 
+        //Display Rays for debuging
         float range = light.range;
         for (int i = 0; i < 4; i++)
         {
@@ -30,22 +31,24 @@ public class LightScript : MonoBehaviour
         }
 
         Debug.DrawRay(transform.position, transform.forward * range, Color.green);
-        //
+        
+        //Raycast to align to a plane
         RaycastHit centreHit;
+        //Inner section for hard light
         RaycastHit[] innerHit = new RaycastHit[4];
         Physics.Raycast(transform.position, transform.forward, out centreHit, range);
         for (int i = 0; i < 4; i++)
         {
             Physics.Raycast(innerRays[i].origin, innerRays[i].direction, out innerHit[i], range);
         }
-
+        //Outer section for soft light
         RaycastHit[] outerHit = new RaycastHit[4];
         for (int i = 0; i < 4; i++)
         {
             Physics.Raycast(outerRays[i].origin, outerRays[i].direction, out outerHit[i], range);
         }
         
-        //Project
+        //Project the player's position onto the plane created.
         Vector3[] playerProjPoints = new Vector3[4];
         for (int i = 0; i < 4; i++)
         {
