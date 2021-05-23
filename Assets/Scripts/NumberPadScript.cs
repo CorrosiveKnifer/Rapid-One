@@ -99,7 +99,7 @@ public class NumberPadScript : MonoBehaviour
             if (interactable is DoorScript)
                 (interactable as DoorScript).isLocked = !(interactable as DoorScript).isLocked;
 
-            interactable.Activate();
+            interactable.Activate(null);
             audio.PlaySoundEffect("KeypadSuccess");
             Hide();
         }

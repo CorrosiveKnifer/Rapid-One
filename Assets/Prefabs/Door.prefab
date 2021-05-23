@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 841454543273311811}
   - component: {fileID: 841454543273311813}
   - component: {fileID: 4059579124689246645}
-  - component: {fileID: 1557608252748655172}
   m_Layer: 0
   m_Name: DoorPivotPoint
   m_TagString: Untagged
@@ -235,6 +234,8 @@ MonoBehaviour:
   m_brainRequirement: 0
   KeyID: 0
   isLocked: 1
+  CanOpenFromFront: 0
+  CanOpenFromBehind: 0
 --- !u!208 &4059579124689246645
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -251,19 +252,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 1, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!65 &1557608252748655172
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841454543273311808}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7, y: 3, z: 0.45}
-  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1 &1079491086676523333
 GameObject:
   m_ObjectHideFlags: 0

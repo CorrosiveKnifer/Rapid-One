@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public class HandleScript : Interactable
 {
-    public override void Activate()
+    public override void Activate(Interactor other)
     {
         GetComponentInParent<DoorScript>().isLocked = false;
         GetComponentInChildren<Animator>().SetTrigger("Open");
-        base.Activate();
+        base.Activate(other);
     }
 }

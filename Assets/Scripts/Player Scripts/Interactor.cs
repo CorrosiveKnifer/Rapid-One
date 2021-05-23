@@ -100,9 +100,13 @@ public class Interactor : MonoBehaviour
 
     private void Activate(GameObject item)
     {
-        if (item.GetComponentInChildren<Interactable>().m_brainRequirement < intellegence)
+        if (item.GetComponentInChildren<Interactable>()?.m_brainRequirement < intellegence)
         {
-            item.GetComponentInChildren<Interactable>().Activate();
+            item.GetComponentInChildren<Interactable>()?.Activate(this);
+        }
+        else if (item.GetComponentInParent<Interactable>()?.m_brainRequirement < intellegence)
+        {
+            item.GetComponentInParent<Interactable>()?.Activate(this);
         }
         else
         {
@@ -215,7 +219,15 @@ public class Interactor : MonoBehaviour
         {
             result = (ushort)(result | (int)ItemType.ACTION);
         }
+        if (closestHit.collider.gameObject.GetComponentInParent<Interactable>())
+        {
+            result = (ushort)(result | (int)ItemType.ACTION);
+        }
         if (closestHit.collider.gameObject.GetComponentInChildren<Liftable>())
+        {
+            result = (ushort)(result | (int)ItemType.LIFT);
+        }
+        if (closestHit.collider.gameObject.GetComponentInParent<Liftable>())
         {
             result = (ushort)(result | (int)ItemType.LIFT);
         }

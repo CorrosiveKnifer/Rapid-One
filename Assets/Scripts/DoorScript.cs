@@ -8,11 +8,14 @@ using UnityEngine;
 public class DoorScript : Interactable
 {
     public uint KeyID = 0;
-    public bool isLocked;
+    public bool isLocked = false;
+    public bool CanOpenFromFront = true;
+    public bool CanOpenFromBehind = true;
+
     private bool isClosed = true;
 
     private Animator anim;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,29 +29,47 @@ public class DoorScript : Interactable
     {
         
     }
-    public void OpenDoor()
+
+    public void OpenDoor(bool isOpeningForward = true)
     {
         isClosed = false;
         anim.SetBool("IsLocked", isClosed);
-
     }
+
     public void CloseDoor()
     {
         isClosed = true;
         anim.SetBool("IsLocked", isClosed);
-
     }
-    public override void Activate()
+
+    public override void Activate(Interactor other)
     {
-        if(!isLocked)
+        if(other != null)
         {
+            var direct = transform.position - other.transform.position;
+            var dot = Vector3.Dot(direct, other.transform.right);
+            
+            if(dot < 0) //Behind the door
+            {
+                anim.SetTrigger("OpenBackward");
+            }
+            if (dot < 0) //Infront of the door
+            {
+                if(isClosed)
+                    anim.SetTrigger("OpenForwards");
+            }
+
             isClosed = !isClosed;
-            anim.SetBool("IsLocked", isClosed);
         }
-        else
-        {
-            base.Activate();
-        }
+        //if(!isLocked)
+        //{
+        //    isClosed = !isClosed;
+        //    anim.SetBool("IsLocked", isClosed);
+        //}
+        //else
+        //{
+        //    base.Activate(other);
+        //}
     }
 
     public void OnTriggerEnter(Collider other)
@@ -59,7 +80,7 @@ public class DoorScript : Interactable
             {
                 Destroy(other.gameObject);
                 isLocked = false;
-                Activate();
+                //Activate();
             }
         }
     }
