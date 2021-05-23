@@ -44,12 +44,14 @@ public class LaserReactant : MonoBehaviour
     public void OpenDoor()
     {
         Debug.Log("door open");
+        door.GetComponentInChildren<DoorScript>().LaserOpen();
         door.GetComponentInChildren<DoorScript>().OpenDoor();
     }
     public void CloseDoor()
     {
         Debug.Log("door close");
-        door.GetComponentInChildren<DoorScript>().CloseDoor();
+        door.GetComponentInChildren<DoorScript>().LaserClose();
+        door.GetComponentInChildren<DoorScript>().CloseDoor(); 
     }
     public void Activated()
     {

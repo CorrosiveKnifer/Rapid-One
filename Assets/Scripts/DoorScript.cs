@@ -25,7 +25,7 @@ public class DoorScript : Interactable
         audio = GetComponentInChildren<AudioAgent>();
 
         isClosed = true;
-        anim.SetBool("IsLocked", isClosed);
+        //anim.SetBool("IsLocked", isClosed);
     }
 
     // Update is called once per frame
@@ -75,7 +75,14 @@ public class DoorScript : Interactable
         audio.PlaySoundEffectDelayed("DoorOpen", 0.25f);
         isClosed = false;
     }
-
+    public void LaserOpen()
+    {
+        IsLocked = false;
+    }
+    public void LaserClose()
+    {
+        Lock();
+    }
     public void CloseDoor()
     {
         anim.SetTrigger("Close");
