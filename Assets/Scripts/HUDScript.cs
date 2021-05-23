@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// Michael Jordan
@@ -47,6 +48,9 @@ public class HUDScript : MonoBehaviour
 
     public Text m_TextDisplay;
 
+    public Volume m_damageVolume;
+    public float m_damage = 0.0f;
+
     private float m_lightVal = 0.0f;
     public bool isHandOpen { get; set; }
 
@@ -65,7 +69,14 @@ public class HUDScript : MonoBehaviour
     {
         Hand.GetComponent<Image>().sprite = (isHandOpen) ? HandOpen : HandClose;
 
-        if(PlayerController.instance.m_isAdultForm)
+        m_damage -= Time.deltaTime * 0.5f;
+        m_damageVolume.weight = m_damage;
+        if (m_damage < 0 || PlayerController.instance.m_isAdultForm)
+        {
+            m_damage = 0;
+        }
+
+        if (PlayerController.instance.m_isAdultForm)
         {
             Shift.SetActive(false);
             Shift.GetComponent<Image>().sprite = AdultShift;
@@ -82,6 +93,15 @@ public class HUDScript : MonoBehaviour
         m_lightVal = 0.0f;
     }
 
+    public void ApplyDamage(float _damage)
+    {
+        m_damage += _damage;
+        if (m_damage > 1)
+        {
+            m_damage = 1;
+            PlayerController.instance.Switch();
+        }
+    }
     public void ShowHand()
     {
         if(!Hand.activeSelf)
@@ -154,5 +174,10 @@ public class HUDScript : MonoBehaviour
     public void SetLight(float light)
     {
         m_lightVal = Mathf.Max(light, m_lightVal);
+    }
+
+    public float GetLight()
+    {
+        return m_lightVal;
     }
 }
