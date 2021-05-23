@@ -8,13 +8,14 @@ using UnityEngine;
 public class PlayerRB : MonoBehaviour
 {
     [Header("Player Settings")]
-    public float m_mouseSensitivity = 300f; //Mouse Speed
+    float m_mouseSensitivity; //Mouse Speed changed in game manager
     public float m_movementSpeed; // Move speed
     public float m_gravity = -1.0f;
     public float m_jumpForce = 500.0f;
     public bool m_isChild = false;
     public float m_strength = 10.0f;
     public float m_intellegence = 10.0f;
+    private float m_movementSmooth = 0.1f;
 
     public Camera m_myCamera;
 
@@ -46,6 +47,7 @@ public class PlayerRB : MonoBehaviour
 
         m_currentYRotation = 0;
         Physics.IgnoreLayerCollision(9, 9);
+        m_mouseSensitivity = GameManager.instance.m_playerSensitivity;
     }
 
     // Update is called once per frame
@@ -99,10 +101,15 @@ public class PlayerRB : MonoBehaviour
         z = Input.GetAxis("Vertical");
         y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
 
-        if (Input.GetButtonDown("Jump") && m_grounded)
+        if (Input.GetButtonDown("Jump") && m_grounded )
         {
             m_rigidBody.velocity = new Vector3(m_rigidBody.velocity.x, m_jumpForce, m_rigidBody.velocity.z);
+            //if (!m_isChild) // DO NOT DELTE. IS REALLY FUNNY.
+            //{
+            //    m_rigidBody.freezeRotation = false;
+            //}
         }
+
 
         if ((x != 0 || z != 0) && m_grounded)
         {
@@ -152,6 +159,7 @@ public class PlayerRB : MonoBehaviour
 
         // Create vector from player's current orientation (meaning it will work with rotating camera)
         Vector3 move = transform.right * x + transform.forward * z;
+        move = move.normalized * m_movementSpeed + new Vector3(0, m_rigidBody.velocity.y, 0);
 
         //m_velocity.y += y * m_jumpForce;
 
@@ -165,7 +173,7 @@ public class PlayerRB : MonoBehaviour
         //}
 
         // Apply to velocity rigidbody
-        m_rigidBody.velocity = new Vector3(move.normalized.x * m_movementSpeed, m_rigidBody.velocity.y + y * m_jumpForce, move.normalized.z * m_movementSpeed);
+        m_rigidBody.velocity = Vector3.SmoothDamp(m_rigidBody.velocity, move, ref m_velocity, m_movementSmooth);
     }
 
     private void FixedUpdate()

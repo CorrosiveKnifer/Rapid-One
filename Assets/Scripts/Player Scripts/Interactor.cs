@@ -16,6 +16,7 @@ public class Interactor : MonoBehaviour
     private Camera camera;
     private float strength;
     private float intellegence;
+    private float m_rotationSensitivity;
 
     private float savedDistance = 0f;
     private LayerMask savedLayer;
@@ -40,6 +41,7 @@ public class Interactor : MonoBehaviour
         camera = GetComponentInChildren<Camera>();
         strength = GetComponentInChildren<PlayerRB>().m_strength;
         intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
+        m_rotationSensitivity = GameManager.instance.m_playerSensitivity;
 
         if (HUD != null)
             HUD.isHandOpen = true;
@@ -57,7 +59,7 @@ public class Interactor : MonoBehaviour
         UpdateHUD(itemType);
         MoveHeldItem(ray);
 
-        if (Input.GetMouseButton(0) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
+        if (Input.GetMouseButtonDown(0) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
         {
             Activate(item);
             return;
@@ -117,12 +119,12 @@ public class Interactor : MonoBehaviour
 
             //myHeldObject.item.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Vector3 forceDirection = (heldLocation.transform.position + ray.direction * savedDistance) - myHeldObject.item.transform.position;
-            myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 3.0f;
+            myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 10.0f;
 
             if (Input.GetMouseButton(1))
             {
-                float mouseX = Input.GetAxis("Mouse X") * 60.0f;
-                float mouseY = Input.GetAxis("Mouse Y") * 60.0f;
+                float mouseX = Input.GetAxis("Mouse X") * m_rotationSensitivity;
+                float mouseY = Input.GetAxis("Mouse Y") * m_rotationSensitivity;
                 Vector3 rotation = myHeldObject.item.gameObject.transform.localRotation.eulerAngles;
                 Debug.Log(rotation);
                 //myHeldObject.item.gameObject.transform.localRotation = Quaternion.Euler(rotation.x,
@@ -130,7 +132,7 @@ public class Interactor : MonoBehaviour
                 //    rotation.z + mouseY * Time.deltaTime);
 
 
-                myHeldObject.item.gameObject.transform.Rotate(new Vector3(0, mouseX * Time.deltaTime, 0), Space.World); // Y axis rotation
+                myHeldObject.item.gameObject.transform.Rotate(new Vector3(0, -mouseX * Time.deltaTime, 0), Space.World); // Y axis rotation
                 myHeldObject.item.gameObject.transform.RotateAround(myHeldObject.item.transform.position, transform.right, mouseY * Time.deltaTime); // Z Axis rotation
                // myHeldObject.item.transform.rotation = 
             }

@@ -8,6 +8,31 @@ using UnityEngine.UI;
 /// </summary>
 public class HUDScript : MonoBehaviour
 {
+    #region Singleton
+
+    public static HUDScript instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogError("Second Instance of HUDScript was created, this instance was destroyed.");
+            Destroy(this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
+
+    #endregion
+
     public GameObject Cursor;
     public GameObject Shift;
     public GameObject Hand;
@@ -18,8 +43,11 @@ public class HUDScript : MonoBehaviour
     public Sprite HandOpen;
     public Sprite HandClose;
 
+    public Image LightDisplay;
+
     public Text m_TextDisplay;
 
+    private float m_lightVal = 0.0f;
     public bool isHandOpen { get; set; }
 
     private CameraAgent agent;
@@ -47,6 +75,11 @@ public class HUDScript : MonoBehaviour
             Shift.SetActive(true);
             Shift.GetComponent<Image>().sprite = ChildShift;
         }
+
+        if (LightDisplay != null)
+            LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
+
+        m_lightVal = 0.0f;
     }
 
     public void ShowHand()
@@ -116,5 +149,10 @@ public class HUDScript : MonoBehaviour
         }
 
         m_TextDisplay.enabled = false;
+    }
+
+    public void SetLight(float light)
+    {
+        m_lightVal = Mathf.Max(light, m_lightVal);
     }
 }
