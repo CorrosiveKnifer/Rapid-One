@@ -11,6 +11,7 @@ public class DoorScript : Interactable
     public bool IsLocked = false;
     public bool CanOpenFromFront = true;
     public bool CanOpenFromBehind = true;
+    public bool StartOpen = false;
 
     public enum OpenDirect { BOTH, FORWARD, BACKWARD};
     public OpenDirect myDirect;
@@ -25,7 +26,11 @@ public class DoorScript : Interactable
         audio = GetComponentInChildren<AudioAgent>();
 
         isClosed = true;
-        anim.SetBool("IsLocked", isClosed);
+        if(StartOpen)
+        {
+            Unlock();
+            OpenDoor();
+        }
     }
 
     // Update is called once per frame
@@ -46,7 +51,7 @@ public class DoorScript : Interactable
 
     public void OpenDoor(bool isOpeningForward = true)
     {
-        if(anim.transform.rotation.eulerAngles.y <= -85 || anim.transform.rotation.eulerAngles.y >= 265)
+        if(anim.transform.localRotation.eulerAngles.y <= -85 || anim.transform.localRotation.eulerAngles.y >= 265)
         {
             //Checks if it is locked or blocked from one side.
             if (IsLocked || isOpeningForward && !CanOpenFromFront || !isOpeningForward && !CanOpenFromBehind)
@@ -81,7 +86,7 @@ public class DoorScript : Interactable
 
     public void CloseDoor()
     {
-        if (anim.transform.rotation.eulerAngles.y <= 5 || anim.transform.rotation.eulerAngles.y >= 175)
+        if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
         {
             anim.SetTrigger("Close");
             audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
