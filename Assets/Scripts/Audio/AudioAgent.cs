@@ -159,7 +159,11 @@ public class AudioAgent : MonoBehaviour
         return GameManager.MasterVolume * GameManager.BackGroundVolume;
     }
 
-    public IEnumerator PlaySoundEffectDelayed(string title, float secondsDelayed, bool IsLooped = false)
+    public void PlaySoundEffectDelayed(string title, float secondsDelayed, bool IsLooped = false)
+    {
+        StartCoroutine(PlaySoundEffectDelayedRoutine(title, secondsDelayed, IsLooped));
+    }
+    private IEnumerator PlaySoundEffectDelayedRoutine(string title, float secondsDelayed, bool IsLooped = false)
     {
         yield return new WaitForSecondsRealtime(secondsDelayed);
 
@@ -167,7 +171,12 @@ public class AudioAgent : MonoBehaviour
 
         yield return null;
     }
-    public IEnumerator PlayBackgroundDelayed(string title, float secondsDelayed, bool IsLooped = false)
+
+    public void PlayBackgroundDelayed(string title, float secondsDelayed, bool IsLooped = false)
+    {
+        StartCoroutine(PlayBackgroundDelayedRoutine(title, secondsDelayed, IsLooped));
+    }
+    private IEnumerator PlayBackgroundDelayedRoutine(string title, float secondsDelayed, bool IsLooped = false)
     {
         yield return new WaitForSecondsRealtime(secondsDelayed);
 

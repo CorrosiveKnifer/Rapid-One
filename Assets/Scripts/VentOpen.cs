@@ -11,7 +11,7 @@ public class VentOpen : Interactable
     {
         m_brainRequirement = 5.0f;
     }
-    public override void Activate()
+    public override void Activate(Interactor other)
     {
         GetComponent<Animator>().SetTrigger("open");
     }
