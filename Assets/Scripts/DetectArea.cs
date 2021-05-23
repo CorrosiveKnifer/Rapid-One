@@ -7,7 +7,7 @@ public class DetectArea : MonoBehaviour
 {
 
     public Image currentPlayerPic;
-    public GameObject HUB;
+    public GameObject HUD;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +23,9 @@ public class DetectArea : MonoBehaviour
     {
         if(other.tag=="Player")
         {
-            HUB.GetComponent<MapOfHouse>().playerPic.enabled = false;
-            HUB.GetComponent<MapOfHouse>().playerPic = currentPlayerPic;
-            HUB.GetComponent<MapOfHouse>().playerPic.enabled = true;
+            HUD.GetComponent<MapOfHouse>().playerPic.enabled = false;
+            HUD.GetComponent<MapOfHouse>().playerPic = currentPlayerPic;
+            HUD.GetComponent<MapOfHouse>().playerPic.enabled = true;
             //currentPlayerPic.transform.position;
         }
     }
