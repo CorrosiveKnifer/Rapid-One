@@ -81,6 +81,8 @@ public class DoorScript : Interactable
                     anim.SetTrigger("OpenForward");
                     break;
             }
+            CanOpenFromFront = true;
+            CanOpenFromBehind = true;
             audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
             isClosed = false;
         }

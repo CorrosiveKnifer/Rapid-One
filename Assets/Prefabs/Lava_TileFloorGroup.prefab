@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8607631527438781422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915171607396079360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e1009c6bf664a43a137e2c85c808a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8607631526784811413
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 8607631527379872552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.08, y: 0.01, z: -0.217}
-  m_LocalScale: {x: 1.2121317, y: 0.1, z: 1.5086101}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 8607631526784811419}
   m_RootOrder: 0
@@ -140,18 +152,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8607631527438781422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6915171607396079360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e1009c6bf664a43a137e2c85c808a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8607631525989157892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,12 +182,17 @@ PrefabInstance:
     - target: {fileID: 2919437244991036168, guid: 4d5614661cbc9094abee9e958432e54b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1824522
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919437244991036168, guid: 4d5614661cbc9094abee9e958432e54b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2919437244991036168, guid: 4d5614661cbc9094abee9e958432e54b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4715903
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2919437244991036168, guid: 4d5614661cbc9094abee9e958432e54b,
         type: 3}

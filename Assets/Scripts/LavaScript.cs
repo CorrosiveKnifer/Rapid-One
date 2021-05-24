@@ -8,7 +8,7 @@ public class LavaScript : MonoBehaviour
     {
         if (other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
         {
-            PlayerController.instance.Switch();
+            HUDScript.instance.ApplyDamage(5.0f * Time.deltaTime);
         }
     }
 
@@ -16,7 +16,7 @@ public class LavaScript : MonoBehaviour
     {
         if(other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
         {
-            PlayerController.instance.Switch();
+            HUDScript.instance.ApplyDamage(5.0f * Time.deltaTime);
         }
     }
 }
