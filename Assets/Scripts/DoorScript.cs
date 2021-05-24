@@ -26,6 +26,7 @@ public class DoorScript : Interactable
         audio = GetComponentInChildren<AudioAgent>();
 
         isClosed = true;
+
         if(StartOpen)
         {
             Unlock();
@@ -44,6 +45,7 @@ public class DoorScript : Interactable
         IsLocked = false;
         audio.PlaySoundEffect("DoorUnlock");
     }
+
     public void Lock()
     {
         IsLocked = true;
@@ -83,7 +85,14 @@ public class DoorScript : Interactable
             isClosed = false;
         }
     }
-
+    public void LaserOpen()
+    {
+        IsLocked = false;
+    }
+    public void LaserClose()
+    {
+        Lock();
+    }
     public void CloseDoor()
     {
         if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
