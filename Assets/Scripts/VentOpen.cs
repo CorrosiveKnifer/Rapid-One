@@ -21,7 +21,7 @@ public class VentOpen : Interactable
 
         if(hasAudio)
         {
-            GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 0.03f);
+            GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 0.1f);
         }
 
         IsOpen = true;
@@ -32,7 +32,7 @@ public class VentOpen : Interactable
 
         if (hasAudio)
         {
-            //GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 1.0f);
+            GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 1.0f);
         }
 
         IsOpen = false;
