@@ -11,6 +11,7 @@ public class DoorScript : Interactable
     public bool IsLocked = false;
     public bool CanOpenFromFront = true;
     public bool CanOpenFromBehind = true;
+    public bool StartOpen = false;
 
     public enum OpenDirect { BOTH, FORWARD, BACKWARD};
     public OpenDirect myDirect;
@@ -25,7 +26,12 @@ public class DoorScript : Interactable
         audio = GetComponentInChildren<AudioAgent>();
 
         isClosed = true;
-        anim.SetBool("IsLocked", isClosed);
+
+        if(StartOpen)
+        {
+            Unlock();
+            OpenDoor();
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +45,7 @@ public class DoorScript : Interactable
         IsLocked = false;
         audio.PlaySoundEffect("DoorUnlock");
     }
+
     public void Lock()
     {
         IsLocked = true;
@@ -46,41 +53,56 @@ public class DoorScript : Interactable
 
     public void OpenDoor(bool isOpeningForward = true)
     {
-        //Checks if it is locked or blocked from one side.
-        if(IsLocked || isOpeningForward && !CanOpenFromFront || !isOpeningForward && !CanOpenFromBehind)
+        if(anim.transform.localRotation.eulerAngles.y <= -85 || anim.transform.localRotation.eulerAngles.y >= 265)
         {
-            anim.SetTrigger("OpenLocked");
-            audio.PlaySoundEffect("DoorLocked");
-            return;
-        }
+            //Checks if it is locked or blocked from one side.
+            if (IsLocked || isOpeningForward && !CanOpenFromFront || !isOpeningForward && !CanOpenFromBehind)
+            {
+                anim.SetTrigger("OpenLocked");
+                audio.PlaySoundEffect("DoorLocked");
+                return;
+            }
 
-        //Opens door based on given direction
-        switch (myDirect)
-        {
-            default:
-            case OpenDirect.BOTH:
+            //Opens door based on given direction
+            switch (myDirect)
+            {
+                default:
+                case OpenDirect.BOTH:
 
-                if (isOpeningForward)
-                    anim.SetTrigger("OpenForward");
-                else if (!isOpeningForward)
+                    if (isOpeningForward)
+                        anim.SetTrigger("OpenForward");
+                    else if (!isOpeningForward)
+                        anim.SetTrigger("OpenBackward");
+                    break;
+                case OpenDirect.FORWARD:
                     anim.SetTrigger("OpenBackward");
-                break;
-            case OpenDirect.FORWARD:
-                anim.SetTrigger("OpenBackward");
-                break;
-            case OpenDirect.BACKWARD:
-                anim.SetTrigger("OpenForward");
-                break;
+                    break;
+                case OpenDirect.BACKWARD:
+                    anim.SetTrigger("OpenForward");
+                    break;
+            }
+            CanOpenFromFront = true;
+            CanOpenFromBehind = true;
+            audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
+            isClosed = false;
         }
-        audio.PlaySoundEffectDelayed("DoorOpen", 0.25f);
-        isClosed = false;
     }
-
+    public void LaserOpen()
+    {
+        IsLocked = false;
+    }
+    public void LaserClose()
+    {
+        Lock();
+    }
     public void CloseDoor()
     {
-        anim.SetTrigger("Close");
-        audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
-        isClosed = true;
+        if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
+        {
+            anim.SetTrigger("Close");
+            audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
+            isClosed = true;
+        } 
     }
 
     public override void Activate(Interactor other)

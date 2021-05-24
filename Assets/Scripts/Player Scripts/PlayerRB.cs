@@ -97,9 +97,12 @@ public class PlayerRB : MonoBehaviour
         float z = 0.0f;
 
         // Movement inputs
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
-        y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
+        if (HUDScript.instance.m_damage < 1)
+        {
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
+            y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
+        }
 
         if (Input.GetButtonDown("Jump") && m_grounded )
         {

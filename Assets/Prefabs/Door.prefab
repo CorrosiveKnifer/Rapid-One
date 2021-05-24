@@ -175,8 +175,8 @@ GameObject:
   - component: {fileID: 950515743876717236}
   - component: {fileID: 1451164939}
   - component: {fileID: 1451164940}
-  - component: {fileID: 634076514252694143}
-  m_Layer: 0
+  - component: {fileID: 2447888347441640150}
+  m_Layer: 2
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +219,7 @@ MonoBehaviour:
   IsLocked: 1
   CanOpenFromFront: 1
   CanOpenFromBehind: 1
+  StartOpen: 0
   myDirect: 1
 --- !u!114 &1451164940
 MonoBehaviour:
@@ -239,7 +240,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 951398c818c651e4b867e33585c579d9, type: 3}
   AgentSEVolume: 1
   AgentBGVolume: 1
---- !u!65 &634076514252694143
+--- !u!65 &2447888347441640150
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,8 +251,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 3.5, z: 2.2}
-  m_Center: {x: 0, y: 1.6, z: 0}
+  m_Size: {x: 0.5, y: 3, z: 2.1}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &8517717270367713889
 GameObject:
   m_ObjectHideFlags: 0
