@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class DetectArea : MonoBehaviour
 {
-
-    public Image currentPlayerPic;
+    public GameObject m_adultGameObject = null;
+    public GameObject m_childGameObject = null;
     public GameObject HUD;
+
+    public Image AdultIcon;
+    public Image ChildIcon;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +25,18 @@ public class DetectArea : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Player")
+        if(other.tag=="Player" && m_adultGameObject != null)
         {
             HUD.GetComponent<MapOfHouse>().playerPic.enabled = false;
-            HUD.GetComponent<MapOfHouse>().playerPic = currentPlayerPic;
+            HUD.GetComponent<MapOfHouse>().playerPic = AdultIcon;
             HUD.GetComponent<MapOfHouse>().playerPic.enabled = true;
+            //currentPlayerPic.transform.position;
+        }
+        if(other.tag=="Player" && m_childGameObject != null)
+        {
+            HUD.GetComponent<MapOfHouse>().playerPic2.enabled = false;
+            HUD.GetComponent<MapOfHouse>().playerPic2 = ChildIcon;
+            HUD.GetComponent<MapOfHouse>().playerPic2.enabled = true;
             //currentPlayerPic.transform.position;
         }
     }
