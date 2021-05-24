@@ -8,8 +8,8 @@ using UnityEngine;
 public class LaserScript : MonoBehaviour
 {
     //for the object raycasting laser
-    public int reflections;
-    public float maxLength;
+    public int reflections = 1;
+    public float maxLength = 100;
 
     private LineRenderer lineRenderer;
     private Ray ray;
@@ -36,38 +36,7 @@ public class LaserScript : MonoBehaviour
     {
         RaycastWithObject();
     }
-    /*
-    void shootingLaser()
-    {
-        Debug.DrawRay(transform.position, transform.forward * distance, Color.green, 0.1f);
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, distance);
 
-        if (hits.Length == 0)
-        {
-            ray.transform.localScale = new Vector3(1.0f, 1.0f, distance + 0.35f);
-            return;
-        }
-
-        RaycastHit closestHit = hits[0];
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            if (closestHit.distance > hits[i].distance)
-                closestHit = hits[i];
-        }
-
-        ray.transform.localScale = new Vector3(1.0f, 1.0f, closestHit.distance + 0.35f);
-
-        if (closestHit.collider.tag == "Player")
-        {
-            Debug.Log("Hit the player!");
-            GetComponent<AudioAgent>().PlaySoundEffect("Electric_Zap");
-            PlayerController.instance.Switch();
-            //loader.transition.speed = 4f;
-            //loader.ResetScene();
-        }
-    }
-    */
     void RaycastWithObject()
     {
         ray = new Ray(transform.position, transform.forward);
