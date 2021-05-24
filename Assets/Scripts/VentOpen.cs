@@ -12,17 +12,42 @@ public class VentOpen : Interactable
     {
         m_brainRequirement = 5.0f;
         if (IsOpen)
-            Activate(null);
+            Open(false);
+    }
+
+    public void Open(bool hasAudio = true)
+    {
+        GetComponent<Animator>().SetTrigger("Open");
+
+        if(hasAudio)
+        {
+            GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 0.03f);
+        }
+
+        IsOpen = true;
+    }
+    public void Close(bool hasAudio = true)
+    {
+        GetComponent<Animator>().SetTrigger("Close");
+
+        if (hasAudio)
+        {
+            //GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 1.0f);
+        }
+
+        IsOpen = false;
     }
 
     public override void Activate(Interactor other)
     {
-        GetComponent<Animator>().SetTrigger("open");
-    }
-
-    public void PlayAudio()
-    {
-        GetComponent<AudioAgent>().PlaySoundEffect("VentOpen");
-        Destroy(this);
+        if(IsOpen)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
+        base.Activate(other);
     }
 }
