@@ -8,7 +8,7 @@ public class DarknessVolume : MonoBehaviour
     {
         if (other.GetComponent<PlayerRB>())
         {
-            if (other.GetComponent<PlayerRB>().m_isChild /*&& lightVar == 0*/)
+            if (other.GetComponent<PlayerRB>().m_isChild && HUDScript.instance.GetLight() == 0)
                 PlayerController.instance.Switch();
         }
     }
