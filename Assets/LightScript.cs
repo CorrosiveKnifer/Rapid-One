@@ -102,6 +102,7 @@ public class LightScript : MonoBehaviour
         control.Rotate(new Vector3(0, rotatAngle, 0));
         output[3].direction = control.forward;
 
+        Destroy(control.gameObject);
         return output;
     }
 }

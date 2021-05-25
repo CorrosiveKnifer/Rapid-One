@@ -40,10 +40,14 @@ public class DoorScript : Interactable
         
     }
 
-    public void Unlock()
+    public void Unlock(bool hasAudio = true)
     {
         IsLocked = false;
-        audio.PlaySoundEffect("DoorUnlock");
+
+        if(hasAudio)
+        {
+            audio.PlaySoundEffect("DoorUnlock");
+        }
     }
 
     public void Lock()
@@ -51,7 +55,7 @@ public class DoorScript : Interactable
         IsLocked = true;
     }
 
-    public void OpenDoor(bool isOpeningForward = true)
+    public void OpenDoor(bool isOpeningForward = true, bool hasAudio = true)
     {
         if(anim.transform.localRotation.eulerAngles.y <= -85 || anim.transform.localRotation.eulerAngles.y >= 265)
         {
@@ -83,20 +87,26 @@ public class DoorScript : Interactable
             }
             CanOpenFromFront = true;
             CanOpenFromBehind = true;
-            audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
+
+            if (hasAudio)
+            {
+                audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
+            }
+            
             isClosed = false;
         }
     }
-    public void LaserOpen()
-    {
-        IsLocked = false;
-    }
-    public void CloseDoor()
+    public void CloseDoor(bool hasAudio = true)
     {
         if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
         {
             anim.SetTrigger("Close");
-            audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
+
+            if (hasAudio)
+            {
+                audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
+            }
+                
             isClosed = true;
         } 
     }
