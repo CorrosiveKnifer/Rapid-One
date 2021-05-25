@@ -57,9 +57,8 @@ public class PlayerRB : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * m_mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_mouseSensitivity * Time.deltaTime;
 
-        m_cameraFreeze = Input.GetMouseButton(0) && Input.GetMouseButton(1);
 
-        if (!m_cameraFreeze)
+        if (!m_cameraFreeze && !(Input.GetMouseButton(0) && Input.GetMouseButton(1)))
         {
             transform.Rotate(Vector3.up * mouseX);
 
