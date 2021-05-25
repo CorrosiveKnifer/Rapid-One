@@ -91,10 +91,6 @@ public class DoorScript : Interactable
     {
         IsLocked = false;
     }
-    public void LaserClose()
-    {
-        Lock();
-    }
     public void CloseDoor()
     {
         if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
