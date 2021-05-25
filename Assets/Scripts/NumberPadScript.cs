@@ -13,7 +13,8 @@ public class NumberPadScript : MonoBehaviour
     public string TargetText;
     public GameObject player;
     public GameObject otherObject;
-    
+    public GameObject[] colourPlanes;
+
     private string number;
     private Canvas display;
     private Interactable interactable;
@@ -21,6 +22,22 @@ public class NumberPadScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int i = 0;
+        TargetText = "";
+        foreach (var item in GameObject.FindGameObjectsWithTag("Digit"))
+        {
+            if (i > colourPlanes.Length)
+            {
+                Debug.LogWarning("WARNING NOT ENOUGH COLOUR PLANES FOR EACH DIGIT");
+                break;
+            }
+                
+            colourPlanes[i].GetComponent<MeshRenderer>().material.color = item.GetComponent<DigitGenerator>().myColor;
+            TargetText += item.GetComponent<DigitGenerator>().myDigit.ToString();
+            i++;
+        }
+
+        Debug.Log($"The code is: {TargetText}.");
         interactable = otherObject.GetComponent<Interactable>();
         audio = GetComponent<AudioAgent>();
         number = "";
