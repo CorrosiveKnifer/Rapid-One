@@ -97,7 +97,6 @@ public class NumberPadScript : MonoBehaviour
             PlayerController.instance.SetCameraFreeze(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            //player.GetComponent<PlayerController>()?.EnableCameraMovement();
             display.enabled = false;
             number = "";
         }
