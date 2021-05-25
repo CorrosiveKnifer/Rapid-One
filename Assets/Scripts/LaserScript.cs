@@ -11,12 +11,14 @@ public class LaserScript : MonoBehaviour
     public int reflections = 1;
     public float maxLength = 100;
 
+    public LineRenderer shadowRender;
     private LineRenderer lineRenderer;
     private Ray ray;
     private RaycastHit hit;
     private Vector3 direction;
 
     private bool isActivated;
+    private bool hasShadow = false;
     void Awake()
     {
         lineRenderer = GetComponentInChildren<LineRenderer>();
@@ -34,14 +36,26 @@ public class LaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastWithObject();
+        RaycastWithObject(!PlayerController.instance.m_isAdultForm);
     }
 
-    void RaycastWithObject()
+    void RaycastWithObject(bool showLaser = true)
     {
         ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        //Cast for shadow
+        RaycastHit shadowhit;
+        if (Physics.Raycast(transform.position, Vector3.down, out shadowhit, 5.0f))
+        {
+            shadowRender.positionCount = 1;
+            shadowRender.SetPosition(0, shadowhit.point);
+            hasShadow = true;
+        }
+        
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
+
         float remainingLength = maxLength;
 
         for (int i = 0; i < reflections; i++)
@@ -50,10 +64,19 @@ public class LaserScript : MonoBehaviour
             {
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
+
+                if (hasShadow)
+                {
+                    Vector3 pos = hit.point;
+                    pos.y = shadowhit.point.y;
+                    shadowRender.positionCount += 1;
+                    shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
+                }
+
                 remainingLength = Vector3.Distance(ray.origin, hit.point);
                 ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
                 //for laser reactants---------------
-                if (hit.collider.gameObject.GetComponent<LaserReactant>() != null)
+                if (hit.collider.gameObject.GetComponent<LaserReactant>() != null && !PlayerController.instance.m_isAdultForm)
                 {
                     //Debug.Log("Door is Open");
                     hit.collider.GetComponent<LaserReactant>().IsActivated = true;
@@ -74,8 +97,19 @@ public class LaserScript : MonoBehaviour
             {
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, ray.origin + ray.direction * remainingLength);
+                
+                if(hasShadow)
+                {
+                    Vector3 pos = ray.origin + ray.direction * remainingLength;
+                    pos.y = shadowhit.point.y;
+                    shadowRender.positionCount += 1;
+                    shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
+                }
+                
             }
         }
+
+        lineRenderer.enabled = showLaser;
     }
     
 }

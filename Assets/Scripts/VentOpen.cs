@@ -7,11 +7,12 @@ using UnityEngine;
 /// </summary>
 public class VentOpen : Interactable
 {
-    public bool IsOpen = false;
+    public bool startOpen = false;
+
+    private bool IsOpen = false;
     private void Start()
     {
-        m_brainRequirement = 5.0f;
-        if (IsOpen)
+        if (startOpen)
             Open(false);
     }
 

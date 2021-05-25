@@ -28,7 +28,6 @@ public class LaserReactant : MonoBehaviour
             if (IsPowered)
             {
                 m_OnPower.Invoke();
-                Debug.Log("puzzle Open");
             }
             else
             {
@@ -43,13 +42,13 @@ public class LaserReactant : MonoBehaviour
     }
     public void OpenDoor()
     {
-        door.GetComponentInChildren<DoorScript>().LaserOpen();
-        door.GetComponentInChildren<DoorScript>().OpenDoor();
+        door.GetComponentInChildren<DoorScript>().Unlock(false);
+        door.GetComponentInChildren<DoorScript>().OpenDoor(false);
     }
     public void CloseDoor()
     {
         door.GetComponentInChildren<DoorScript>().Lock();
-        door.GetComponentInChildren<DoorScript>().CloseDoor(); 
+        door.GetComponentInChildren<DoorScript>().CloseDoor(false); 
     }
     public void Activated()
     {
