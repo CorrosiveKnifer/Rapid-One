@@ -7,10 +7,12 @@ public class MapOfHouse : MonoBehaviour
 {
     public GameObject map;
     public Image playerPic;
+    public Image playerPic2;
     // Start is called before the first frame update
     void Start()
     {
         map.SetActive(false);
+        playerPic.enabled = true;
         playerPic.enabled = true;
     }
 
