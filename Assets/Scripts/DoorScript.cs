@@ -29,8 +29,8 @@ public class DoorScript : Interactable
 
         if(StartOpen)
         {
-            Unlock();
-            OpenDoor();
+            Unlock(false);
+            OpenDoor(true, false);
         }
     }
 
