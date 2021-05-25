@@ -49,7 +49,7 @@ public class Liftable : MonoBehaviour
         ///checking if box is being grabbed
         if(GetComponent<Rigidbody>().useGravity == false)
         {
-            if(shadow == null) //if shadow box is deleted
+            if(shadow == null && shadowPrefab != null) //if shadow box is deleted
             {
                 shadow = Instantiate(shadowPrefab);
             }

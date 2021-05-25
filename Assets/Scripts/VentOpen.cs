@@ -17,6 +17,9 @@ public class VentOpen : Interactable
 
     public void Open(bool hasAudio = true)
     {
+        if (IsOpen)
+            return;
+
         GetComponent<Animator>().SetTrigger("Open");
 
         if(hasAudio)
@@ -28,6 +31,9 @@ public class VentOpen : Interactable
     }
     public void Close(bool hasAudio = true)
     {
+        if (!IsOpen)
+            return;
+
         GetComponent<Animator>().SetTrigger("Close");
 
         if (hasAudio)
