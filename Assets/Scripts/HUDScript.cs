@@ -51,6 +51,7 @@ public class HUDScript : MonoBehaviour
     public Volume m_damageVolume;
     public float m_damage = 0.0f;
 
+    private float m_prevlightVal = 0.0f;
     private float m_lightVal = 0.0f;
     public bool isHandOpen { get; set; }
 
@@ -89,7 +90,9 @@ public class HUDScript : MonoBehaviour
 
         if (LightDisplay != null)
             LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
-
+        
+        m_prevlightVal = m_lightVal;
+        Debug.Log(m_prevlightVal);
         m_lightVal = 0.0f;
     }
 
@@ -178,6 +181,6 @@ public class HUDScript : MonoBehaviour
 
     public float GetLight()
     {
-        return m_lightVal;
+        return m_prevlightVal;
     }
 }
