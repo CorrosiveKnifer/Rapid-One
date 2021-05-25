@@ -23,14 +23,14 @@ public class LightScript : MonoBehaviour
         float range = light.range;
         for (int i = 0; i < 4; i++)
         {
-            Debug.DrawRay(innerRays[i].origin, innerRays[i].direction * range, new Color(1.0f, 0, 0));
+            Debug.DrawRay(innerRays[i].origin, innerRays[i].direction * range, new Color(1.0f, 0, 0), 0.1f);
         }
         for (int i = 0; i < 4; i++)
         {
-            Debug.DrawRay(outerRays[i].origin, outerRays[i].direction * range, new Color(0.5f, 0.1f, 0));
+            Debug.DrawRay(outerRays[i].origin, outerRays[i].direction * range, new Color(0.5f, 0.1f, 0), 0.1f);
         }
 
-        Debug.DrawRay(transform.position, transform.forward * range, Color.green);
+        Debug.DrawRay(transform.position, transform.forward * range, Color.green, 0.1f);
         
         //Raycast to align to a plane
         RaycastHit centreHit;
@@ -53,7 +53,7 @@ public class LightScript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             playerProjPoints[i] = Vector3.Project(player.transform.position - centreHit.point, innerHit[i].point - centreHit.point) + centreHit.point;
-            Debug.DrawLine(centreHit.point, playerProjPoints[i], Color.blue);
+            Debug.DrawLine(centreHit.point, playerProjPoints[i], Color.blue, 0.1f);
         }
 
         HUDScript.instance.SetLight(CalculateLightValue(centreHit, innerHit, outerHit, playerProjPoints));
@@ -103,6 +103,7 @@ public class LightScript : MonoBehaviour
         output[3].direction = control.forward;
 
         Destroy(control.gameObject);
+
         return output;
     }
 }
