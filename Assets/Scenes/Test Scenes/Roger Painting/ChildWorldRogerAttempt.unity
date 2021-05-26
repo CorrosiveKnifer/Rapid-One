@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d1d724b1287d9ac48ba9ae1f1fdf250a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1281046691}
-  m_IndirectSpecularColor: {r: 0.18028499, g: 0.22571602, b: 0.30692437, a: 1}
+  m_IndirectSpecularColor: {r: 0.3455128, g: 0.39781362, b: 0.5339651, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14022,7 +14022,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6279234828174891964, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: db6add5a7975ba4478d9f758c321bcb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14216,6 +14216,7 @@ GameObject:
   - component: {fileID: 6569581964655808399}
   - component: {fileID: 4526342384174694780}
   - component: {fileID: 2243709873013722990}
+  - component: {fileID: 1893489996888591782}
   m_Layer: 0
   m_Name: Tree1Base_Tree1
   m_TagString: Untagged
@@ -14223,6 +14224,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1893489996888591782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893489996888591781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1984843047563436336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14310,7 +14329,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4644619199857020688, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: 029de0ac59e1f2745aa5c7844f1a4e18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14349,7 +14368,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5526004206741941038, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: db6add5a7975ba4478d9f758c321bcb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14388,7 +14407,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1792040574194120377, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: 1285f6c3701637a49bc94e854faa3919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14427,7 +14446,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2846417234033847846, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: db6add5a7975ba4478d9f758c321bcb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14466,7 +14485,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3827852736395380330, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: 2ee76bf16b5d453419cc9c5e6b7f9202, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14545,7 +14564,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 560150849455514791, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: c13c6c8964752254fb8316b4421f603e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14577,6 +14596,7 @@ GameObject:
   - component: {fileID: 422645266633194407}
   - component: {fileID: 1088472801189444580}
   - component: {fileID: 6616955989464684309}
+  - component: {fileID: 3005519176235707587}
   m_Layer: 0
   m_Name: Tree5_Tree5Top
   m_TagString: Untagged
@@ -14584,6 +14604,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3005519176235707587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3005519176235707586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &3079362186827952391
 Transform:
   m_ObjectHideFlags: 0
@@ -14624,7 +14662,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5755586159613584424, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: db6add5a7975ba4478d9f758c321bcb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14699,7 +14737,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1991748911833610174, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: db6add5a7975ba4478d9f758c321bcb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14731,6 +14769,7 @@ GameObject:
   - component: {fileID: 5534069181955588306}
   - component: {fileID: 7246816477129357874}
   - component: {fileID: 6355026949517106167}
+  - component: {fileID: 4296016780185085859}
   m_Layer: 0
   m_Name: Rock2
   m_TagString: Untagged
@@ -14738,6 +14777,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4296016780185085859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296016780185085858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &4312531561066245404
 Transform:
   m_ObjectHideFlags: 0
@@ -14800,6 +14857,7 @@ GameObject:
   - component: {fileID: 5542928657025365737}
   - component: {fileID: 2601105657477903622}
   - component: {fileID: 2058683307707087210}
+  - component: {fileID: 5034833995102359692}
   m_Layer: 0
   m_Name: Tree4_Tree4Top
   m_TagString: Untagged
@@ -14807,6 +14865,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5034833995102359692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034833995102359691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &5322053322506237737
 Transform:
   m_ObjectHideFlags: 0
@@ -14860,6 +14936,7 @@ GameObject:
   - component: {fileID: 5322053322506237737}
   - component: {fileID: 369588185015063192}
   - component: {fileID: 3266431192109739794}
+  - component: {fileID: 5582175874751114683}
   m_Layer: 0
   m_Name: Tree3Base_Tree3
   m_TagString: Untagged
@@ -14867,6 +14944,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5582175874751114683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582175874751114682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5595983691406469979
 GameObject:
   m_ObjectHideFlags: 0
@@ -14878,6 +14973,7 @@ GameObject:
   - component: {fileID: 3079362186827952391}
   - component: {fileID: 4896015069761755799}
   - component: {fileID: 1984849383800039416}
+  - component: {fileID: 5595983691406469980}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -14885,6 +14981,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5595983691406469980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595983691406469979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5691608039938036667
 GameObject:
   m_ObjectHideFlags: 0
@@ -14896,6 +15010,7 @@ GameObject:
   - component: {fileID: 1650629179469626000}
   - component: {fileID: 5869275301289827381}
   - component: {fileID: 7003327652071785342}
+  - component: {fileID: 5691608039938036668}
   m_Layer: 0
   m_Name: Tree5Base_Tree5
   m_TagString: Untagged
@@ -14903,6 +15018,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5691608039938036668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691608039938036667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!33 &5869275301289827381
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14929,7 +15062,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1936060652082512563, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: 029de0ac59e1f2745aa5c7844f1a4e18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14961,6 +15094,7 @@ GameObject:
   - component: {fileID: 9069184369707667853}
   - component: {fileID: 512957944526312807}
   - component: {fileID: 2227608873045779521}
+  - component: {fileID: 6514710514501007742}
   m_Layer: 0
   m_Name: Tree4Base_Tree4
   m_TagString: Untagged
@@ -14968,6 +15102,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6514710514501007742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514710514501007741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6526722996623523832
 GameObject:
   m_ObjectHideFlags: 0
@@ -14979,6 +15131,7 @@ GameObject:
   - component: {fileID: 1694143173526832905}
   - component: {fileID: 7695655645284618762}
   - component: {fileID: 2840314946820243345}
+  - component: {fileID: 6526722996623523833}
   m_Layer: 0
   m_Name: Tree3_Tree3Top
   m_TagString: Untagged
@@ -14986,6 +15139,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6526722996623523833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526722996623523832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &6569581964655808399
 Transform:
   m_ObjectHideFlags: 0
@@ -15025,6 +15196,7 @@ GameObject:
   - component: {fileID: 8639396701952461279}
   - component: {fileID: 6965803534699420238}
   - component: {fileID: 636479939916410564}
+  - component: {fileID: 6611480310447578551}
   m_Layer: 0
   m_Name: FallenLog
   m_TagString: Untagged
@@ -15032,6 +15204,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6611480310447578551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6611480310447578550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!23 &6616955989464684309
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15050,7 +15240,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3147469698934005873, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: db6add5a7975ba4478d9f758c321bcb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15082,6 +15272,7 @@ GameObject:
   - component: {fileID: 4022865057288802708}
   - component: {fileID: 3191768195527221395}
   - component: {fileID: 4206887542689347961}
+  - component: {fileID: 6843096935512413566}
   m_Layer: 0
   m_Name: Tree2Base_Tree2
   m_TagString: Untagged
@@ -15089,6 +15280,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6843096935512413566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843096935512413565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!33 &6965803534699420238
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15115,7 +15324,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1628884062946179322, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: 36df5488762c1b746b120bb392876f7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15162,7 +15371,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3789185595295239344, guid: 2ef66a8080008464f9ffb6a2bf6c5fe1, type: 3}
+  - {fileID: 2100000, guid: 36df5488762c1b746b120bb392876f7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15387,6 +15596,7 @@ GameObject:
   - component: {fileID: 141405446430866460}
   - component: {fileID: 1540307560914399154}
   - component: {fileID: 7355962415307922276}
+  - component: {fileID: 8557348586333620515}
   m_Layer: 0
   m_Name: Tree2_Tree2Top
   m_TagString: Untagged
@@ -15394,6 +15604,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8557348586333620515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557348586333620514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &8639396701952461279
 Transform:
   m_ObjectHideFlags: 0
@@ -15402,7 +15630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6611480310447578550}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.91, y: 0, z: 0}
+  m_LocalPosition: {x: 10.91, y: 0, z: -3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8727924524968727220}
@@ -15446,6 +15674,7 @@ GameObject:
   - component: {fileID: 6581429648639773306}
   - component: {fileID: 7575838036458127291}
   - component: {fileID: 2296176141560574753}
+  - component: {fileID: 8801784841809738156}
   m_Layer: 0
   m_Name: Tree1_Tree1Top
   m_TagString: Untagged
@@ -15453,6 +15682,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8801784841809738156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801784841809738155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!33 &8921716239634868223
 MeshFilter:
   m_ObjectHideFlags: 0
