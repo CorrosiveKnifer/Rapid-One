@@ -39,10 +39,10 @@ public class PauseMenuScreen : MonoBehaviour
     }
 
 
-   /* public void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }*/
+    }
 
     public void QuitGame()
     {
