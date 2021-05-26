@@ -53,17 +53,20 @@ public class AudioAgent : MonoBehaviour
                 item.Value.source.volume = GetBackgroundVolume() * item.Value.volume * AgentBGVolume;
         }
 
-        if(!BackgroundMusicQueue.Peek().source.isPlaying && !hasPaused)
+        if (BackgroundMusicQueue.Count != 0)
         {
-            if(hasLoopedQueue)
+            if (!BackgroundMusicQueue.Peek().source.isPlaying && !hasPaused)
             {
-                BackgroundMusicQueue.Enqueue(BackgroundMusicQueue.Dequeue());
+                if (hasLoopedQueue)
+                {
+                    BackgroundMusicQueue.Enqueue(BackgroundMusicQueue.Dequeue());
+                }
+                else
+                {
+                    BackgroundMusicQueue.Dequeue();
+                }
+                BackgroundMusicQueue.Peek().source.Play();
             }
-            else
-            {
-                BackgroundMusicQueue.Dequeue();
-            }
-            BackgroundMusicQueue.Peek().source.Play();
         }
     }
 
