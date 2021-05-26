@@ -1,33 +1,31 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class MapOfHouse : MonoBehaviour
+public class PauseMenuScreen : MonoBehaviour
 {
-    public GameObject map;
-    public Image playerPic;
-    public Image playerPic2;
+    public GameObject pMenu;
+
     // Start is called before the first frame update
     void Start()
     {
-        map.SetActive(false);
-        playerPic.enabled = true;
-        playerPic.enabled = true;
+        pMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("m"))
+        if (Input.GetKeyDown("l"))
         {
-            map.SetActive(!map.activeSelf);           
+            pMenu.SetActive(!pMenu.activeSelf);        
         }
 
-        if (map.activeSelf)
+        if (pMenu.activeSelf)
         {
             PlayerController.instance.SetCameraFreeze(true); 
             Time.timeScale = 0;
+              
         }
         else
         {
