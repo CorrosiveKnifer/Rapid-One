@@ -92,7 +92,7 @@ public class HUDScript : MonoBehaviour
             LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
         
         m_prevlightVal = m_lightVal;
-        Debug.Log(m_prevlightVal);
+        //Debug.Log(m_prevlightVal);
         m_lightVal = 0.0f;
     }
 
