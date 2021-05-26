@@ -28,12 +28,18 @@ public class LevelLoader : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.I))
             {
                 StartCoroutine(LoadLevel(0));
+                isthereloadingscreen = true;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetScene();
+        }
+        //For testing purposes
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            LoadNextLevel();
         }
     }
 
@@ -50,6 +56,7 @@ public class LevelLoader : MonoBehaviour
         if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1) // Check if index exceeds scene count
         {
             StartCoroutine(LoadLevel(0)); // Load menu
+            isthereloadingscreen = true;
         }
         else
         {
@@ -58,16 +65,19 @@ public class LevelLoader : MonoBehaviour
             
 
         }
+        /*
         if (isthereloadingscreen && doOnce)
         {
             doOnce = false;
-            StartCoroutine(LoadAsychronously(SceneManager.GetActiveScene().buildIndex + 1));
+            //StartCoroutine(LoadAsychronously(SceneManager.GetActiveScene().buildIndex + 1));
             
         }
+        */
     }
     public void ResetScene()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        isthereloadingscreen = true;
     }
 
     IEnumerator LoadLevel(int levelIndex)
@@ -89,7 +99,12 @@ public class LevelLoader : MonoBehaviour
             Cursor.visible = false;
         }
 
-      
+        if (isthereloadingscreen && doOnce)
+        {
+            isthereloadingscreen = false;
+            doOnce = false;
+            StartCoroutine(LoadAsychronously(levelIndex));
+        }
         // Load Scene
         //SceneManager.LoadScene(levelIndex);
         //if(levelIndex == 2)
@@ -97,6 +112,18 @@ public class LevelLoader : MonoBehaviour
         //else
         //SceneManager.LoadScene(levelIndex);
     }
+    IEnumerator testing(int levelIndex)
+    {
+        int tester = 0;
+        Debug.Log("hello");
+        while (tester !=10)
+        {
+            tester++;
+            Debug.Log(tester);
+            yield return null;
+        }
+    }
+
 
     IEnumerator LoadAsychronously(int sceneIndex)
     {
