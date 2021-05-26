@@ -7,10 +7,12 @@ public class MapOfHouse : MonoBehaviour
 {
     public GameObject map;
     public Image playerPic;
+    public Image playerPic2;
     // Start is called before the first frame update
     void Start()
     {
         map.SetActive(false);
+        playerPic.enabled = true;
         playerPic.enabled = true;
     }
 
@@ -19,13 +21,18 @@ public class MapOfHouse : MonoBehaviour
     {
         if (Input.GetKeyDown("m"))
         {
-            map.SetActive(!map.activeSelf);
-
+            map.SetActive(!map.activeSelf);           
         }
-        if (Input.GetKeyDown("r"))
+
+        if (map.activeSelf)
         {
-            map.SetActive(false);
+            PlayerController.instance.SetCameraFreeze(true); 
+            Time.timeScale = 0;
+        }
+        else
+        {
+            PlayerController.instance.SetCameraFreeze(false); 
+            Time.timeScale = 1;
         }
     }
-
 }
