@@ -1168,6 +1168,7 @@ GameObject:
   - component: {fileID: 143447189}
   - component: {fileID: 143447190}
   - component: {fileID: 143447191}
+  - component: {fileID: 143447192}
   m_Layer: 0
   m_Name: LivingRoomLightChild
   m_TagString: Untagged
@@ -1264,6 +1265,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 701554329}
   m_childGameObject: {fileID: 143447188}
+--- !u!95 &143447192
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143447188}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5487e0b55f36c1c44b9744b8d140e1d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &150792371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,7 +3780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &701554330
 Light:
   m_ObjectHideFlags: 0
@@ -3774,7 +3794,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 200
-  m_Range: 10
+  m_Range: 40
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4632,7 +4652,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh338786
+  m_Name: pb_Mesh33788
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5736,7 +5756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &932917381
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10477,7 +10497,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh338992
+  m_Name: pb_Mesh33994
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10864,7 +10884,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh339286
+  m_Name: pb_Mesh34282
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
