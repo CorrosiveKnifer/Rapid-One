@@ -4,70 +4,92 @@ using UnityEngine;
 
 public class LightScript : MonoBehaviour
 {
+    public Rigidbody myRigidbody;
     private Light light;
     private GameObject player;
+
+    private Vector3 centrePos;
+    private Vector3[] innerPos;
+    private Vector3[] outerPos;
+
+    private bool hasBaked = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         light = GetComponent<Light>();
         player = GameObject.FindGameObjectWithTag("Player");
+        innerPos = new Vector3[4];
+        outerPos = new Vector3[4];
+
+        BakeInformation();
+        hasBaked = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Ray[] innerRays = CalculateRays(light.innerSpotAngle);
-        Ray[] outerRays = CalculateRays(light.innerSpotAngle + (light.spotAngle - light.innerSpotAngle) / 2);
+        if (myRigidbody != null && myRigidbody.useGravity && myRigidbody.velocity.magnitude <= 0.5f)
+        {
+            if(!hasBaked)
+            {
+                BakeInformation();
+                hasBaked = true;
+            }
+        }
+        else if(myRigidbody != null)
+        {
+            hasBaked = false;
+        }
 
-        //Display Rays for debuging
-        float range = light.range;
-        for (int i = 0; i < 4; i++)
+        foreach (var item in outerPos)
         {
-            Debug.DrawRay(innerRays[i].origin, innerRays[i].direction * range, new Color(1.0f, 0, 0), 0.1f);
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            Debug.DrawRay(outerRays[i].origin, outerRays[i].direction * range, new Color(0.5f, 0.1f, 0), 0.1f);
+            Debug.DrawLine(centrePos, item, Color.green);
         }
 
-        Debug.DrawRay(transform.position, transform.forward * range, Color.green, 0.1f);
-        
-        //Raycast to align to a plane
-        RaycastHit centreHit;
-        //Inner section for hard light
-        RaycastHit[] innerHit = new RaycastHit[4];
-        Physics.Raycast(transform.position, transform.forward, out centreHit, range);
-        for (int i = 0; i < 4; i++)
-        {
-            Physics.Raycast(innerRays[i].origin, innerRays[i].direction, out innerHit[i], range);
-        }
-        //Outer section for soft light
-        RaycastHit[] outerHit = new RaycastHit[4];
-        for (int i = 0; i < 4; i++)
-        {
-            Physics.Raycast(outerRays[i].origin, outerRays[i].direction, out outerHit[i], range);
-        }
-        
+        light.enabled = Vector3.Distance(transform.position, player.transform.position) <= 15.0f;
+
         //Project the player's position onto the plane created.
         Vector3[] playerProjPoints = new Vector3[4];
         for (int i = 0; i < 4; i++)
         {
-            playerProjPoints[i] = Vector3.Project(player.transform.position - centreHit.point, innerHit[i].point - centreHit.point) + centreHit.point;
-            Debug.DrawLine(centreHit.point, playerProjPoints[i], Color.blue, 0.1f);
+            playerProjPoints[i] = Vector3.Project(player.transform.position - centrePos, innerPos[i] - centrePos) + centrePos;
+            Debug.DrawLine(centrePos, playerProjPoints[i], Color.blue, 0.1f);
         }
 
-        HUDScript.instance.SetLight(CalculateLightValue(centreHit, innerHit, outerHit, playerProjPoints));
+        HUDScript.instance.SetLight(CalculateLightValue(playerProjPoints));
+    }
+    private void BakeInformation()
+    {
+        Ray[] innerRays = CalculateRays(light.innerSpotAngle);
+        Ray[] outerRays = CalculateRays(light.innerSpotAngle + (light.spotAngle - light.innerSpotAngle) / 2);
+
+        float range = light.range;
+
+        //Raycast to align to a plane
+        RaycastHit centreHit;
+        //Inner section for hard light
+        //RaycastHit[] innerHit = new RaycastHit[4];
+        RaycastHit innerHit, outerHit;
+        Physics.Raycast(transform.position, transform.forward, out centreHit, range);
+        centrePos = centreHit.point;
+        for (int i = 0; i < 4; i++)
+        {
+            Physics.Raycast(innerRays[i].origin, innerRays[i].direction, out innerHit, range);
+            Physics.Raycast(outerRays[i].origin, outerRays[i].direction, out outerHit, range);
+            innerPos[i] = innerHit.point;
+            outerPos[i] = outerHit.point;
+        }
     }
 
-    private float CalculateLightValue(RaycastHit centreP, RaycastHit[] innerP, RaycastHit[] outerP, Vector3[] projP)
+    private float CalculateLightValue(Vector3[] projP)
     {
         float[] ratios = new float[4];
 
         for (int i = 0; i < 4; i++)
         {
-            Vector3 OuterLine = outerP[i].point - centreP.point;
-            Vector3 innerLine = innerP[i].point - centreP.point;
-            Vector3 projLine = projP[i] - centreP.point;
+            Vector3 OuterLine = outerPos[i] - centrePos;
+            Vector3 innerLine = innerPos[i] - centrePos;
+            Vector3 projLine = projP[i] - centrePos;
             ratios[i] = Mathf.Clamp(1.0f - (projLine.magnitude - innerLine.magnitude) / (OuterLine.magnitude - innerLine.magnitude), 0.0f, 1.0f);
         }
 

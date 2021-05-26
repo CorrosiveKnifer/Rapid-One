@@ -25,13 +25,17 @@ public class AudioAgent : MonoBehaviour
         public float volume = 1.0f; //Local volume to the player
     }
 
+    private bool hasPaused = false;
+    private bool hasLoopedQueue = false;
+    private Queue<AudioPlayer> BackgroundMusicQueue;
+
     public Dictionary<string, AudioPlayer> AudioLibrary { get; private set; }
 
     // Start is called before the first frame update
     protected virtual void Awake()
     {
         AudioManager.GetInstance().AddAgent(this);
-
+        BackgroundMusicQueue = new Queue<AudioPlayer>();
         AudioLibrary = new Dictionary<string, AudioPlayer>();
         for (int i = 0; i < AudioClips.Length; i++)
         {
@@ -47,6 +51,19 @@ public class AudioAgent : MonoBehaviour
                 item.Value.source.volume = GetSoundEffectVolume() * item.Value.volume * AgentSEVolume;
             else
                 item.Value.source.volume = GetBackgroundVolume() * item.Value.volume * AgentBGVolume;
+        }
+
+        if(!BackgroundMusicQueue.Peek().source.isPlaying && !hasPaused)
+        {
+            if(hasLoopedQueue)
+            {
+                BackgroundMusicQueue.Enqueue(BackgroundMusicQueue.Dequeue());
+            }
+            else
+            {
+                BackgroundMusicQueue.Dequeue();
+            }
+            BackgroundMusicQueue.Peek().source.Play();
         }
     }
 
@@ -91,6 +108,48 @@ public class AudioAgent : MonoBehaviour
             AudioLibrary[title].source.priority = priority;
             AudioLibrary[title].isSoundEffect = false;
             AudioLibrary[title].source.Play();
+            return true;
+        }
+        return false;
+    }
+
+    public void PauseQueue()
+    {
+        hasPaused = true;
+        BackgroundMusicQueue.Peek().source.Pause();
+    }
+    public void StartQueue()
+    {
+        hasPaused = false;
+        BackgroundMusicQueue.Peek().source.Play();
+    }
+    public void QueueArchive(bool isLooping = false)
+    {
+        hasLoopedQueue = isLooping;
+        foreach (var item in AudioLibrary)
+        {
+            QueueBackground(item.Key);
+        }
+    }
+
+    public bool QueueBackground(string title, bool isLooping = false, int priority = 255)
+    {
+        AudioPlayer player;
+        if (AudioLibrary.TryGetValue(title, out player))
+        {
+            if(BackgroundMusicQueue.Contains(player))
+            {
+                return false;
+            }
+
+            player.source.loop = isLooping;
+            player.source.priority = priority;
+            player.isSoundEffect = false;
+            BackgroundMusicQueue.Enqueue(player);
+            if(BackgroundMusicQueue.Count == 1)
+            {
+                player.source.Play();
+            }
             return true;
         }
         return false;
