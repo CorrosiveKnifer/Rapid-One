@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuScreen : MonoBehaviour
 {
@@ -43,14 +44,14 @@ public class PauseMenuScreen : MonoBehaviour
         GameIsPaused = true;
     }
 
-    public void LoadMenu()
+    public void Restart()
     {
-        Debug.Log("ass");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()
     {
-        Debug.Log("ass");
+        SceneManager.LoadScene("MenuScreen");
     }
 }
        
