@@ -60,9 +60,9 @@ public class HUDScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = CameraController.instance.agent;
         Hand.SetActive(false);
         Interact.SetActive(false);
+        Shift.SetActive(true);
     }
 
     // Update is called once per frame
@@ -77,26 +77,16 @@ public class HUDScript : MonoBehaviour
             m_damage = 0;
         }
 
-        if (!PlayerController.instance.m_isAdultForm)
+        if (PlayerController.instance.m_isAdultForm)
+        {
+            Shift.SetActive(false);
+            Shift.GetComponent<Image>().sprite = AdultShift;
+        }
+        else
         {
             Shift.SetActive(true);
             Shift.GetComponent<Image>().sprite = ChildShift;
         }
-        //switch (agent.currentState)
-        //{
-        //    case CameraAgent.AgentState.FOLLOW_ADULT:
-        //        Shift.SetActive(true);
-        //        Shift.GetComponent<Image>().sprite = AdultShift;
-        //        break;
-        //    case CameraAgent.AgentState.FOLLOW_CHILD:
-        //        Shift.SetActive(true);
-        //        Shift.GetComponent<Image>().sprite = ChildShift;
-        //        break;
-        //    default:
-        //    case CameraAgent.AgentState.SHIFTTING:
-        //        Shift.SetActive(false);
-        //        break;
-        //}
 
         if (LightDisplay != null)
             LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
