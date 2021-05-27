@@ -22,7 +22,7 @@ public class PlayerRB : MonoBehaviour
     public Camera m_myCamera;
 
     private Rigidbody m_rigidBody;
-    public MeshRenderer m_meshRenderer;
+    public SkinnedMeshRenderer m_meshRenderer;
 
     public bool m_bInVents = false;
 
@@ -40,7 +40,7 @@ public class PlayerRB : MonoBehaviour
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
-        m_meshRenderer = GetComponentInChildren<MeshRenderer>();
+        m_meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     // Start is called before the first frame update
