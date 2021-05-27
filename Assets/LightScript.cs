@@ -65,7 +65,7 @@ public class LightScript : MonoBehaviour
             Debug.DrawLine(centrePos, playerProjPoints[i], Color.blue, 0.1f);
         }
 
-        HUDScript.instance.SetLight(CalculateLightValue(playerProjPoints));
+        //HUDScript.instance.SetLight(CalculateLightValue(playerProjPoints));
     }
     private void BakeInformation()
     {
