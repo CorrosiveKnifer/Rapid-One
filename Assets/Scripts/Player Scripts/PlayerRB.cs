@@ -12,6 +12,8 @@ public class PlayerRB : MonoBehaviour
     public float m_movementSpeed; // Move speed
     public float m_gravity = -1.0f;
     public float m_jumpForce = 500.0f;
+    public bool m_canJump = true;
+    public bool m_canMove = true;
     public bool m_isChild = false;
     public float m_strength = 10.0f;
     public float m_intellegence = 10.0f;
@@ -20,7 +22,7 @@ public class PlayerRB : MonoBehaviour
     public Camera m_myCamera;
 
     private Rigidbody m_rigidBody;
-    public MeshRenderer m_meshRenderer;
+    public SkinnedMeshRenderer m_meshRenderer;
 
     public bool m_bInVents = false;
 
@@ -38,7 +40,7 @@ public class PlayerRB : MonoBehaviour
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
-        m_meshRenderer = GetComponentInChildren<MeshRenderer>();
+        m_meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     // Start is called before the first frame update
@@ -96,14 +98,14 @@ public class PlayerRB : MonoBehaviour
         float z = 0.0f;
 
         // Movement inputs
-        if (HUDScript.instance.m_damage < 1)
+        if (HUDScript.instance.m_damage < 0.9f)
         {
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
             y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
         }
 
-        if (Input.GetButtonDown("Jump") && m_grounded )
+        if (Input.GetButtonDown("Jump") && m_grounded && m_canJump)
         {
             m_rigidBody.velocity = new Vector3(m_rigidBody.velocity.x, m_jumpForce, m_rigidBody.velocity.z);
             //if (!m_isChild) // DO NOT DELTE. IS REALLY FUNNY.
