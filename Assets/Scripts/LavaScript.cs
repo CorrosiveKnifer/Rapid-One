@@ -12,11 +12,20 @@ public class LavaScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
+        {;
+            other.gameObject.GetComponentInChildren<PlayerRB>().m_canJump = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
         {
             HUDScript.instance.ApplyDamage(5.0f * Time.deltaTime);
+            other.gameObject.GetComponentInChildren<PlayerRB>().m_canJump = false;
         }
     }
 }

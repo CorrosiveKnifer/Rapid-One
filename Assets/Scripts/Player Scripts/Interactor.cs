@@ -140,6 +140,11 @@ public class Interactor : MonoBehaviour
                 myHeldObject.item.gameObject.transform.RotateAround(myHeldObject.item.transform.position, transform.right, mouseY * Time.deltaTime); // Z Axis rotation
                // myHeldObject.item.transform.rotation = 
             }
+            else if (Input.GetKey(KeyCode.Q))
+            {
+                Quaternion rotation = Quaternion.Slerp(myHeldObject.item.gameObject.transform.localRotation, Quaternion.identity, Time.deltaTime * 5.0f);
+                myHeldObject.item.gameObject.transform.localRotation = rotation;
+            }
             else
             {
                 myHeldObject.item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
