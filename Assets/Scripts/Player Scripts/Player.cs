@@ -92,7 +92,6 @@ public class Player : MonoBehaviour
         z = Input.GetAxis("Vertical");
         y = (m_grounded && Input.GetButtonDown("Jump")) ? 1.0f : 0.0f;
 
-
         if ((x != 0 || z != 0) && m_grounded)
         {
             if (!m_bInVents) // Is not in vents
