@@ -20,12 +20,21 @@ public class ObjectiveRadius : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(m_PlayerTransform.position.x, m_PlayerTransform.position.z)) < m_DetectionRadius)
         {
             if (!m_Player.m_isChild)
             {
                 m_LevelLoader.LoadNextLevel();
             }
+        }
+        */
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Collider>().tag == "Player" && !m_Player.m_isChild)
+        {
+            m_LevelLoader.LoadNextLevel();
         }
     }
 }
