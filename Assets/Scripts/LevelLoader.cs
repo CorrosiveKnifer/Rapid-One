@@ -1,10 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
-/// William de Beer
+/// William de Beer, rachael colaco
 /// </summary>
 public class LevelLoader : MonoBehaviour
 {
@@ -48,6 +49,13 @@ public class LevelLoader : MonoBehaviour
 
     public float transitionTime = 1.0f;
 
+    public GameObject loadingscreen;
+    public Slider slider;
+
+    bool isthereloadingscreen = false;
+    bool doOnce = true;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -56,12 +64,18 @@ public class LevelLoader : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.I))
             {
                 StartCoroutine(LoadLevel(0));
+                isthereloadingscreen = true;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetScene();
+        }
+        //For testing purposes
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            LoadNextLevel();
         }
     }
 
@@ -73,18 +87,33 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        
+
         if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1) // Check if index exceeds scene count
         {
             StartCoroutine(LoadLevel(0)); // Load menu
+            isthereloadingscreen = true;
         }
         else
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // Loade next scene
+            isthereloadingscreen = true;
+            
+
         }
+        /*
+        if (isthereloadingscreen && doOnce)
+        {
+            doOnce = false;
+            //StartCoroutine(LoadAsychronously(SceneManager.GetActiveScene().buildIndex + 1));
+            
+        }
+        */
     }
     public void ResetScene()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        isthereloadingscreen = true;
     }
 
     IEnumerator LoadLevel(int levelIndex)
@@ -106,7 +135,45 @@ public class LevelLoader : MonoBehaviour
             Cursor.visible = false;
         }
 
+        if (isthereloadingscreen && doOnce)
+        {
+            isthereloadingscreen = false;
+            doOnce = false;
+            StartCoroutine(LoadAsychronously(levelIndex));
+        }
         // Load Scene
-        SceneManager.LoadScene(levelIndex);
+        //SceneManager.LoadScene(levelIndex);
+        //if(levelIndex == 2)
+        //   StartCoroutine(LoadAsychronously(levelIndex));
+        //else
+        //SceneManager.LoadScene(levelIndex);
+    }
+    IEnumerator testing(int levelIndex)
+    {
+        int tester = 0;
+        Debug.Log("hello");
+        while (tester !=10)
+        {
+            tester++;
+            Debug.Log(tester);
+            yield return null;
+        }
+    }
+
+
+    IEnumerator LoadAsychronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        loadingscreen.SetActive(true);
+        isthereloadingscreen = false;
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            Debug.Log(progress);
+            slider.value = progress;
+            
+            yield return null;
+        }
+        
     }
 }
