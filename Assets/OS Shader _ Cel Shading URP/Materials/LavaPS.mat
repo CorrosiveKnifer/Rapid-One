@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fence
+  m_Name: LavaPS
   m_Shader: {fileID: -6465566751694194690, guid: 3dcb6fc3d4cee254c87e057d90b58be8,
     type: 3}
   m_ShaderKeywords: BOOLEAN_20A2BDA1_ON BOOLEAN_7188B8F1_ON BOOLEAN_74AD49CB_ON
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_2FCA53F8:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5d142c5cdd0dafd4b98d24e3bb5d36ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_93AE646C:
@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_E97A8D7F:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ef6b90aad7f85fd43ba0b2162fe7f79b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -89,16 +89,16 @@ Material:
     - BOOLEAN_797A78DA: 0
     - Boolean_31CCE875: 1
     - Boolean_F7BE8539: 1
-    - Vector1_16D642D1: 0.367
+    - Vector1_16D642D1: 0.293
     - Vector1_1DD45D74: 1
-    - Vector1_41AC1DD: 0.857
+    - Vector1_41AC1DD: 1
     - Vector1_6986C975: 0.1
     - Vector1_704BC890: 0.664
-    - Vector1_7E42FC8C: 0.335
+    - Vector1_7E42FC8C: 0
     - Vector1_93F61CE2: 4
     - Vector1_AFE2FE6: 0.15
     - Vector1_C0DB77FC: 1
-    - Vector1_E0A63449: 0.807
+    - Vector1_E0A63449: 0.782
     - Vector1_F222C338: 1.5
     - _AlphaClip: 0
     - _Blend: 0
@@ -122,10 +122,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_268D2273: {r: 0, g: 0, b: 0, a: 0}
-    - Color_505A8FDF: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
-    - Color_80F92342: {r: 0, g: 0, b: 0, a: 1}
-    - Color_87594BF8: {r: 0.16905482, g: 0.23728973, b: 0.2735849, a: 1}
+    - Color_268D2273: {r: 0.9911022, g: 0.1441285, b: 0.013702081, a: 0}
+    - Color_505A8FDF: {r: 0, g: 0, b: 0, a: 1}
+    - Color_80F92342: {r: 0.9911022, g: 0.086500466, b: 0.017641952, a: 1}
+    - Color_87594BF8: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
     - Color_C0AD5F7B: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
