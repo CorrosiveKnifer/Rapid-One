@@ -9,12 +9,47 @@ using UnityEngine.UI;
 /// </summary>
 public class LevelLoader : MonoBehaviour
 {
+    #region Singleton
+
+    public static LevelLoader GetInstance()
+    {
+        if (instance == null)
+        {
+            GameObject loader = GameObject.Instantiate(Resources.Load("LevelLoader.prefab") as GameObject, Vector3.zero, Quaternion.identity);
+            return loader.GetComponent<LevelLoader>();
+        }
+
+        return instance;
+    }
+
+    private static LevelLoader instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Debug.LogError("Second Instance of LevelLoader was created, this instance was destroyed.");
+            Destroy(this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
+    #endregion
+
     public Animator transition;
 
     public float transitionTime = 1.0f;
 
     public GameObject loadingscreen;
-    public Slider slider;
 
     bool isthereloadingscreen = false;
     bool doOnce = true;
@@ -51,8 +86,6 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        
-
         if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1) // Check if index exceeds scene count
         {
             StartCoroutine(LoadLevel(0)); // Load menu
@@ -65,14 +98,6 @@ public class LevelLoader : MonoBehaviour
             
 
         }
-        /*
-        if (isthereloadingscreen && doOnce)
-        {
-            doOnce = false;
-            //StartCoroutine(LoadAsychronously(SceneManager.GetActiveScene().buildIndex + 1));
-            
-        }
-        */
     }
     public void ResetScene()
     {
@@ -112,24 +137,13 @@ public class LevelLoader : MonoBehaviour
         //else
         //SceneManager.LoadScene(levelIndex);
     }
-    IEnumerator testing(int levelIndex)
-    {
-        int tester = 0;
-        Debug.Log("hello");
-        while (tester !=10)
-        {
-            tester++;
-            Debug.Log(tester);
-            yield return null;
-        }
-    }
-
 
     IEnumerator LoadAsychronously(int sceneIndex)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         loadingscreen.SetActive(true);
         isthereloadingscreen = false;
+        Slider slider = loadingscreen.GetComponentInChildren<Slider>();
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);

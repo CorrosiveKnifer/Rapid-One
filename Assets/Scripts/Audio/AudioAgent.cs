@@ -116,6 +116,10 @@ public class AudioAgent : MonoBehaviour
         return false;
     }
 
+    public bool IsPaused()
+    {
+        return hasPaused;
+    }
     public void PauseQueue()
     {
         hasPaused = true;

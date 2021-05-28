@@ -12,6 +12,7 @@ public class BackgroundMusicManager : MonoBehaviour
     public AudioAgent childAgent;
 
     bool isAdult = true;
+    bool hasPausedBecauseOfScene = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,7 +32,14 @@ public class BackgroundMusicManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 4)
         {
-            Destroy(gameObject);
+            adultAgent.PauseQueue();
+            childAgent.PauseQueue();
+            hasPausedBecauseOfScene = true;
+        }
+        else if (hasPausedBecauseOfScene && adultAgent.IsPaused())
+        {
+            adultAgent.StartQueue();
+            hasPausedBecauseOfScene = false;
         }
 
         if(isAdult != PlayerController.instance.m_isAdultForm)
