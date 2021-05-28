@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
         if(state) //While the in adult form...
         {
             //Teleport and rotate the child object for when the player shifts.
+            m_childForm.m_canJump = true;
             m_childForm.Teleport(m_adultForm.transform.position + Vector3.down * 0.75f);
             m_childForm.gameObject.transform.localRotation = m_adultForm.gameObject.transform.localRotation;
             m_childForm.m_currentYRotation = m_adultForm.m_currentYRotation;
@@ -111,6 +112,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator StartSwitch()
     {
+        m_adultForm.m_canMove = false;
+        m_childForm.m_canMove = false;
         if (transition != null)
         {
             // Play Animation
@@ -118,6 +121,8 @@ public class PlayerController : MonoBehaviour
             // Wait to let animation finish playing
             yield return new WaitForSeconds(transitionTime);
         }
+        m_adultForm.m_canMove = true;
+        m_childForm.m_canMove = true;
         m_isAdultForm = !m_isAdultForm;
     }
 }

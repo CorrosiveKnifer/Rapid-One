@@ -55,6 +55,14 @@ public class DoorScript : Interactable
         IsLocked = true;
     }
 
+    public void OpenDoor()
+    {
+        bool temp = CanOpenFromFront;
+        CanOpenFromFront = true;
+        OpenDoor(true, true);
+        CanOpenFromFront = temp;
+    }
+
     public void OpenDoor(bool isOpeningForward = true, bool hasAudio = true)
     {
         if(anim.transform.localRotation.eulerAngles.y <= -85 || anim.transform.localRotation.eulerAngles.y >= 265)
@@ -77,6 +85,8 @@ public class DoorScript : Interactable
                         anim.SetTrigger("OpenForward");
                     else if (!isOpeningForward)
                         anim.SetTrigger("OpenBackward");
+                    else
+                        anim.SetTrigger("OpenForward");
                     break;
                 case OpenDirect.FORWARD:
                     anim.SetTrigger("OpenBackward");

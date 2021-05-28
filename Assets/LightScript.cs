@@ -7,6 +7,7 @@ public class LightScript : MonoBehaviour
     public Rigidbody myRigidbody;
     private Light light;
     private GameObject player;
+    private PlayerRB currentPlayer;
 
     private Vector3 centrePos;
     private Vector3[] innerPos;
@@ -17,7 +18,6 @@ public class LightScript : MonoBehaviour
     void Awake()
     {
         light = GetComponent<Light>();
-        player = GameObject.FindGameObjectWithTag("Player");
         innerPos = new Vector3[4];
         outerPos = new Vector3[4];
 
@@ -28,6 +28,15 @@ public class LightScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerController.instance.m_isAdultForm)
+        {
+            player = PlayerController.instance.m_adultForm.gameObject;
+        }
+        else
+        {
+            player = PlayerController.instance.m_childForm.gameObject;
+        }
+
         if (myRigidbody != null && myRigidbody.useGravity && myRigidbody.velocity.magnitude <= 0.5f)
         {
             if(!hasBaked)
@@ -56,7 +65,7 @@ public class LightScript : MonoBehaviour
             Debug.DrawLine(centrePos, playerProjPoints[i], Color.blue, 0.1f);
         }
 
-        HUDScript.instance.SetLight(CalculateLightValue(playerProjPoints));
+        //HUDScript.instance.SetLight(CalculateLightValue(playerProjPoints));
     }
     private void BakeInformation()
     {

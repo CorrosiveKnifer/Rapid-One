@@ -44,15 +44,15 @@ public class HUDScript : MonoBehaviour
     public Sprite HandOpen;
     public Sprite HandClose;
 
-    public Image LightDisplay;
+    //public Image LightDisplay;
 
     public Text m_TextDisplay;
 
     public Volume m_damageVolume;
     public float m_damage = 0.0f;
 
-    private float m_prevlightVal = 0.0f;
-    private float m_lightVal = 0.0f;
+    //private float m_prevlightVal = 0.0f;
+    //private float m_lightVal = 0.0f;
     public bool isHandOpen { get; set; }
 
     private CameraAgent agent;
@@ -88,12 +88,12 @@ public class HUDScript : MonoBehaviour
             Shift.GetComponent<Image>().sprite = ChildShift;
         }
 
-        if (LightDisplay != null)
+        /*if (LightDisplay != null)
             LightDisplay.color = new Color(m_lightVal, m_lightVal, m_lightVal); //Note: Light val is 0.0f to 1.0f
         
         m_prevlightVal = m_lightVal;
         Debug.Log(m_prevlightVal);
-        m_lightVal = 0.0f;
+        m_lightVal = 0.0f;*/
     }
 
     public void ApplyDamage(float _damage)
@@ -174,7 +174,7 @@ public class HUDScript : MonoBehaviour
         m_TextDisplay.enabled = false;
     }
 
-    public void SetLight(float light)
+    /*public void SetLight(float light)
     {
         m_lightVal = Mathf.Max(light, m_lightVal);
     }
@@ -182,5 +182,5 @@ public class HUDScript : MonoBehaviour
     public float GetLight()
     {
         return m_prevlightVal;
-    }
+    }*/
 }
