@@ -41,7 +41,7 @@ public class Interactor : MonoBehaviour
         camera = GetComponentInChildren<Camera>();
         strength = GetComponentInChildren<PlayerRB>().m_strength;
         intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
-        m_rotationSensitivity = GameManager.instance.m_playerSensitivity;
+        m_rotationSensitivity = GameManager.PlayerSensitivity;
 
         if (HUD != null)
             HUD.isHandOpen = true;
