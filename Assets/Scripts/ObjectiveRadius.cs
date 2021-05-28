@@ -33,7 +33,7 @@ public class ObjectiveRadius : MonoBehaviour
     {
         if (other.GetComponent<Collider>().tag == "Player" && !m_Player.m_isChild)
         {
-            m_LevelLoader.LoadNextLevel();
+            LevelLoader.GetInstance().LoadNextLevel();
         }
     }
 }
