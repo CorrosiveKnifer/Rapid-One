@@ -8,7 +8,6 @@ using UnityEngine;
 public class ObjectiveRadius : MonoBehaviour
 {
     float m_DetectionRadius = 0.0f;
-    public LevelLoader m_LevelLoader;
     public Transform m_PlayerTransform;
     public PlayerRB m_Player;
     // Start is called before the first frame update
@@ -24,7 +23,7 @@ public class ObjectiveRadius : MonoBehaviour
         {
             if (!m_Player.m_isChild)
             {
-                m_LevelLoader.LoadNextLevel();
+                LevelLoader.GetInstance().LoadNextLevel();
             }
         }
     }

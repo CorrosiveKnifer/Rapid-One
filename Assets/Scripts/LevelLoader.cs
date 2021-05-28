@@ -8,6 +8,42 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class LevelLoader : MonoBehaviour
 {
+    #region Singleton
+
+    public static LevelLoader GetInstance()
+    {
+        if (instance == null)
+        {
+            GameObject loader = GameObject.Instantiate(Resources.Load("LevelLoader.prefab") as GameObject, Vector3.zero, Quaternion.identity);
+            return loader.GetComponent<LevelLoader>();
+        }
+
+        return instance;
+    }
+
+    private static LevelLoader instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Debug.LogError("Second Instance of LevelLoader was created, this instance was destroyed.");
+            Destroy(this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
+    #endregion
+
     public Animator transition;
 
     public float transitionTime = 1.0f;
