@@ -10,7 +10,7 @@ public class GameObjectViewChanger: MonoBehaviour
     public GameObject m_adultGameObject = null; //the object the adult will see
     public GameObject m_childGameObject = null; //the object the child will see
 
-
+    public bool KeepLocationSync = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +29,7 @@ public class GameObjectViewChanger: MonoBehaviour
         if (m_childGameObject != null)
             m_childGameObject.SetActive(!PlayerController.instance.m_isAdultForm);
 
-        if (m_adultGameObject != null && m_childGameObject != null)
+        if (KeepLocationSync && m_adultGameObject != null && m_childGameObject != null)
         {
             if  (m_adultGameObject.activeSelf)
             {
