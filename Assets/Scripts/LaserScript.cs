@@ -72,9 +72,17 @@ public class LaserScript : MonoBehaviour
                     shadowRender.positionCount += 1;
                     shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
                 }
-
+                
+                float AxisY = ray.direction.y;
+                Vector3 ReflectPos = Vector3.Reflect(ray.direction, hit.normal);
+                ReflectPos.y = AxisY;
+                remainingLength = Vector3.Distance(ray.origin, hit.point);
+                ray = new Ray(hit.point, ReflectPos);
+                
+                /*
                 remainingLength = Vector3.Distance(ray.origin, hit.point);
                 ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
+                */
                 //for laser reactants---------------
                 if (hit.collider.gameObject.GetComponent<LaserReactant>() != null)
                 {
