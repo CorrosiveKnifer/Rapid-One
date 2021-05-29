@@ -69,7 +69,7 @@ public class LaserScript : MonoBehaviour
                 if (hasShadow)
                 {
                     Vector3 pos = hit.point;
-                    pos.y = shadowhit.point.y;
+                    pos.y = shadowhit.point.y + 0.01f;
                     shadowRender.positionCount += 1;
                     shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
                 }
@@ -106,7 +106,7 @@ public class LaserScript : MonoBehaviour
                 if(hasShadow)
                 {
                     Vector3 pos = ray.origin + ray.direction * remainingLength;
-                    pos.y = shadowhit.point.y;
+                    pos.y = shadowhit.point.y + 0.01f;
                     shadowRender.positionCount += 1;
                     shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
                 }

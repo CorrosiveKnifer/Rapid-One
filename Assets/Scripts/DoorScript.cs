@@ -12,6 +12,10 @@ public class DoorScript : Interactable
     public bool CanOpenFromFront = true;
     public bool CanOpenFromBehind = true;
     public bool StartOpen = false;
+    public bool IsInteractable = true;
+
+    public GameObject FrontKey;
+    public GameObject BackKey;
 
     public enum OpenDirect { BOTH, FORWARD, BACKWARD};
     public OpenDirect myDirect;
@@ -65,61 +69,55 @@ public class DoorScript : Interactable
 
     public void OpenDoor(bool isOpeningForward = true, bool hasAudio = true)
     {
-        if(anim.transform.localRotation.eulerAngles.y <= -85 || anim.transform.localRotation.eulerAngles.y >= 265)
+        //Checks if it is locked or blocked from one side.
+        if (IsLocked || isOpeningForward && !CanOpenFromFront || !isOpeningForward && !CanOpenFromBehind)
         {
-            //Checks if it is locked or blocked from one side.
-            if (IsLocked || isOpeningForward && !CanOpenFromFront || !isOpeningForward && !CanOpenFromBehind)
-            {
-                anim.SetTrigger("OpenLocked");
-                audio.PlaySoundEffect("DoorLocked");
-                return;
-            }
-
-            //Opens door based on given direction
-            switch (myDirect)
-            {
-                default:
-                case OpenDirect.BOTH:
-
-                    if (isOpeningForward)
-                        anim.SetBool("OpenForward", true);
-                    else if (!isOpeningForward)
-                        anim.SetBool("OpenBackward", true);
-                    else
-                        anim.SetBool("OpenForward", true);
-                    break;
-                case OpenDirect.FORWARD:
-                    anim.SetBool("OpenBackward", true);
-                    break;
-                case OpenDirect.BACKWARD:
-                    anim.SetBool("OpenForward", true);
-                    break;
-            }
-            CanOpenFromFront = true;
-            CanOpenFromBehind = true;
-
-            if (hasAudio)
-            {
-                audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
-            }
-            
-            isClosed = false;
+            anim.SetTrigger("OpenLocked");
+            audio.PlaySoundEffect("DoorLocked");
+            return;
         }
+
+        //Opens door based on given direction
+        switch (myDirect)
+        {
+            default:
+            case OpenDirect.BOTH:
+
+                if (isOpeningForward)
+                    anim.SetBool("OpenForward", true);
+                else if (!isOpeningForward)
+                    anim.SetBool("OpenBackward", true);
+                else
+                    anim.SetBool("OpenForward", true);
+                break;
+            case OpenDirect.FORWARD:
+                anim.SetBool("OpenBackward", true);
+                break;
+            case OpenDirect.BACKWARD:
+                anim.SetBool("OpenForward", true);
+                break;
+        }
+        CanOpenFromFront = true;
+        CanOpenFromBehind = true;
+
+        if (hasAudio)
+        {
+            audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
+        }
+        
+        isClosed = false;
     }
     public void CloseDoor(bool hasAudio = true)
     {
-        if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
-        {
-            anim.SetBool("OpenForward", false);
-            anim.SetBool("OpenBackward", false);
+        anim.SetBool("OpenForward", false);
+        anim.SetBool("OpenBackward", false);
 
-            if (hasAudio)
-            {
-                audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
-            }
-                
-            isClosed = true;
-        } 
+        if (hasAudio)
+        {
+            audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
+        }
+            
+        isClosed = true;
     }
 
     public override void Activate(Interactor other)
@@ -135,7 +133,7 @@ public class DoorScript : Interactable
         {
             OpenDoor(dot > 0);
         }
-        else
+        else if(IsInteractable)
         {
             CloseDoor();
         }
@@ -147,9 +145,24 @@ public class DoorScript : Interactable
         {
             if(other.gameObject.GetComponent<KeyScript>().keyID == KeyID)
             {
+                RevealKey(other.gameObject.transform.position);
                 Destroy(other.gameObject);
                 Unlock();
             }
+        }
+    }
+
+    public void RevealKey(Vector3 keyLoc)
+    {
+        float dot = Vector3.Dot(keyLoc - transform.position, transform.right);
+        
+        if(dot > 0)
+        {
+            FrontKey.SetActive(true);
+        }
+        else
+        {
+            BackKey.SetActive(true);
         }
     }
 }
