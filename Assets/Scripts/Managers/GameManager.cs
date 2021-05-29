@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        GetComponent<AudioAgent>().PlayBackground(GetComponent<AudioAgent>().AudioClips[0].name, true);
     }
 
     // Update is called once per frame
