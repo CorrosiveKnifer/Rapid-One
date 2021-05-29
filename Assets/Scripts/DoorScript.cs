@@ -82,17 +82,17 @@ public class DoorScript : Interactable
                 case OpenDirect.BOTH:
 
                     if (isOpeningForward)
-                        anim.SetTrigger("OpenForward");
+                        anim.SetBool("OpenForward", true);
                     else if (!isOpeningForward)
-                        anim.SetTrigger("OpenBackward");
+                        anim.SetBool("OpenBackward", true);
                     else
-                        anim.SetTrigger("OpenForward");
+                        anim.SetBool("OpenForward", true);
                     break;
                 case OpenDirect.FORWARD:
-                    anim.SetTrigger("OpenBackward");
+                    anim.SetBool("OpenBackward", true);
                     break;
                 case OpenDirect.BACKWARD:
-                    anim.SetTrigger("OpenForward");
+                    anim.SetBool("OpenForward", true);
                     break;
             }
             CanOpenFromFront = true;
@@ -110,7 +110,8 @@ public class DoorScript : Interactable
     {
         if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
         {
-            anim.SetTrigger("Close");
+            anim.SetBool("OpenForward", false);
+            anim.SetBool("OpenBackward", false);
 
             if (hasAudio)
             {
