@@ -13,7 +13,7 @@ public class Objective : Interactable
     // Start is called before the first frame update
     void Start()
     {
-        goalText = "[ ] " + objectiveName;
+        goalText = "[  ] " + objectiveName;
     }
 
     // Update is called once per frame
@@ -47,8 +47,8 @@ public class Objective : Interactable
             }
 
             // Debug log
-            Debug.Log("The objective " + objectiveName + " has been completed");
             goalText = "[X] " + objectiveName;
+            Debug.Log(goalText);
         }
     }
 }
