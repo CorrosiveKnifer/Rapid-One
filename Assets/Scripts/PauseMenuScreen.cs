@@ -30,20 +30,20 @@ public class PauseMenuScreen : MonoBehaviour
 
     public void Resume()
     {
+        pMenu.SetActive(false);
         PlayerController.instance.SetCameraFreeze(false); 
         //Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         GameIsPaused = false;
-        pMenu.SetActive(false);
     }
 
     public void Pause()
     {
+        pMenu.SetActive(true);
         PlayerController.instance.SetCameraFreeze(true); 
         //Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         GameIsPaused = true;
-        pMenu.SetActive(true);
     }
 
     public void Restart()

@@ -49,7 +49,7 @@ public class PlayerRB : MonoBehaviour
 
         m_currentYRotation = 0;
         Physics.IgnoreLayerCollision(9, 9);
-        m_mouseSensitivity = GameManager.PlayerSensitivity;
+        m_mouseSensitivity = GameManager.instance.m_playerSensitivity;
     }
 
     // Update is called once per frame

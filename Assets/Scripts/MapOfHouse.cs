@@ -21,19 +21,18 @@ public class MapOfHouse : MonoBehaviour
     {
         if (Input.GetKeyDown("m"))
         {
-            map.SetActive(!map.activeSelf);
-
-            if (map.activeSelf)
-            {
-                PlayerController.instance.SetCameraFreeze(true);
-                Time.timeScale = 0;
-            }
-            else
-            {
-                PlayerController.instance.SetCameraFreeze(false);
-                Time.timeScale = 1;
-            }
+            map.SetActive(!map.activeSelf);           
         }
 
+        if (map.activeSelf)
+        {
+            PlayerController.instance.SetCameraFreeze(true); 
+            Time.timeScale = 0;
+        }
+        else
+        {
+            PlayerController.instance.SetCameraFreeze(false); 
+            Time.timeScale = 1;
+        }
     }
 }
