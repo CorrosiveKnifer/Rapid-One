@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8528807908873624203}
-  - component: {fileID: 8528807908873624200}
   - component: {fileID: 8528807908873624213}
+  - component: {fileID: 124970789}
+  - component: {fileID: 124970792}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -32,22 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8528807908873624200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8528807908873624201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8957bb4e108c834991dc4df8744565d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  child: {fileID: 0}
-  ghost: {fileID: 0}
-  agent: {fileID: 0}
 --- !u!114 &8528807908873624213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +45,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe54b98638dfe54ea78b71b060155e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowClip: {fileID: 8300000, guid: e2ada8cc95c69c2409971adb4586a6aa, type: 3}
-  fastClip: {fileID: 8300000, guid: 46343081c5142344cb080af72e5c1d71, type: 3}
-  TIME_CONSTANT: 1.665
+  adultAgent: {fileID: 124970792}
+  childAgent: {fileID: 124970789}
+--- !u!114 &124970789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528807908873624201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aec595e772df014cbfacda9a04c74ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 1b79de3cf34308f418a41296fa6ed77c, type: 3}
+  - {fileID: 8300000, guid: 9dc274ff6750d524a8d90db8ed33f030, type: 3}
+  - {fileID: 8300000, guid: e2076e75aba2ef54bab79b3efee201d7, type: 3}
+  AgentSEVolume: 1
+  AgentBGVolume: 1
+--- !u!114 &124970792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528807908873624201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aec595e772df014cbfacda9a04c74ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 4c788d0292ba59540850228375be73a4, type: 3}
+  - {fileID: 8300000, guid: 952baa370f34b0b438eb6845d2c620f6, type: 3}
+  - {fileID: 8300000, guid: 02c0570a200a9b94997bba7be4b0230f, type: 3}
+  AgentSEVolume: 1
+  AgentBGVolume: 1

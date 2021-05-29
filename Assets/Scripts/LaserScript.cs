@@ -42,6 +42,7 @@ public class LaserScript : MonoBehaviour
     void RaycastWithObject(bool showLaser = true)
     {
         ray = new Ray(transform.position, transform.forward);
+        float yAxis = transform.forward.y;
         RaycastHit hit;
 
         //Cast for shadow
@@ -68,13 +69,17 @@ public class LaserScript : MonoBehaviour
                 if (hasShadow)
                 {
                     Vector3 pos = hit.point;
-                    pos.y = shadowhit.point.y;
+                    pos.y = shadowhit.point.y + 0.01f;
                     shadowRender.positionCount += 1;
                     shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
                 }
-
+                
+                float AxisY = ray.direction.y;
+                Vector3 ReflectPos = Vector3.Reflect(ray.direction, hit.normal);
+                ReflectPos.y = AxisY;
                 remainingLength = Vector3.Distance(ray.origin, hit.point);
-                ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
+                ray = new Ray(hit.point, ReflectPos);
+                
                 //for laser reactants---------------
                 if (hit.collider.gameObject.GetComponent<LaserReactant>() != null)
                 {
@@ -101,7 +106,7 @@ public class LaserScript : MonoBehaviour
                 if(hasShadow)
                 {
                     Vector3 pos = ray.origin + ray.direction * remainingLength;
-                    pos.y = shadowhit.point.y;
+                    pos.y = shadowhit.point.y + 0.01f;
                     shadowRender.positionCount += 1;
                     shadowRender.SetPosition(shadowRender.positionCount - 1, pos);
                 }

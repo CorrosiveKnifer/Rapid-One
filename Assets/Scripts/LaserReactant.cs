@@ -8,6 +8,9 @@ public class LaserReactant : MonoBehaviour
     public UnityEvent m_OnPower;
     public UnityEvent m_OffPower;
 
+    public GameObject OnLight;
+    public GameObject OffLight;
+
     public bool IsActivated = false;
     public bool IsPowered = false;
 
@@ -28,10 +31,14 @@ public class LaserReactant : MonoBehaviour
             if (IsPowered)
             {
                 m_OnPower.Invoke();
+                OnLight.SetActive(true);
+                OffLight.SetActive(false);
             }
             else
             {
                 m_OffPower.Invoke();
+                OffLight.SetActive(true);
+                OnLight.SetActive(false);
             }
         }
         if (IsActivated)
