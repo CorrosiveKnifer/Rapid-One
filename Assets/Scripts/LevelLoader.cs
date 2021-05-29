@@ -34,7 +34,7 @@ public class LevelLoader : MonoBehaviour
         else
         {
             Debug.LogError("Second Instance of LevelLoader was created, this instance was destroyed.");
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -51,9 +51,8 @@ public class LevelLoader : MonoBehaviour
 
     public GameObject loadingscreen;
 
-    bool isthereloadingscreen = false;
-    bool doOnce = true;
-
+    bool canShowLoadingScreen = false;
+    bool isLoading = false;
 
     // Update is called once per frame
     void Update()
@@ -63,7 +62,7 @@ public class LevelLoader : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.I))
             {
                 StartCoroutine(LoadLevel(0));
-                isthereloadingscreen = true;
+                canShowLoadingScreen = true;
             }
         }
 
@@ -89,12 +88,12 @@ public class LevelLoader : MonoBehaviour
         if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1) // Check if index exceeds scene count
         {
             StartCoroutine(LoadLevel(0)); // Load menu
-            isthereloadingscreen = true;
+            canShowLoadingScreen = true;
         }
         else
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); // Loade next scene
-            isthereloadingscreen = true;
+            canShowLoadingScreen = true;
             
 
         }
@@ -102,7 +101,7 @@ public class LevelLoader : MonoBehaviour
     public void ResetScene()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
-        isthereloadingscreen = true;
+        canShowLoadingScreen = true;
     }
 
     IEnumerator LoadLevel(int levelIndex)
@@ -124,10 +123,9 @@ public class LevelLoader : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (isthereloadingscreen && doOnce)
+        if (canShowLoadingScreen)
         {
-            isthereloadingscreen = false;
-            doOnce = false;
+            canShowLoadingScreen = false;
             StartCoroutine(LoadAsychronously(levelIndex));
         }
         // Load Scene
@@ -140,18 +138,26 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadAsychronously(int sceneIndex)
     {
+        if(isLoading)
+            yield return null;
+
+        isLoading = true;
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         loadingscreen.SetActive(true);
-        isthereloadingscreen = false;
+        canShowLoadingScreen = false;
         Slider slider = loadingscreen.GetComponentInChildren<Slider>();
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             Debug.Log(progress);
             slider.value = progress;
+
             
             yield return null;
         }
-        
+
+        isLoading = false;
+        loadingscreen.SetActive(false);
+        transition.SetTrigger("Blink");
     }
 }

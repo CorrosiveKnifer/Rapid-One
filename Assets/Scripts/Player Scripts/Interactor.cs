@@ -41,7 +41,7 @@ public class Interactor : MonoBehaviour
         camera = GetComponentInChildren<Camera>();
         strength = GetComponentInChildren<PlayerRB>().m_strength;
         intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
-        m_rotationSensitivity = GameManager.instance.m_playerSensitivity;
+        m_rotationSensitivity = GameManager.PlayerSensitivity;
 
         if (HUD != null)
             HUD.isHandOpen = true;
@@ -156,13 +156,24 @@ public class Interactor : MonoBehaviour
     {
         if(myHeldObject.item == null)
         {
-            if(item.GetComponentInChildren<Liftable>().m_myMass < strength)
+            if(item.GetComponentInChildren<Liftable>()?.m_myMass < strength)
             {
-                myHeldObject.item = item;
+                myHeldObject.item = item.GetComponentInChildren<Liftable>().gameObject;
                 myHeldObject.itemParent = item.transform.parent;
-                myHeldObject.item.GetComponent<Rigidbody>().useGravity = false;
-                myHeldObject.item.GetComponent<Rigidbody>().detectCollisions = true;
-                //myHeldObject.item.transform.parent = heldLocation.transform;
+                myHeldObject.item.GetComponentInChildren<Rigidbody>().useGravity = false;
+                myHeldObject.item.GetComponentInChildren<Rigidbody>().detectCollisions = true;
+
+                savedDistance = Vector3.Distance(heldLocation.transform.position, myHeldObject.item.transform.position);
+                savedLayer = myHeldObject.item.gameObject.layer;
+                myHeldObject.item.gameObject.layer = 9;
+
+            }
+            else if (item.GetComponentInParent<Liftable>()?.m_myMass < strength)
+            {
+                myHeldObject.item = item.GetComponentInParent<Liftable>().gameObject;
+                myHeldObject.itemParent = item.transform.parent;
+                myHeldObject.item.GetComponentInParent<Rigidbody>().useGravity = false;
+                myHeldObject.item.GetComponentInParent<Rigidbody>().detectCollisions = true;
 
                 savedDistance = Vector3.Distance(heldLocation.transform.position, myHeldObject.item.transform.position);
                 savedLayer = myHeldObject.item.gameObject.layer;
@@ -184,7 +195,7 @@ public class Interactor : MonoBehaviour
                 HUD.isHandOpen = true;
 
             Vector3 itemPos = myHeldObject.item.transform.position;
-            myHeldObject.item.GetComponent<Rigidbody>().useGravity = true;
+            myHeldObject.item.GetComponentInParent<Rigidbody>().useGravity = true;
             //myHeldObject.item.transform.parent = myHeldObject.itemParent;
             //myHeldObject.item.transform.position = itemPos;
             myHeldObject.item.gameObject.layer = savedLayer;

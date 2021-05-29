@@ -39,14 +39,14 @@ public class GameManager : MonoBehaviour
     public static float SoundEffectVolume { get; set; } = 1.0f;
     public static float BackGroundVolume { get; set; } = 1.0f;
     public static float HighScore { get; set; } = 0.0f;
+    public static float PlayerSensitivity { get; set; } = 150f;
 
     public double GameTime = 0.0;
 
-    public float m_playerSensitivity = 300f;
 
     private void Start()
     {
-
+        GetComponent<AudioAgent>()?.PlayBackground(GetComponent<AudioAgent>().AudioClips[0].name, true);
     }
 
     // Update is called once per frame
