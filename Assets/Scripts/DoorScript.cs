@@ -14,6 +14,9 @@ public class DoorScript : Interactable
     public bool StartOpen = false;
     public bool IsInteractable = true;
 
+    public GameObject FrontKey;
+    public GameObject BackKey;
+
     public enum OpenDirect { BOTH, FORWARD, BACKWARD};
     public OpenDirect myDirect;
     private bool isClosed = true;
@@ -106,18 +109,15 @@ public class DoorScript : Interactable
     }
     public void CloseDoor(bool hasAudio = true)
     {
-        if (anim.transform.localRotation.eulerAngles.y <= 5 || anim.transform.localRotation.eulerAngles.y >= 175)
-        {
-            anim.SetBool("OpenForward", false);
-            anim.SetBool("OpenBackward", false);
+        anim.SetBool("OpenForward", false);
+        anim.SetBool("OpenBackward", false);
 
-            if (hasAudio)
-            {
-                audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
-            }
-                
-            isClosed = true;
-        } 
+        if (hasAudio)
+        {
+            audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
+        }
+            
+        isClosed = true;
     }
 
     public override void Activate(Interactor other)
@@ -145,9 +145,24 @@ public class DoorScript : Interactable
         {
             if(other.gameObject.GetComponent<KeyScript>().keyID == KeyID)
             {
+                RevealKey(other.gameObject.transform.position);
                 Destroy(other.gameObject);
                 Unlock();
             }
+        }
+    }
+
+    public void RevealKey(Vector3 keyLoc)
+    {
+        float dot = Vector3.Dot(keyLoc - transform.position, transform.right);
+        
+        if(dot > 0)
+        {
+            FrontKey.SetActive(true);
+        }
+        else
+        {
+            BackKey.SetActive(true);
         }
     }
 }
