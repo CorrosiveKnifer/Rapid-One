@@ -17,7 +17,7 @@ public class MultipleObjectives : MonoBehaviour
         ObjectiveText =  GetComponent<Text>();
         rectTransform = ObjectiveText.GetComponent<RectTransform>();
         TaskUpdate();
-        Cross(1);
+        CrossTask(1);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class MultipleObjectives : MonoBehaviour
             print(item);
         }
     }
-    public void Cross(int elementNum)
+    public void CrossTask(int elementNum)
     {
         CrossObject[elementNum].SetActive(true);
     }
