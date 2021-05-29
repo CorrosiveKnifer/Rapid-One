@@ -6,14 +6,14 @@ public class Objective : Interactable
 {
     public bool isComplete = false;
     public string objectiveName = "Objective";
-    private string goalText;
+    public string goalText;
     public bool hasAnimation = false;
     public MeshRenderer togglableMesh;
     public Animator animator;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        goalText = "[  ] " + objectiveName;
+        goalText = "[     ] " + objectiveName;
     }
 
     // Update is called once per frame
@@ -47,8 +47,9 @@ public class Objective : Interactable
             }
 
             // Debug log
-            goalText = "[X] " + objectiveName;
+            goalText = "[✓] " + objectiveName;
             Debug.Log(goalText);
+            PlayerController.instance.GetComponentInChildren<ObjectiveManager>().UpdateText();
         }
     }
 }
