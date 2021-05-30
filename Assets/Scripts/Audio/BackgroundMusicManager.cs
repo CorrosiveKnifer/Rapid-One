@@ -42,17 +42,20 @@ public class BackgroundMusicManager : MonoBehaviour
             hasPausedBecauseOfScene = false;
         }
 
-        if(isAdult != PlayerController.instance.m_isAdultForm)
+        if(PlayerController.instance != null)
         {
-            if (PlayerController.instance.m_isAdultForm)
+            if (isAdult != PlayerController.instance?.m_isAdultForm)
             {
-                StartCoroutine(FadeToAdult());
+                if (PlayerController.instance.m_isAdultForm)
+                {
+                    StartCoroutine(FadeToAdult());
+                }
+                if (!PlayerController.instance.m_isAdultForm)
+                {
+                    StartCoroutine(FadeToChild());
+                }
+                isAdult = PlayerController.instance.m_isAdultForm;
             }
-            if (!PlayerController.instance.m_isAdultForm)
-            {
-                StartCoroutine(FadeToChild());
-            }
-            isAdult = PlayerController.instance.m_isAdultForm;
         }
     }
 
@@ -78,6 +81,7 @@ public class BackgroundMusicManager : MonoBehaviour
         adultAgent.PauseQueue();
         yield return null;
     }
+
     IEnumerator FadeToAdult()
     {
         float ratio = 0.0f;
