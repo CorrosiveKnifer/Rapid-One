@@ -22,7 +22,6 @@ public class Settings : MonoBehaviour
     {
         m_sensitivityField.text = GameManager.PlayerSensitivity.ToString();
     }
-
     void Update()
     {
         GameManager.MasterVolume = m_masterVolume.value;
