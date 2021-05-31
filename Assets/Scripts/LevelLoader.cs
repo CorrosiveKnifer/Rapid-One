@@ -79,7 +79,10 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
         isthereloadingscreen = true;
     }
-
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScreen");
+    }
     IEnumerator LoadLevel(int levelIndex)
     {
         // Play Animation
