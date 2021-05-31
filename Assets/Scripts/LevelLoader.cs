@@ -103,7 +103,10 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
         canShowLoadingScreen = true;
     }
-
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScreen");
+    }
     IEnumerator LoadLevel(int levelIndex)
     {
         // Play Animation
