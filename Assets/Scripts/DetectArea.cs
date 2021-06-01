@@ -23,6 +23,7 @@ public class DetectArea : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag=="Player" && m_adultGameObject != null)
