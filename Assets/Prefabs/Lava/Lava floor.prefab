@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2919437244991036169}
   - component: {fileID: 2919437244991036166}
   - component: {fileID: 2919437244991036167}
+  - component: {fileID: 236626439666103653}
+  - component: {fileID: 7911693663086147364}
   m_Layer: 0
   m_Name: Lava floor
   m_TagString: Untagged
@@ -93,3 +95,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &236626439666103653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919437244991036164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e1009c6bf664a43a137e2c85c808a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7911693663086147364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919437244991036164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aec595e772df014cbfacda9a04c74ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClips:
+  - {fileID: 8300000, guid: 5a598e7f3df58de4fb403340142374d1, type: 3}
+  AgentSEVolume: 1
+  AgentBGVolume: 1
+  SoundEffectDistance: 5

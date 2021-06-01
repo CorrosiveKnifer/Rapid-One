@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class AudioAgent : MonoBehaviour
     public float AgentSEVolume = 1f;
     public float AgentBGVolume = 1f;
 
+    public float SoundEffectDistance = 5.0f;
+
     private float savedSEVolume = 1f;
     private float savedBGVolume = 1f;
 
@@ -20,6 +23,7 @@ public class AudioAgent : MonoBehaviour
     {
         public AudioPlayer(AudioSource _source) { isSoundEffect = false; source = _source; }
         public bool isSoundEffect { get; set; }
+        public bool isGlobal { get; set; } = true;
         public AudioSource source { get; private set; }
 
         public float volume = 1.0f; //Local volume to the player
@@ -48,7 +52,7 @@ public class AudioAgent : MonoBehaviour
         foreach (var item in AudioLibrary)
         {
             if (item.Value.isSoundEffect)
-                item.Value.source.volume = GetSoundEffectVolume() * item.Value.volume * AgentSEVolume;
+                item.Value.source.volume = GetSoundEffectVolume() * item.Value.volume * AgentSEVolume * CalculateDistance(item.Value);
             else
                 item.Value.source.volume = GetBackgroundVolume() * item.Value.volume * AgentBGVolume;
         }
@@ -70,6 +74,20 @@ public class AudioAgent : MonoBehaviour
         }
     }
 
+    private float CalculateDistance(AudioPlayer item)
+    {
+        if(!item.isGlobal)
+        {
+            GameObject listener = GameObject.FindObjectOfType<AudioListener>().gameObject;
+
+            float dist = Vector3.Distance(this.transform.position, listener.transform.position);
+            Debug.Log(dist);
+            return Mathf.Clamp(dist / SoundEffectDistance, 0.0f, 1.0f);
+
+        }
+        return 1.0f;
+    }
+
     private void OnDestroy()
     {
         AudioManager.GetInstance().RemoveAgent(this);
@@ -85,6 +103,22 @@ public class AudioAgent : MonoBehaviour
         source.priority = 255;
 
         AudioLibrary.Add(title, new AudioPlayer(source));
+    }
+
+    public bool Play3DSoundEffect(string title, bool isLooping = false, int priority = 255, float pitch = 1.0f)
+    {
+        AudioPlayer player;
+        if (AudioLibrary.TryGetValue(title, out player))
+        {
+            player.isGlobal = false;
+            player.source.loop = isLooping;
+            player.source.priority = priority;
+            player.isSoundEffect = true;
+            player.source.pitch = pitch;
+            player.source.Play();
+            return true;
+        }
+        return false;
     }
 
     public bool PlaySoundEffect(string title, bool isLooping = false, int priority = 255, float pitch = 1.0f)
