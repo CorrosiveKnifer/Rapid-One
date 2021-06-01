@@ -78,12 +78,25 @@ public class AudioAgent : MonoBehaviour
     {
         if(!item.isGlobal)
         {
-            GameObject listener = GameObject.FindObjectOfType<AudioListener>().gameObject;
+            AudioListener[] listeners = GameObject.FindObjectsOfType<AudioListener>();
+            GameObject listenerObj = null;
+            foreach (var listener in listeners)
+            {
+                if(listener.isActiveAndEnabled)
+                {
+                    listenerObj = listener.gameObject;
+                }
+            }
 
-            float dist = Vector3.Distance(this.transform.position, listener.transform.position);
-            Debug.Log(dist);
-            return Mathf.Clamp(dist / SoundEffectDistance, 0.0f, 1.0f);
-
+            if (listenerObj != null)
+            {
+                float dist = Vector3.Distance(this.transform.position, listenerObj.transform.position);
+                return Mathf.Clamp(1.0f - dist / SoundEffectDistance, 0.0f, 1.0f);
+            }
+            else
+            {
+                return 0.0f;
+            }
         }
         return 1.0f;
     }
@@ -115,6 +128,7 @@ public class AudioAgent : MonoBehaviour
             player.source.priority = priority;
             player.isSoundEffect = true;
             player.source.pitch = pitch;
+            player.source.volume = GetSoundEffectVolume() * player.volume * AgentSEVolume * CalculateDistance(player);
             player.source.Play();
             return true;
         }
@@ -130,6 +144,7 @@ public class AudioAgent : MonoBehaviour
             AudioLibrary[title].source.priority = priority;
             AudioLibrary[title].isSoundEffect = true;
             AudioLibrary[title].source.pitch = pitch;
+            player.source.volume = GetSoundEffectVolume() * player.volume * AgentSEVolume;
             AudioLibrary[title].source.Play();
             return true;
         }
@@ -144,6 +159,7 @@ public class AudioAgent : MonoBehaviour
             AudioLibrary[title].source.loop = isLooping;
             AudioLibrary[title].source.priority = priority;
             AudioLibrary[title].isSoundEffect = false;
+            player.source.volume = GetBackgroundVolume() * player.volume * AgentBGVolume;
             AudioLibrary[title].source.Play();
             return true;
         }

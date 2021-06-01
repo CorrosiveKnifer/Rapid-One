@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class LavaScript : MonoBehaviour
 {
-    private void Awake()
-    {
-        GetComponent<AudioAgent>().Play3DSoundEffect("LavaNoise", true);
-    }
     private void OnEnable()
     {
-        GetComponent<AudioAgent>().Play3DSoundEffect("LavaNoise", true);
+        GetComponent<AudioAgent>().Play3DSoundEffect(GetComponent<AudioAgent>().AudioClips[0].name, true);
     }
     private void OnDisable()
     {
