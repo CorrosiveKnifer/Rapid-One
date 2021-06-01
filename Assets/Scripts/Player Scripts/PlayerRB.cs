@@ -196,6 +196,7 @@ public class PlayerRB : MonoBehaviour
     {
         m_myCamera.enabled = true;
         GetComponent<Interactor>().enabled = true;
+        GetComponent<AudioListener>().enabled = true;
         m_rigidBody.velocity = Vector3.zero;
         m_rigidBody.isKinematic = false;
         if (m_meshRenderer != null)
@@ -206,6 +207,7 @@ public class PlayerRB : MonoBehaviour
     {
         m_myCamera.enabled = false;
         GetComponent<Interactor>().enabled = false;
+        GetComponent<AudioListener>().enabled = false;
         m_rigidBody.velocity = Vector3.zero;
         m_rigidBody.isKinematic = true;
         if (m_meshRenderer != null)
