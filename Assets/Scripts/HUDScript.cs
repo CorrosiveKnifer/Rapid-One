@@ -159,7 +159,7 @@ public class HUDScript : MonoBehaviour
 
     private IEnumerator StartDisplayingText(float time)
     {
-        if(m_displayTimer != 0.0)
+        if(m_displayTimer <= 0.0f)
         {
             m_displayTimer = time;
             yield return null;
@@ -173,14 +173,4 @@ public class HUDScript : MonoBehaviour
 
         m_TextDisplay.enabled = false;
     }
-
-    /*public void SetLight(float light)
-    {
-        m_lightVal = Mathf.Max(light, m_lightVal);
-    }
-
-    public float GetLight()
-    {
-        return m_prevlightVal;
-    }*/
 }
