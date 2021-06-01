@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
             // Wait to let animation finish playing
             yield return new WaitForSeconds(transitionTime);
         }
+        GetComponent<AudioAgent>().PlaySoundEffect("Switch");
         m_adultForm.m_canMove = true;
         m_childForm.m_canMove = true;
         m_isAdultForm = !m_isAdultForm;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Michael Jordan
+/// Michael Jordan, William de Beer
 /// </summary>
 
 public class Interactor : MonoBehaviour
@@ -122,7 +122,7 @@ public class Interactor : MonoBehaviour
                 HUD.isHandOpen = false;
 
             //myHeldObject.item.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Vector3 forceDirection = (heldLocation.transform.position + ray.direction * savedDistance) - myHeldObject.item.transform.position;
+            Vector3 forceDirection = (heldLocation.transform.position + ray.direction * savedDistance) - (myHeldObject.item.transform.position);
             myHeldObject.item.GetComponent<Rigidbody>().velocity = forceDirection * 10.0f;
 
             if (Input.GetMouseButton(1))
@@ -134,7 +134,6 @@ public class Interactor : MonoBehaviour
                 //myHeldObject.item.gameObject.transform.localRotation = Quaternion.Euler(rotation.x,
                 //    rotation.y + mouseX * Time.deltaTime,
                 //    rotation.z + mouseY * Time.deltaTime);
-
 
                 myHeldObject.item.gameObject.transform.Rotate(new Vector3(0, -mouseX * Time.deltaTime, 0), Space.World); // Y axis rotation
                 myHeldObject.item.gameObject.transform.RotateAround(myHeldObject.item.transform.position, transform.right, mouseY * Time.deltaTime); // Z Axis rotation
@@ -231,7 +230,8 @@ public class Interactor : MonoBehaviour
                 closestHit = hits[i];
         }
 
-        if(closestHit.collider.gameObject.GetComponentInChildren<Interactable>())
+
+        if (closestHit.collider.gameObject.GetComponentInChildren<Interactable>())
         {
             result = (ushort)(result | (int)ItemType.ACTION);
         }
