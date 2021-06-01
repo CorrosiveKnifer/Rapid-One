@@ -33,7 +33,7 @@ public class LevelLoader : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Second Instance of LevelLoader was created, this instance was destroyed.");
+            Debug.Log("Second Instance of LevelLoader was created, this instance was destroyed.");
             Destroy(gameObject);
         }
     }

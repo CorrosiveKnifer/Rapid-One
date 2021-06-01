@@ -8,12 +8,15 @@ public class ObjectiveManager : MonoBehaviour
     public Objective[] Objectives;
     public Text childObjectiveText;
     public Text adultObjectiveText;
+    public ObjectiveRadius bedObjective;
 
     private string objectiveList;
     private bool finalGoalVisible = false;
     // Start is called before the first frame update
     void Start()
     {
+        Objectives = FindObjectsOfType<Objective>();
+
         UpdateText();
     }
     // Update is called once per frame
@@ -29,9 +32,18 @@ public class ObjectiveManager : MonoBehaviour
         if (allComplete && !finalGoalVisible)
         {
             // show bed objective
-            childObjectiveText.text = "Go to bed";
+            childObjectiveText.text = "Board the pirate ship";
             adultObjectiveText.text = "Go to bed";
             finalGoalVisible = true;
+
+            if (bedObjective != null)
+            {
+                bedObjective.gameObject.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("No final objective in ObjectiveManager");
+            }
         }
     }
 

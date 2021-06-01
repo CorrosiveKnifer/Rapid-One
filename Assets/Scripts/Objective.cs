@@ -13,7 +13,7 @@ public class Objective : Interactable
     // Start is called before the first frame update
     void Awake()
     {
-        goalText = "[     ] " + objectiveName;
+        goalText = "☐ " + objectiveName;
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class Objective : Interactable
             }
 
             // Debug log
-            goalText = "[✓] " + objectiveName;
+            goalText = "☑ " + objectiveName;
             Debug.Log(goalText);
             PlayerController.instance.GetComponentInChildren<ObjectiveManager>().UpdateText();
         }
