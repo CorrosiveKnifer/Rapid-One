@@ -33,6 +33,7 @@ public class LavaScript : MonoBehaviour
     {
         if (other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
         {
+            GetComponent<AudioAgent>().PlaySoundEffect("LavaEnter");
             HUDScript.instance.ApplyDamage(5.0f * Time.deltaTime);
             other.gameObject.GetComponentInChildren<PlayerRB>().m_canJump = false;
         }
