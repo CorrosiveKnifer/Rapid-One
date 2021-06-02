@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5236787727735199093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5236787727735199092}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 3.1397297, y: 0.74419075, z: 16.302351}
-  m_LocalScale: {x: 4, y: 4.5, z: 5.5}
+  m_LocalScale: {x: 4, y: 3.9976096, z: 5.0634174}
   m_Children:
   - {fileID: 8820227414937183862}
   m_Father: {fileID: 0}
@@ -43,6 +43,16 @@ PrefabInstance:
       propertyPath: m_brainRequirement
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3011705501953993057, guid: 62a4b623c606382479c311cef23365bd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 47fef44fd80774e4b9d343bf1f5b5fb3, type: 2}
+    - target: {fileID: 3119803388496112225, guid: 62a4b623c606382479c311cef23365bd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 47fef44fd80774e4b9d343bf1f5b5fb3, type: 2}
     - target: {fileID: 3660143003467204599, guid: 62a4b623c606382479c311cef23365bd,
         type: 3}
       propertyPath: m_RootOrder
@@ -51,12 +61,12 @@ PrefabInstance:
     - target: {fileID: 3660143003467204599, guid: 62a4b623c606382479c311cef23365bd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0453
       objectReference: {fileID: 0}
     - target: {fileID: 3660143003467204599, guid: 62a4b623c606382479c311cef23365bd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0014
       objectReference: {fileID: 0}
     - target: {fileID: 3660143003467204599, guid: 62a4b623c606382479c311cef23365bd,
         type: 3}
@@ -98,10 +108,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6342091681950129684, guid: 62a4b623c606382479c311cef23365bd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0258
+      objectReference: {fileID: 0}
     - target: {fileID: 7943395502019088321, guid: 62a4b623c606382479c311cef23365bd,
         type: 3}
       propertyPath: m_Name
       value: VentGrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943395502019088321, guid: 62a4b623c606382479c311cef23365bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187318776690348041, guid: 62a4b623c606382479c311cef23365bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62a4b623c606382479c311cef23365bd, type: 3}

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class LavaScript : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        GetComponent<AudioAgent>().Play3DSoundEffect(GetComponent<AudioAgent>().AudioClips[0].name, true);
+    }
+    private void OnDisable()
+    {
+        GetComponent<AudioAgent>().StopAllAudio();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
@@ -24,6 +33,7 @@ public class LavaScript : MonoBehaviour
     {
         if (other.gameObject.GetComponentInChildren<PlayerRB>() != null || other.gameObject.GetComponentInParent<PlayerRB>() != null)
         {
+            GetComponent<AudioAgent>().PlaySoundEffect("LavaEnter");
             HUDScript.instance.ApplyDamage(5.0f * Time.deltaTime);
             other.gameObject.GetComponentInChildren<PlayerRB>().m_canJump = false;
         }

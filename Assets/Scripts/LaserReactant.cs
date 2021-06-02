@@ -33,10 +33,12 @@ public class LaserReactant : MonoBehaviour
                 m_OnPower.Invoke();
                 OnLight.SetActive(true);
                 OffLight.SetActive(false);
+                GetComponent<AudioAgent>().PlaySoundEffect("LaserOpen");
             }
             else
             {
                 m_OffPower.Invoke();
+                GetComponent<AudioAgent>().PlaySoundEffect("LaserClose");
                 OffLight.SetActive(true);
                 OnLight.SetActive(false);
             }
