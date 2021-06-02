@@ -2283,7 +2283,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 1
-  m_CharacterLimit: 4
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -2395,6 +2395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999636041630105}
   m_childGameObject: {fileID: 8991027404077869826}
+  KeepLocationSync: 1
 --- !u!1 &2044601123177892103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,6 +2446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 4657907890238960074}
   m_childGameObject: {fileID: 5793535640950021925}
+  KeepLocationSync: 1
 --- !u!1 &2146729174945017593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,6 +2497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999635713727738}
   m_childGameObject: {fileID: 7884306735874229436}
+  KeepLocationSync: 1
 --- !u!1 &2430571896517269020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,6 +2778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1223678546123564395}
   m_childGameObject: {fileID: 9155478836359672008}
+  KeepLocationSync: 1
 --- !u!1 &4049478649361277883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2825,6 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999636734316163}
   m_childGameObject: {fileID: 7549301183743854104}
+  KeepLocationSync: 1
 --- !u!1 &4150883446992251289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,6 +2958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999637143644053}
   m_childGameObject: {fileID: 507448964769768896}
+  KeepLocationSync: 1
 --- !u!1 &4456249149635057071
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,8 +3115,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 7102041665847664784}
   m_HandleRect: {fileID: 423086242022406040}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 9999
+  m_MinValue: 1
+  m_MaxValue: 999
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -3369,10 +3375,21 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 1
-  m_CharacterLimit: 4
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3652,6 +3669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999636441798353}
   m_childGameObject: {fileID: 2430571896517269020}
+  KeepLocationSync: 1
 --- !u!1 &6584853183979058156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,6 +3720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999636695689123}
   m_childGameObject: {fileID: 8135406979304549796}
+  KeepLocationSync: 1
 --- !u!1 &6771596430263105304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4236,6 +4255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999635871436031}
   m_childGameObject: {fileID: 979008922038984095}
+  KeepLocationSync: 1
 --- !u!1 &8784844785466616253
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,6 +4380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 5603770548937114152}
   m_childGameObject: {fileID: 1370999637159786463}
+  KeepLocationSync: 1
 --- !u!1 &8904126646877774290
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,6 +4431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 1370999636158261573}
   m_childGameObject: {fileID: 2822975077255453157}
+  KeepLocationSync: 1
 --- !u!1 &8991027404077869826
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,7 +41,6 @@ public class Interactor : MonoBehaviour
         camera = GetComponentInChildren<Camera>();
         strength = GetComponentInChildren<PlayerRB>().m_strength;
         intellegence = GetComponentInChildren<PlayerRB>().m_intellegence;
-        m_rotationSensitivity = GameManager.PlayerSensitivity;
 
         if (HUD != null)
             HUD.isHandOpen = true;
@@ -51,6 +50,8 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_rotationSensitivity = GameManager.PlayerSensitivity;
+
         //Get current game object infront of the interactor.
         GameObject item = null;
         Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0.0f));
