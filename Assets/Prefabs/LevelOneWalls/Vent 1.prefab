@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400684861930357967}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00829982, y: 0.1026738, z: -0.021408843}
-  m_LocalScale: {x: 0.033165, y: 0.3194234, z: 0.37836915}
+  m_LocalPosition: {x: -0.00829982, y: 0.133, z: -0.01042}
+  m_LocalScale: {x: 0.033165, y: 0.3194234, z: 0.43362725}
   m_Children: []
   m_Father: {fileID: 7572668014520307373}
   m_RootOrder: 1
@@ -180,6 +180,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d7193de3f5f3a6440bfeff7a6ee4ec3f, type: 3}
   AgentSEVolume: 1
   AgentBGVolume: 1
+  SoundEffectDistance: 5
 --- !u!1 &6391670614432247926
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +284,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6619435777137065391}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.019, y: -1.348, z: -0.492}
   m_LocalScale: {x: 4, y: 3.9976096, z: 5.420895}
   m_Children:
@@ -305,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_adultGameObject: {fileID: 7801441196049328896}
   m_childGameObject: {fileID: 1400684861930357967}
-  KeepLocationSync: 1
+  KeepLocationSync: 0
 --- !u!1 &7801441196049328896
 GameObject:
   m_ObjectHideFlags: 0

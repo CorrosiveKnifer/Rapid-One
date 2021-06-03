@@ -49,12 +49,13 @@ public class PlayerRB : MonoBehaviour
 
         m_currentYRotation = 0;
         Physics.IgnoreLayerCollision(9, 9);
-        m_mouseSensitivity = GameManager.PlayerSensitivity;
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_mouseSensitivity = GameManager.PlayerSensitivity;
+
         //Mouse Rotation
         float mouseX = Input.GetAxis("Mouse X") * m_mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * m_mouseSensitivity * Time.deltaTime;
