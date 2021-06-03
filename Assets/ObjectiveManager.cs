@@ -16,6 +16,7 @@ public class ObjectiveManager : MonoBehaviour
     void Start()
     {
         Objectives = FindObjectsOfType<Objective>();
+        bedObjective.gameObject.SetActive(false);
 
         UpdateText();
     }
