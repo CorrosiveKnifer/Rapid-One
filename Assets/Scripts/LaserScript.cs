@@ -115,6 +115,7 @@ public class LaserScript : MonoBehaviour
         }
 
         lineRenderer.enabled = showLaser;
+        shadowRender.transform.forward = -Vector3.up;
     }
     
 }

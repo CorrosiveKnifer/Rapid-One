@@ -21,9 +21,9 @@ public class VentOpen : Interactable
         if (IsOpen)
             return;
 
-        GetComponent<Animator>().SetTrigger("Open");
+        GetComponent<Animator>().SetBool("Open", true);
 
-        if(hasAudio)
+        if (hasAudio)
         {
             GetComponent<AudioAgent>().PlaySoundEffectDelayed("VentOpen", 0.1f);
         }
@@ -35,7 +35,7 @@ public class VentOpen : Interactable
         if (!IsOpen)
             return;
 
-        GetComponent<Animator>().SetTrigger("Close");
+        GetComponent<Animator>().SetBool("Open", false);
 
         if (hasAudio)
         {

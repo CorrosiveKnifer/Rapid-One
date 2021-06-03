@@ -25,9 +25,14 @@ public class ChangeMaterial : MonoBehaviour
         if (adultMaterial != null && childMaterial != null)
         {
             if (PlayerController.instance.m_isAdultForm)
+            {
                 gameObject.GetComponent<MeshRenderer>().material = adultMaterial;
+            }
             else
+            {
                 gameObject.GetComponent<MeshRenderer>().material = childMaterial;
+            }
+                
         }
         else
         {
