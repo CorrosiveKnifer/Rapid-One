@@ -21,6 +21,7 @@ public class VentOpen : Interactable
         if (IsOpen)
             return;
 
+        GetComponent<Animator>().SetBool("Open", true);
         GetComponent<Animator>().SetTrigger("Open");
 
         if(hasAudio)
