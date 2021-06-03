@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        IsPaused = GetComponentInChildren<PauseMenuScreen>().GameIsPaused;
     }
 
     // Update is called once per frame
@@ -57,7 +56,6 @@ public class PlayerController : MonoBehaviour
             m_shiftTimeDelay = Mathf.Clamp(m_shiftTimeDelay - Time.deltaTime, 0, m_shiftMaximumDelay);
             
         }
-        //!CameraController.instance.IsCameraShifting() && 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm && !IsPaused)
         {
             Switch();

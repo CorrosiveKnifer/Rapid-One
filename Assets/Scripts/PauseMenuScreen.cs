@@ -30,9 +30,8 @@ public class PauseMenuScreen : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("resumed");
-        PlayerController.instance.SetCameraFreeze(false); 
-        //Time.timeScale = 1f;
+        PlayerController.instance.SetCameraFreeze(false);
+        PlayerController.instance.IsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         GameIsPaused = false;
         pMenu.SetActive(false);
@@ -40,9 +39,8 @@ public class PauseMenuScreen : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log("Menu paused");
-        PlayerController.instance.SetCameraFreeze(true); 
-        //Time.timeScale = 0f;
+        PlayerController.instance.SetCameraFreeze(true);
+        PlayerController.instance.IsPaused = true;
         Cursor.lockState = CursorLockMode.Confined;
         GameIsPaused = true;
         pMenu.SetActive(true);
@@ -58,28 +56,6 @@ public class PauseMenuScreen : MonoBehaviour
         SceneManager.LoadScene("MenuScreen");
     }
 }
-       
-
-        /*void Update()
-    {
-        if (GameIsPaused)
-        {
-            pMenu.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            pMenu.SetActive(false);
-            Time.timeScale = 1f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameIsPaused = !GameIsPaused;
-        }
-
-        
-    }*/
 
     
 
