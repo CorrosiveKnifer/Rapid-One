@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public float transitionTime = 0.5f;
 
-
+    public bool IsPaused = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -56,8 +56,7 @@ public class PlayerController : MonoBehaviour
             m_shiftTimeDelay = Mathf.Clamp(m_shiftTimeDelay - Time.deltaTime, 0, m_shiftMaximumDelay);
             
         }
-        //!CameraController.instance.IsCameraShifting() && 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm && !IsPaused)
         {
             Switch();
         }

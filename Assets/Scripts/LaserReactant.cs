@@ -28,12 +28,26 @@ public class LaserReactant : MonoBehaviour
             if (IsPowered)
             {
                 m_OnPower.Invoke();
-                GetComponent<AudioAgent>().PlaySoundEffect("LaserOpen");
+                if (GameManager.instance.GameTime > 1.0f && PlayerController.instance.m_isAdultForm)
+                {
+                    GetComponent<AudioAgent>().PlaySoundEffect("LaserOpen");
+                }
+                else if (GameManager.instance.GameTime > 1.0f)
+                {
+                    GetComponent<AudioAgent>().PlaySoundEffect("FlameOn");
+                }
             }
             else
             {
                 m_OffPower.Invoke();
-                GetComponent<AudioAgent>().PlaySoundEffect("LaserClose");
+                if (GameManager.instance.GameTime > 1.0f && PlayerController.instance.m_isAdultForm)
+                {
+                    GetComponent<AudioAgent>().PlaySoundEffect("LaserClose");
+                }
+                else if (GameManager.instance.GameTime > 1.0f)
+                {
+                    GetComponent<AudioAgent>().PlaySoundEffect("FlameOff");
+                }
             }
         }
         if (IsActivated)

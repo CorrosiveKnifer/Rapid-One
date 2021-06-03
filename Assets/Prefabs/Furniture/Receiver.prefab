@@ -169,7 +169,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.047468763, b: 0, a: 1}
-  m_Intensity: 2
+  m_Intensity: 20
   m_Range: 1.24
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -211,7 +211,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 33, z: 12, w: 0}
@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 7071399206928247038}
   - component: {fileID: 1708031605208553388}
   - component: {fileID: 1797019365891669400}
+  - component: {fileID: 393422489}
   m_Layer: 0
   m_Name: Main_Receiver
   m_TagString: Untagged
@@ -390,6 +391,8 @@ MonoBehaviour:
   AudioClips:
   - {fileID: 8300000, guid: f7f984ef5d5c71d49a1b3f1aa36708cf, type: 3}
   - {fileID: 8300000, guid: 3f6849a2466b2934ea21a64f00a0ee79, type: 3}
+  - {fileID: 8300000, guid: e9d19ede5b385684aa42253b61b139fe, type: 3}
+  - {fileID: 8300000, guid: c893d0fe1f38e284eaaa227f7a000ca4, type: 3}
   AgentSEVolume: 1
   AgentBGVolume: 1
   SoundEffectDistance: 5
@@ -408,6 +411,19 @@ MonoBehaviour:
   m_adultGameObject: {fileID: 3154855616332742618}
   m_childGameObject: {fileID: 1974361590529210959}
   KeepLocationSync: 0
+--- !u!114 &393422489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977557289836185455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac70b771882ffd408d3043f90f7c5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Light: {fileID: 0}
 --- !u!1 &4821671656571118063
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +655,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.08543229, a: 1}
-  m_Intensity: 2
+  m_Intensity: 20
   m_Range: 1.24
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -678,10 +694,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
