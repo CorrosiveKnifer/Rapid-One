@@ -8,7 +8,7 @@ public class Objective : Interactable
     public string objectiveName = "Objective";
     public string goalText;
     public bool hasAnimation = false;
-    public MeshRenderer togglableMesh;
+    public MeshRenderer[] togglableMesh;
     public Animator animator;
     // Start is called before the first frame update
     void Awake()
@@ -37,10 +37,14 @@ public class Objective : Interactable
             }
 
             // Change model / mat
-            if (togglableMesh != null)
+            if (togglableMesh.Length != 0)
             {
-                togglableMesh.enabled = false;
+                foreach (var mesh in togglableMesh)
+                {
+                    mesh.enabled = false;
+                }
             }
+
             if (animator != null)
             {
                 animator.SetTrigger("Start");
