@@ -60,7 +60,7 @@ public class Interactor : MonoBehaviour
         UpdateHUD(itemType);
         MoveHeldItem(ray);
 
-        if (Input.GetMouseButtonDown(0) && ResolveBitwise(itemType, (ushort)ItemType.ACTION))
+        if (Input.GetMouseButtonDown(0) && ResolveBitwise(itemType, (ushort)ItemType.ACTION) && !PlayerController.instance.IsPaused)
         {
             Activate(item);
             return;
