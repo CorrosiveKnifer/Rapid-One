@@ -92,7 +92,7 @@ public class LaserScript : MonoBehaviour
                 {
 
                     GetComponent<AudioAgent>().PlaySoundEffect("Electric_Zap");
-                    PlayerController.instance.Switch();
+                    HUDScript.instance.ApplyDamage(1);
                     break;
                 }
                 if (hit.collider.tag != "Mirror")
