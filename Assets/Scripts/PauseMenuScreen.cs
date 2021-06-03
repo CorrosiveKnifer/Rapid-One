@@ -33,6 +33,7 @@ public class PauseMenuScreen : MonoBehaviour
         PlayerController.instance.SetCameraFreeze(false);
         PlayerController.instance.IsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         GameIsPaused = false;
         pMenu.SetActive(false);
     }
@@ -42,6 +43,7 @@ public class PauseMenuScreen : MonoBehaviour
         PlayerController.instance.SetCameraFreeze(true);
         PlayerController.instance.IsPaused = true;
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         GameIsPaused = true;
         pMenu.SetActive(true);
     }
