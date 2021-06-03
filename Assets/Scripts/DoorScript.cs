@@ -100,9 +100,13 @@ public class DoorScript : Interactable
         CanOpenFromFront = true;
         CanOpenFromBehind = true;
 
-        if (hasAudio)
+        if (GameManager.instance.GameTime > 1.0f && hasAudio && PlayerController.instance.m_isAdultForm)
         {
             audio.PlaySoundEffectDelayed("DoorOpen", 0.05f);
+        }
+        else if(GameManager.instance.GameTime > 1.0f && hasAudio)
+        {
+            audio.PlaySoundEffectDelayed("MetalOpen", 0.05f);
         }
         
         isClosed = false;
@@ -112,11 +116,15 @@ public class DoorScript : Interactable
         anim.SetBool("OpenForward", false);
         anim.SetBool("OpenBackward", false);
 
-        if (hasAudio)
+        if (hasAudio && PlayerController.instance.m_isAdultForm)
         {
-            audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
+            audio.PlaySoundEffectDelayed("DoorClosed", 0.05f);
         }
-            
+        else if (hasAudio)
+        {
+            audio.PlaySoundEffectDelayed("MetalClose", 0.05f);
+        }
+
         isClosed = true;
     }
 
