@@ -30,6 +30,7 @@ public class PauseMenuScreen : MonoBehaviour
 
     public void Resume()
     {
+        Debug.Log("resumed");
         PlayerController.instance.SetCameraFreeze(false); 
         //Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
@@ -39,6 +40,7 @@ public class PauseMenuScreen : MonoBehaviour
 
     public void Pause()
     {
+        Debug.Log("Menu paused");
         PlayerController.instance.SetCameraFreeze(true); 
         //Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;

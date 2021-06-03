@@ -40,12 +40,13 @@ public class PlayerController : MonoBehaviour
 
     public float transitionTime = 0.5f;
 
-
+    public bool IsPaused = false;
 
     // Start is called before the first frame update
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        IsPaused = GetComponentInChildren<PauseMenuScreen>().GameIsPaused;
     }
 
     // Update is called once per frame
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
             
         }
         //!CameraController.instance.IsCameraShifting() && 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm && !IsPaused)
         {
             Switch();
         }
