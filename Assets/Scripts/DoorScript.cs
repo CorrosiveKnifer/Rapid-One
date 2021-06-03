@@ -118,7 +118,7 @@ public class DoorScript : Interactable
 
         if (hasAudio && PlayerController.instance.m_isAdultForm)
         {
-            audio.PlaySoundEffectDelayed("DoorClosed", 0.05f);
+            audio.PlaySoundEffectDelayed("DoorClosed", 0.85f);
         }
         else if (hasAudio)
         {
