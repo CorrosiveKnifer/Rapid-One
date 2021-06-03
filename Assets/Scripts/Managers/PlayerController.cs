@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             
         }
         //!CameraController.instance.IsCameraShifting() && 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isAdultForm && !GetComponentInChildren<PauseMenuScreen>().GameIsPaused)
         {
             Switch();
         }
